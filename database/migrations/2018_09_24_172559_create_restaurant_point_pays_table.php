@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCustomerStatesTable extends Migration
+class CreateRestaurantPointPaysTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateCustomerStatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('customer_states', function (Blueprint $table) {
+        Schema::create('restaurant_point_pays', function (Blueprint $table) {
             $table->increments('id');
+            $table->decimal('total',8,2);
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ class CreateCustomerStatesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customer_states');
+        Schema::dropIfExists('restaurant_point_pays');
     }
 }

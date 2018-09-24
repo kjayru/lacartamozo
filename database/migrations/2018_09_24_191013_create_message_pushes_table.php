@@ -15,6 +15,7 @@ class CreateMessagePushesTable extends Migration
     {
         Schema::create('message_pushes', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('foto');
             $table->timestamps();
         });
     }

@@ -15,6 +15,11 @@ class CreatePersonFranchisesTable extends Migration
     {
         Schema::create('person_franchises', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('names');
+            $table->string('lastname');
+            $table->string('email');
+            $table->string('pais')->nullable();
+            $table->string('ciudad')->nullable();
             $table->timestamps();
         });
     }

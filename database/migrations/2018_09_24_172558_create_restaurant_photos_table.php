@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRestaurantPointBuysTable extends Migration
+class CreateRestaurantPhotosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class CreateRestaurantPointBuysTable extends Migration
      */
     public function up()
     {
-        Schema::create('restaurant_point_buys', function (Blueprint $table) {
+        Schema::create('restaurant_photos', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('restaurant_detail_id');
+            $table->foreign('restaurant_detail_id')->on('id')->references('restaurant_details')->onDelete('cascade');
+            $table->integer('destacado');
+            $table->string('path');
             $table->timestamps();
         });
     }
@@ -26,6 +30,6 @@ class CreateRestaurantPointBuysTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('restaurant_point_buys');
+        Schema::dropIfExists('restaurant_photos');
     }
 }

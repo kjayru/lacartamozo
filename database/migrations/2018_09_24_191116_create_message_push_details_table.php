@@ -15,6 +15,7 @@ class CreateMessagePushDetailsTable extends Migration
     {
         Schema::create('message_push_details', function (Blueprint $table) {
             $table->increments('id');
+            
             $table->timestamps();
         });
     }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRestaurantPhotosTable extends Migration
+class CreateCustomerStatesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateRestaurantPhotosTable extends Migration
      */
     public function up()
     {
-        Schema::create('restaurant_photos', function (Blueprint $table) {
+        Schema::create('customer_states', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('state')->comment('1:activo,2:inactivo,3:rechazado');           
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ class CreateRestaurantPhotosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('restaurant_photos');
+        Schema::dropIfExists('customer_states');
     }
 }

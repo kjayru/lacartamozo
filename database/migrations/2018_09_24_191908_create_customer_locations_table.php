@@ -15,6 +15,8 @@ class CreateCustomerLocationsTable extends Migration
     {
         Schema::create('customer_locations', function (Blueprint $table) {
             $table->increments('id');
+            $table->decimal('latitud',11,8);
+            $table->decimal('longitud',11,8);
             $table->timestamps();
         });
     }

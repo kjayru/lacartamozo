@@ -15,6 +15,10 @@ class CreateCustomerDetailsTable extends Migration
     {
         Schema::create('customer_details', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedInteger('customer_state_id');
+            $table->foreign('customer_state_id')->references('id')->on('customer_details')->onDelete('cascade');
             $table->timestamps();
         });
     }

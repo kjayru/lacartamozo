@@ -15,6 +15,7 @@ class CreateCampaignsTable extends Migration
     {
         Schema::create('campaigns', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('foto');
             $table->timestamps();
         });
     }

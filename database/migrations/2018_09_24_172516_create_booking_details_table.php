@@ -15,6 +15,13 @@ class CreateBookingDetailsTable extends Migration
     {
         Schema::create('booking_details', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('booking_id');
+            $table->foreign('booking_id')->on('id')->references('bookings')->onDelete('cascade');
+            $table->unsignedInteger('restaurant_id');
+            $table->foreign('restaurant_id')->on('id')->reference('restaurants')->onDelete('cascade');
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->on('id')->references('users');
+            $table->datetime('fecha');
             $table->timestamps();
         });
     }

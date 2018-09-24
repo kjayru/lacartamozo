@@ -15,6 +15,8 @@ class CreateCampaignStatesTable extends Migration
     {
         Schema::create('campaign_states', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('estado');
+            $table->string('descripcion');
             $table->timestamps();
         });
     }

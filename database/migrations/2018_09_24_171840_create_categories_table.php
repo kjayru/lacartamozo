@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableCategoriesTable extends Migration
+class CreateCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,6 +15,11 @@ class CreateTableCategoriesTable extends Migration
     {
         Schema::create('table_categories', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('names')->comment('1:bebida,2:comida,3:mesa');
+            $table->text('descripcion')->nullable();
+            $table->string('calorias')->nullable();
+            $table->decimal('precio',8,2)->nullable();
+            $table->string('foto')->nullable();
             $table->timestamps();
         });
     }
