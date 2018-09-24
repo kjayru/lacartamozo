@@ -1,13 +1,13 @@
-@extends('layouts.app')
+@extends('admin.layout.login')
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-6 col-md-offset-3">
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
-
-                <div class="card-body">
+                
+                <div class="login-box-body">
+                        <p class="login-box-msg">{{ __('Login') }}</p>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
