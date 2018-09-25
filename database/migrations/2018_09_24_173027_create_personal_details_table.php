@@ -16,10 +16,10 @@ class CreatePersonalDetailsTable extends Migration
         Schema::create('personal_details', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('cargo_id');
-            $table->foreign('cargo_id')->on('id')->references('cargos')->onDelete('cascade');
+            $table->foreign('cargo_id')->references('id')->on('cargos')->onDelete('cascade');
 
             $table->unsignedInteger('personal_id');
-            $table->foreign('personal_id')->on('id')->references('personals')->onDelete('cascade');
+            $table->foreign('personal_id')->references('id')->on('personals')->onDelete('cascade');
 
             $table->timestamps();
         });

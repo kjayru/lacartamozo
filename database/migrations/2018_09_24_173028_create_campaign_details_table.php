@@ -15,14 +15,14 @@ class CreateCampaignDetailsTable extends Migration
     {
         Schema::create('campaign_details', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('campaing_id');
-            $table->foreign('campaing_id')->on('id')->references('campaings')->onDelete('cascade');
-            $table->unsignedInteger('Customer_detail_id');
-            $table->foreign('Customer_detail_id')->on('id')->references('customer_details')->onDelete('cascade');
+            $table->unsignedInteger('campaign_id');
+            $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
+            $table->unsignedInteger('customer_detail_id');
+            $table->foreign('customer_detail_id')->references('id')->on('customer_details')->onDelete('cascade');
             $table->unsignedInteger('campaign_state_id');
-            $table->foreign('camapaign_state_id')->on('id')->references('campaign_states')->onDelete('cascade');
+            $table->foreign('campaign_state_id')->references('id')->on('campaign_states')->onDelete('cascade');
             $table->unsignedInteger('personal_detail_id');
-            $table->foreign('personal_detail_id')->on('id')->references('personal_details')->onDelete('cascade');
+            $table->foreign('personal_detail_id')->references('id')->on('personal_details')->onDelete('cascade');
             
             $table->timestamps();
         });

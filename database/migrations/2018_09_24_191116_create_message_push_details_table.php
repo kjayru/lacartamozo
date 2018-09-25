@@ -15,6 +15,12 @@ class CreateMessagePushDetailsTable extends Migration
     {
         Schema::create('message_push_details', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('message_pushe_id');
+            $table->foreign('message_pushe_id')->references('id')->on('message_pushes')->onDelete('cascade');
+            $table->unsignedInteger('campaign_state_id');
+            $table->foreign('campaign_state_id')->references('id')->on('campaign_states')->onDelete('cascade');
+            $table->unsignedInteger('customer_location_id');
+            $table->foreign('customer_location_id')->references('id')->on('customer_locations')->onDelete('cascade');
             
             $table->timestamps();
         });

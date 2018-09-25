@@ -16,8 +16,8 @@ class CreatePackageDetailsTable extends Migration
         Schema::create('package_details', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('package_id');
-            $table->foreign('package_id')->references('id')->on('packages')->onDelete('success');
-            $table->unsignedInteger('Customer_detail_id');
+            $table->foreign('package_id')->references('id')->on('packages')->onDelete('cascade');
+            $table->unsignedInteger('customer_detail_id');
             $table->foreign('customer_detail_id')->references('id')->on('customer_details')->onDelete('cascade');
             $table->timestamps();
         });

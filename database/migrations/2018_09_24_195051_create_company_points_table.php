@@ -15,6 +15,7 @@ class CreateCompanyPointsTable extends Migration
     {
         Schema::create('company_points', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('descripcion');
             $table->timestamps();
         });
     }

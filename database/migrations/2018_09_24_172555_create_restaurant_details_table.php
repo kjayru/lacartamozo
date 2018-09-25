@@ -16,10 +16,10 @@ class CreateRestaurantDetailsTable extends Migration
         Schema::create('restaurant_details', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('restaurant_id');
-            $table->foreign('restaurant_id')->on('id')->references('restaurants')->onDelete('cascade');
+            $table->foreign('restaurant_id')->references('id')->on('restaurants')->onDelete('cascade');
             
             $table->unsignedInteger('customer_detail_id');
-            $table->foreign('customer_detail_id')->on('id')->references('customer_details')->onDelete('cascade');
+            $table->foreign('customer_detail_id')->references('id')->on('customer_details')->onDelete('cascade');
             $table->timestamps();
         });
     }

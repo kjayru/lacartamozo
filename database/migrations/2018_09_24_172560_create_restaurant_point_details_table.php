@@ -16,9 +16,9 @@ class CreateRestaurantPointDetailsTable extends Migration
         Schema::create('restaurant_point_details', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('restaurant_detail_id');
-            $table->foreign('restaurant_detail_id')->on('id')->references('restaurant_details');
+            $table->foreign('restaurant_detail_id')->references('id')->on('restaurant_details');
             $table->unsignedInteger('restaurant_point_buy_id');
-            $table->foreign('restaurant_point_buy_id')->on('id')->references('restaurant_point_buys')->onDelete('cascade');
+            $table->foreign('restaurant_point_buy_id')->references('id')->on('restaurant_point_buys')->onDelete('cascade');
             
             $table->integer('cantidad');
             $table->string('puntos_restaurant');

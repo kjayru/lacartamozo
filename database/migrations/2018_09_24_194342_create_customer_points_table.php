@@ -15,6 +15,10 @@ class CreateCustomerPointsTable extends Migration
     {
         Schema::create('customer_points', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('puntos_delivery');
+            $table->integer('puntos_reserva');
+            $table->integer('puntos_monto_total');
+            $table->integer('total');
             $table->timestamps();
         });
     }

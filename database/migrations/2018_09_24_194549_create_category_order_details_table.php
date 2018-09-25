@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategoryDetailsTable extends Migration
+class CreateCategoryOrderDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateCategoryDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('category_details', function (Blueprint $table) {
+        Schema::create('category_order_details', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('order_detail_id');
+            $table->foreign('order_detail_id')->references('id')->on('order_details')->onDelete('cascade');
             $table->unsignedInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->text('descripcion');
-            $table->decimal('precio',8,2);
-            $table->string('foto');
+            $table->unsignedInteger('payment_id');
+            $table->foreign('payment_id')->references('id')->on('payments')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ class CreateCategoryDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('category_details');
+        Schema::dropIfExists('category_order_details');
     }
 }
