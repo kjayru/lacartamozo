@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Campaign extends Model
 {
-    //
+    public function campaingdetails()
+    {
+        return $this->hasMany('App\CampaignDetail');
+    }
+
+    
 }
