@@ -15,5 +15,11 @@ class MessagePushDetail extends Model
     {
         return $this->belongsTo('App\MessagePush');
     }
+
+    public function customerlocation()
+    {
+        return $this->belongsTo('App\CustomerLocation');
+    }
    
 }
+            

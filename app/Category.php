@@ -4,8 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Payment extends Model
+class Category extends Model
 {
+    public function categoryDetails(){
+        return $this->hasMany('App\CategoryDetail');
+    }
+
     public function categoryorderdetails(){
         return $this->hasMany('App\CategoryOrderDetail');
     }
