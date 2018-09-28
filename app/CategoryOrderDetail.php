@@ -14,4 +14,8 @@ class CategoryOrderDetail extends Model
     {
         return $this->belongsTo('App\OrderDetail');
     }
+
+    public function category(){
+        return $this->belongsTo('App\Category');
+    }
 }
