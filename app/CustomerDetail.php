@@ -10,9 +10,9 @@ class CustomerDetail extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function costumerdetail()
+    public function resturantdetails()
     {
-        return $this->hasOne('App\CostumerDetail');
+        return $this->hasMany('App\RestaurantDetails');
     }
 
     public function packagestates()
@@ -24,4 +24,9 @@ class CustomerDetail extends Model
     {
         return $this->hasMany('App\CampaignDetail');
     }
+
+    public function bookingdetails(){
+        return $this->hasMany('App\BookingDetail');
+    }
+
 }

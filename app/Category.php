@@ -13,4 +13,8 @@ class Category extends Model
     public function categoryorderdetails(){
         return $this->hasMany('App\CategoryOrderDetail');
     }
+
+    public function restaurantdetail(){
+        return $this->belongsTo('App\RestaurantDetail');
+    }
 }
