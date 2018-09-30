@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\User;
 class ClientController extends Controller
 {
     /**
@@ -17,10 +17,11 @@ class ClientController extends Controller
         $this->middleware('auth');
     }
 
-    
+
     public function index()
     {
-        return view('admin.paginas.clientes.index');
+        $clientes = User::where('role_id',2)->orderby('id','desc')->get();
+        return view('admin.paginas.clientes.index',['clientes'=>$clientes]);
     }
 
     /**
