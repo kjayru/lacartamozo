@@ -28,6 +28,8 @@ throw new Error('AdminLTE requires jQuery')
 +function ($) {
   'use strict';
 
+  $('#tblcientes').dataTable();
+
   var DataKey = 'lte.boxrefresh';
 
   var Default = {
@@ -1128,3 +1130,4 @@ throw new Error('AdminLTE requires jQuery')
   });
 
 }(jQuery);
+
