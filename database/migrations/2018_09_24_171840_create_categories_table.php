@@ -17,7 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->increments('id');
             $table->string('names')->comment('1:bebida,2:comida,3:mesa');
             $table->text('descripcion')->nullable();
-            $table->integer('parent_id');
+            $table->integer('parent_id')->nullable();
             $table->timestamps();
         });
     }

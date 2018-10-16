@@ -18,7 +18,7 @@ class CreateMesasTable extends Migration
             $table->unsignedInteger('restaurant_detail_id');
             $table->foreign('restaurant_detail_id')->references('id')->on('restaurant_details')->onDelete('cascade');
             $table->integer('numeromersa');
-            $table->integer('detalle');
+            $table->string('detalle');
             $table->timestamps();
         });
     }

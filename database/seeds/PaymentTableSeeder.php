@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class CategoryOrderDetailTableSeeder extends Seeder
+class PaymentTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,7 @@ class CategoryOrderDetailTableSeeder extends Seeder
      */
     public function run()
     {
-        $Quantity = 30;
-        factory(App\CategoryOrderDetail::class, $Quantity)->create();
+        $Quantity = 40;
+        factory(App\Payment::class, $Quantity)->create();
     }
 }
