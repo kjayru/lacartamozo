@@ -23,4 +23,12 @@ class OrderDetail extends Model
     public function paytype(){
         return $this->belongsTo('App\PayType');
     }
+
+    public function restaurantdetail(){
+        return $this->belongsTo('App\RestaurantDetail');
+    }
+
+    public function customerdetail(){
+        return $this->belongsTo('App\CustomerDetail');
+    }
 }

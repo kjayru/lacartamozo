@@ -356,4 +356,9 @@ $(function () {
 $(document).ready(function(){
    
     $('#tb-cliente').DataTable();
+
+    $(".btn-editar").click(function(e){
+        e.preventDefault();
+        $("#detalle .box").html("SECCION DETALLE");
+    });
 });

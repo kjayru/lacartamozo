@@ -35,4 +35,8 @@ class RestaurantDetail extends Model
     public function restaurantpointdetail(){
         return $this->belongsTo('App\RestaurantPointDetail');
     }
+
+    public function mesas(){
+        return $this->hasMany('App\Mesa');
+    }
 }

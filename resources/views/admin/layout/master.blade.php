@@ -40,7 +40,7 @@
  
 </div>
 
-<script src="/js/all.js"></script>
-<script src="/dist/js/demo.js?v=6"></script>
+<script src="/js/all.js?v=7"></script>
+<script src="/dist/js/demo.js?v=10"></script>
 </body>
 </html>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\RestaurantDetail;
 class MesaController extends Controller
 {
     /**
@@ -14,7 +14,10 @@ class MesaController extends Controller
      */
     public function index()
     {
-        return view('admin.paginas.mesas.index');
+        $mesas = RestaurantDetail::all();
+
+        
+        return view('admin.paginas.mesas.index',['mesas'=>$mesas]);
     }
 
     /**

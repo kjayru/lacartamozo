@@ -1,18 +1,10 @@
 @extends('admin.layout.master')
 
 @section('content')
-<section class="content-header">
-        <h1>
-          Dashboard
-          <small>Control panel</small>
-        </h1>
-        <ol class="breadcrumb">
-          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-          <li class="active">Dashboard</li>
-        </ol>
-      </section>
+
   
       <!-- Main content -->
+  <div class="col-md-8">
       <section class="content">
        
         <div class="row">
@@ -20,7 +12,7 @@
                   
                 <div class="box">
                     <div class="box-header">
-                      <h3 class="box-title">Clientes</h3>
+                      <h3 class="box-title">Franquicias</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -56,4 +48,26 @@
         </div>
   
       </section>
+    </div>                                                                                                                                                                   
+
+
+    <div class="col-md-4" id="detalle">
+        <section class="content">
+          
+            <div class="row">
+              <div class="col-md-12">
+                <div class="box">
+                    <form action="" class="form">
+                      <div class="form-group">
+  
+                      </div>
+  
+                    </form>
+                  
+                  
+                </div>
+              </div>
+          </div>
+        </section>
+      </div>
 @endsection

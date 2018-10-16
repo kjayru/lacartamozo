@@ -4978,3 +4978,13 @@ table.text-center th {
 .login-page .card{
   margin-top: 150px;
 } 
+@media (min-width: 768px){
+
+  .content-wrapper{
+      display: -webkit-box !important;
+    
+  }
+  .padleft30{
+    padding-left: 30px;
+  }
+}

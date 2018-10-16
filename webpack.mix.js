@@ -25,7 +25,7 @@ mix.combine([
     'resources/vendor/fastclick/lib/fastclick.js',
     'resources/vendor/datatables.net/js/jquery.dataTables.min.js',
     'resources/vendor/datatables.net-bs/js/dataTables.bootstrap.min.js',
-    'public/dist/js/adminlte.min.js'
+    'public/dist/js/adminlte.js'
     ], 'public/js/all.js');
 
 mix.combine([
@@ -38,7 +38,7 @@ mix.combine([
     'resources/vendor/bootstrap-daterangepicker/daterangepicker.css',
     'public/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css',
     'resources/vendor/datatables.net-bs/css/dataTables.bootstrap.min.css',
-    'public/dist/css/AdminLTE.min.css',
+    'public/dist/css/AdminLTE.css',
     ],'public/css/library.css');
 
     

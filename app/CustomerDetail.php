@@ -29,4 +29,8 @@ class CustomerDetail extends Model
         return $this->hasMany('App\BookingDetail');
     }
 
+    public function orders(){
+        return $this->hasMany('App\Order');
+    }
+
 }

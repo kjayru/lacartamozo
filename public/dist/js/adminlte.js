@@ -402,12 +402,12 @@ throw new Error('AdminLTE requires jQuery')
 
   // Private
 
-  ControlSidebar.prototype._fixForBoxed = function (bg) {
+  /*ControlSidebar.prototype._fixForBoxed = function (bg) {
     bg.css({
       position: 'absolute',
       height  : $(Selector.wrapper).height()
     });
-  };
+  };*/
 
   // Plugin Definition
   // =================
