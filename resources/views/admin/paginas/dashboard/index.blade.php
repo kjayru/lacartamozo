@@ -16,7 +16,8 @@
       <section class="content">
        
         <div class="row">
-                  <div class="col-md-3">
+          
+            <div class="col-md-3">
                     
                   <div class="box">
                   <div class="box-header">
@@ -27,21 +28,18 @@
                     <table class="table table-condensed">
                       <tr>
                         <th style="width: 10px">#</th>
-                        <th>Task</th>
-                        <th>Progress</th>
+                        <th>Nombre</th>
+                       
                         <th style="width: 40px">Label</th>
                       </tr>
+                      @foreach($franquicias as $k => $frank)
                       <tr>
-                        <td>1.</td>
-                        <td>Update software</td>
-                        <td>
-                          <div class="progress progress-xs">
-                            <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                          </div>
-                        </td>
-                        <td><span class="badge bg-red">55%</span></td>
+                        <td>{{ $k+1 }}</td>
+                        <td>{{ $frank->names }}</td>
+                        
+                        <td><a href="#" class="btn btn-xs">ver</a></td>
                       </tr>
-                     
+                     @endforeach
                     </table>
                   </div>
                   <!-- /.box-body -->
@@ -49,7 +47,7 @@
 
                 </div>
 
-                        <div class="col-md-3">
+              <div class="col-md-3">
                     
                     <div class="box">
                     <div class="box-header">
@@ -60,21 +58,18 @@
                       <table class="table table-condensed">
                         <tr>
                           <th style="width: 10px">#</th>
-                          <th>Task</th>
-                          <th>Progress</th>
-                          <th style="width: 40px">Label</th>
+                          <th>Mozos </th>
+                          
+                          <th style="width: 40px"></th>
                         </tr>
+                        @foreach($personas as $k => $persona)
                         <tr>
-                          <td>1.</td>
-                          <td>Update software</td>
-                          <td>
-                            <div class="progress progress-xs">
-                              <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                            </div>
-                          </td>
-                          <td><span class="badge bg-red">55%</span></td>
+                          <td>{{ $k+1 }}</td>
+                          <td>{{ $persona->names }}</td>
+                          
+                          <td><a href="#" class="btn btn-xs">Ver</a></td>
                         </tr>
-                        
+                        @endforeach
                       </table>
                     </div>
                     <!-- /.box-body -->
@@ -83,7 +78,7 @@
 
 
 
-                          <div class="col-md-3">
+                <div class="col-md-3">
                     
                     <div class="box">
                     <div class="box-header">
@@ -94,21 +89,18 @@
                       <table class="table table-condensed">
                         <tr>
                           <th style="width: 10px">#</th>
-                          <th>Task</th>
-                          <th>Progress</th>
-                          <th style="width: 40px">Label</th>
+                          <th>Delivery</th>
+                          
+                          <th style="width: 40px"></th>
                         </tr>
+                        @foreach($pedidos as $k => $order)
                         <tr>
-                          <td>1.</td>
-                          <td>Update software</td>
-                          <td>
-                            <div class="progress progress-xs">
-                              <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                            </div>
-                          </td>
-                          <td><span class="badge bg-red">55%</span></td>
+                          <td>{{ $k+1 }}</td>
+                          <td>{{ $order->pedido }}</td>
+                          
+                          <td><a href="#" class="btn btn-xs">Ver</a></td>
                         </tr>
-                        
+                        @endforeach
                       </table>
                     </div>
                     <!-- /.box-body -->
@@ -129,21 +121,18 @@
                       <table class="table table-condensed">
                         <tr>
                           <th style="width: 10px">#</th>
-                          <th>Task</th>
-                          <th>Progress</th>
-                          <th style="width: 40px">Label</th>
+                          <th>Producto</th>
+                          
+                          <th style="width: 40px"></th>
                         </tr>
+                        @foreach($productos as $k => $prod)
                         <tr>
-                          <td>1.</td>
-                          <td>Update software</td>
-                          <td>
-                            <div class="progress progress-xs">
-                              <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                            </div>
-                          </td>
-                          <td><span class="badge bg-red">55%</span></td>
+                          <td>{{ $k+1 }}</td>
+                          <td>{{ $prod->descripcion }}</td>
+                          
+                          <td><a href="#" class="btn btn-xs">Ver</a></td>
                         </tr>
-                        
+                        @endforeach
                       </table>
                     </div>
                     <!-- /.box-body -->

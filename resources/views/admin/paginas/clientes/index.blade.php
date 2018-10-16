@@ -1,6 +1,8 @@
 @extends('admin.layout.master')
 
 @section('content')
+<div class="col-md-7">
+
 <section class="content-header">
         <h1>
           Dashboard
@@ -19,17 +21,18 @@
             <div class="col-md-12">
               <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title">Hover Data Table</h3>
+                  <h3 class="box-title">CLIENTES</h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                  <table id="example2" class="table table-bordered table-hover">
+                  <table id="tb-cliente" class="table table-bordered table-hover">
                     <thead>
                     <tr>
                       <th>Nº</th>
                       <th>Nombres</th>
                       <th>Email</th>
                       <th>Telefono</th>
+                      <th>Avatar</th>
                       <th>Fecha</th>
                       <th></th>
                     </tr>
@@ -41,6 +44,7 @@
                       <td>{{ $user->name }} </td>
                       <td>{{ $user->email }}</td>
                       <td> {{ $user->telefono }}</td>
+                      <td><img src="{{ $user->foto }}" width="80"></td>
                       <td>{{ $user->created_at }}</td>
                       <td> <a href="#" class="btn btn-xs btn-primary">Editar</a><a href="#" class="btn btn-xs btn-danger">Eliminar</a></td>
                     </tr>
@@ -54,4 +58,24 @@
         </div>
   
       </section>
-@endsection
+
+    </div>
+
+    <div class="col-md-5" id="detalle">
+        <h2>Detalle</h2>
+      <div class="row">
+          <div class="col-md-12">
+            <div class="box">
+                <form action="" class="form">
+                  <div class="form-group">
+
+                  </div>
+
+                </form>
+               
+              
+            </div>
+          </div>
+      </div>
+    </div>
+ @endsection

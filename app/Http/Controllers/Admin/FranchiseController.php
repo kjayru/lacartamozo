@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\PersonFranchise;
 
 class FranchiseController extends Controller
 {
@@ -14,7 +15,9 @@ class FranchiseController extends Controller
      */
     public function index()
     {
-        return view('admin.paginas.franquicias.index');
+        $franquicias = PersonFranchise::orderBy('id','desc')->get();
+
+        return view('admin.paginas.franquicias.index',['franquicias'=>$franquicias]);
     }
 
     /**
