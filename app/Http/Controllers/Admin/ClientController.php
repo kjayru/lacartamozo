@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\CustomerDetail;
+use App\RestaurantDetail;
+
 class ClientController extends Controller
 {
     /**
@@ -14,8 +17,11 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $users = User::where('role_id',2)->orderby('id','desc')->get();
-        return view('admin.paginas.clientes.index',['users'=>$users]);
+        
+        //$users = CustomerDetail::all();
+        //$clientes = RestaurantDetail::where('customer_detail_id',$user->id)->get();
+        $clientes = User::where('role_id','2')->get();
+        return view('admin.paginas.clientes.index',['users'=>$clientes]);
     }
 
     /**
@@ -47,7 +53,11 @@ class ClientController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = CustomerDetail::where('user_id',$id)->first();
+        
+        $clientes = RestaurantDetail::where('customer_detail_id',$user->id)->get();
+       
+        return response()->json(['clientes' => $cliente]);
     }
 
     /**
@@ -58,7 +68,8 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cliente = User::find($id);
+        return response()->json(['clientes' => $cliente]);
     }
 
     /**

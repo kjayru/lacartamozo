@@ -22,6 +22,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/cuadro-de-comandos','Admin\CenterCommandController@index');
     Route::get('/franquiciados','Admin\FranchiseController@index');
     Route::get('/clientes','Admin\ClientController@index');
+    Route::get('/clientes/{id}','Admin\ClientController@show');
     Route::get('/mesas','Admin\MesaController@index');
     Route::get('/pedidos','Admin\OrderController@index');
     Route::get('/reservas','Admin\BookingController@index');
@@ -34,6 +35,11 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/configuraciones','Admin\ConfigurationController@index');
     Route::get('/analitycs','Admin\AnalitycController@index');
     Route::get('/traducciones','Admin\TranslateController@index');
+
+    Route::get('/getfranquiciado/{id}/edit','Admin\FranchiseController@edit');
+    Route::get('/getCiudad/{any}','Admin\FranchiseController@getCiudad');
+
+    Route::get('/getcliente/{id}/edit','Admin\ClientController@edit');
 
 });
 Route::get('/home', 'HomeController@index')->name('home');

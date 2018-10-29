@@ -356,9 +356,65 @@ $(function () {
 $(document).ready(function(){
    
     $('#tb-cliente').DataTable();
+    $("#example2").DataTable();
 
-    $(".btn-editar").click(function(e){
+    $(".btn-franciado-edit").click(function(e){
         e.preventDefault();
-        $("#detalle .box").html("SECCION DETALLE");
+        let id = $(this).data('id');
+      
+        fetch(`/admin/getfranquiciado/${id}/edit`)
+        .then(res => res.json())
+        .then(data =>{
+            console.log(data);
+            $("#fr-franchise #nombre").val(data.person.names);
+            $("#fr-franchise #apellidos").val(data.person.lastname);
+            $("#fr-franchise #email").val(data.person.email);
+
+            $("#fr-franchise #pais").val(data.person.pais);
+            $("#fr-franchise #estado").val(data.person.ciudad);
+
+            
+
+        });
+      });
+    
+    $("#pais").change(function(e){
+        
+        let id = $(this).val();
+        let ciudad ='';
+        fetch(`/admin/getCiudad/${id}`)
+        .then(res => res.json())
+        .then(data =>{
+           
+            data.ciudades.forEach(function(e,i){
+               
+                ciudad +=`<option value="${e.idCiudades}">${e.Ciudad}</option>`; 
+            });
+            $("#estado").html(ciudad);
+        });
     });
+
+    $(".btn-cliente-edit").click(function(e){
+        e.preventDefault();
+        let id = $(this).data('id');
+        fetch(`/admin/getcliente/${id}/edit`)
+        .then(res => res.json())
+        .then(data =>{
+           
+            console.log(data.clientes.name);
+            $("#fr-cliente #nombre").val(data.clientes.name);
+            $("#fr-cliente #apellidos").val(data.clientes.lastname);
+            $("#fr-cliente #email").val(data.clientes.email);
+
+            $("#fr-cliente #edad").val(data.clientes.edad);
+            $("#fr-cliente #telefono").val(data.clientes.telefono);
+            $("#fr-cliente #sexo").val(data.clientes.sexo);
+
+            $("#fr-cliente #imgAvatar").attr('src',data.clientes.foto);
+            
+        });
+
+    });
+
 });
+

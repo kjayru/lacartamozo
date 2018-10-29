@@ -280,3 +280,10 @@ module.exports = __webpack_require__(2);
 
 /***/ })
 /******/ ]);
+
+$(document).ready(function(){
+  $(".btn-franciado-edit").click(function(e){
+    e.preventDefault();
+    alert("evento");
+  });
+});

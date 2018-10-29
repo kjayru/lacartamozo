@@ -10,13 +10,9 @@
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu" data-widget="tree">
             <li class="header">Menu Principal</li>
+                    
             <li>
-              <a href="/admin">
-                <i class="fa fa-dashboard"></i> <span>Tablero principal</span>
-              </a>
-            </li>           
-            <li>
-              <a href="/admin/cuadro-de-comandos">
+              <a href="/admin/">
                 <i class="fa fa-th"></i> <span>Cuadro de comandos</span>               
               </a>
             </li>
