@@ -2,66 +2,59 @@
 
 @section('content')
 
-  
-      <!-- Main content -->
-  <div class="col-md-8">
-      <section class="content">
-       
-        <div class="row">
-            <div class="col-md-12">
-                  
-                <div class="box">
-                    <div class="box-header">
-                      <h3 class="box-title">Franquicias</h3>
+<div class="container">
+    <div class="content1 content">
+
+        <div class="box2">
+                <div class="box-header2">
+                    <div style="float:left">
+                        <h3 class="box-title2">FRANQUICIADO</h3>
                     </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                      <table id="example2" class="table table-bordered table-hover">
+                    <div style="float:right; margin-right: 15px;">
+                        <button onclick="nuevo_franquiciado" name="" value="ok" style="background-color: #cd853f; margin-top: 5px; width: 180px; height: 36px; font-size: 1.2em;">Nuevo Franquiciado</button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body2">
+                    <table id="example2" class="table table-bordered table-hover">
                         <thead>
-                        <tr>
-                          <th>Nº</th>
-                          <th>Nombres</th>
-                          <th>Email</th>
-                          <th>Pais</th>
-                          <th>Fecha</th>
-                          <th></th>
-                        </tr>
+                            <tr>
+                                <th>Nº</th>
+                                <th>Nombres</th>
+                                <th>Email</th>
+                                <th>Pais</th>
+                                <th>Fecha</th>
+                                <th></th>
+                            </tr>
                         </thead>
                         <tbody>
-                          @foreach($franquicias as $key => $fran)
-                        <tr>
-                          <td>{{ $key + 1 }}</td>
-                          <td>{{ $fran->names }} </td>
-                          <td>{{ $fran->email }}</td>
-                          <td> {{ $fran->pais }}</td>
-                          <td>{{ $fran->created_at }}</td>
-                        <td> 
-                          <a href="/admin/clientes/{{ $fran->id }}" class="btn btn-xs btn-success btn-clientes-list" >Clientes</a>
-                          <a href="#" class="btn btn-xs btn-primary btn-franciado-edit" data-id="{{$fran->id}}">Editar</a>
-                         
-                          <label class="switch">
-                              <input type="checkbox" @if($fran->status==2) checked @endif >
-                              <span class="slider round"></span>
-                            </label>
-                        </td>
-                        </tr>
-                        @endforeach
+                            @foreach($franquicias as $key => $fran)
+                            <tr>
+                                <td>{{ $key + 1 }}</td>
+                                <td>{{ $fran->names }} </td>
+                                <td>{{ $fran->email }}</td>
+                                <td>{{ $fran->pais }}</td>
+                                <td>{{ $fran->created_at }}</td>
+                                <td> 
+                                    <a href="/admin/clientes/{{ $fran->id }}" class="btn btn-xs btn-success btn-clientes-list" >Clientes</a>
+                                    <a href="#" class="btn btn-xs btn-primary btn-franciado-edit" data-id="{{$fran->id}}">Editar</a>
+
+                                    <label class="switch">
+                                        <input type="checkbox" @if($fran->status==2) checked @endif >
+                                        <span class="slider round"></span>
+                                    </label>
+                                </td>
+                            </tr>
+                            @endforeach
                         </tbody>
-                      </table>
-                    </div>
-                    <!-- /.box-body -->
-                  </div>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+          </div>
 
-            </div>
-        </div>
-  
-      </section>
-    </div>                                                                                                                                                                   
-
-
-    <div class="col-md-4" id="detalle">
-        <section class="content">
-          
+    </div>
+    <div class="content2 content">
+        
             <div class="row">
               <div class="col-md-12">
                 <div class="box">
@@ -144,6 +137,8 @@
                 </div>
               </div>
           </div>
-        </section>
-      </div>
+    </div>
+</div>
+
+ 
 @endsection

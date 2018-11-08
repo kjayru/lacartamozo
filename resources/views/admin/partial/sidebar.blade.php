@@ -8,93 +8,112 @@
          
           <!-- /.search form -->
           <!-- sidebar menu: : style can be found in sidebar.less -->
-          <ul class="sidebar-menu" data-widget="tree">
-            <li class="header">Menu Principal</li>
+          <ul class="sidebar-menu" data-widget="tree" >
+            <li class="fa fa-home"></li>
                     
             <li>
               <a href="/admin/">
-                <i class="fa fa-th"></i> <span>Cuadro de comandos</span>               
-              </a>
-            </li>
+                <i class="fa fa-dashboard"></i> <span class="span_li">Cuadro de comandos</span>               
+              </a> 
             <li>
               <a href="/admin/franquiciados">
-                <i class="fa fa-th"></i> <span>Franquiciados</span>               
+                  <img src="/dist/img/icon_franquiciados.png" width="15px" style="margin: 0px 7px 0px 0px;"/><span class="span_li">Franquiciados</span>               
               </a>
             </li>
             <li>
               <a href="/admin/clientes">
-                <i class="fa fa-th"></i> <span>Clientes</span>               
+                <i class="fa fa-user"></i> <span class="span_li">Clientes</span>               
               </a>
             </li>
 
             <li>
               <a href="/admin/mesas">
-                <i class="fa fa-th"></i> <span>Mesas</span>               
+                <i class="fa fa-address-book"></i> <span class="span_li">Mozos y Mesas</span>               
               </a>
             </li>
 
             <li>
+              <a href="/admin/mesas">
+                <i class="fa fa-book"></i> <span class="span_li">Productos de la carta</span>               
+              </a>
+            </li>
+            
+            <li>
+              <a href="/admin/mesas">
+                <i class="fa fa-table"></i> <span class="span_li">Mi Posicion - Puntos</span>               
+              </a>
+            </li>
+            
+            <div class="line_h">
+                
+            </div>
+            
+            <li>
               <a href="/admin/pedidos">
-                <i class="fa fa-th"></i> <span>Pedidos</span>               
+                <img src="/dist/img/icon_pedidos.png" width="15px" style="margin: 0px 7px 0px 0px;"/><span class="span_li">Pedidos</span>               
               </a>
             </li>
 
             <li>
               <a href="/admin/reservas">
-                <i class="fa fa-th"></i> <span>Reservas</span>               
+                <img src="/dist/img/icon_reservation.png" width="15px" style="margin: 0px 7px 0px 0px;"/> <span class="span_li">Reservas</span>               
               </a>
             </li>
 
+            <div class="line_h">
+                
+            </div>
+            
             <li>
               <a href="/admin/marketing">
-                <i class="fa fa-th"></i> <span>Marketing</span>               
+                <img src="/dist/img/icon_marketing.png" width="15px" style="margin: 0px 7px 0px 0px;"/></i> <span class="span_li">Marketing</span>               
               </a>
             </li>
             <li>
               <a href="/admin/mensaje-push">
-                <i class="fa fa-th"></i> <span>Mensaje push</span>               
+                <img src="/dist/img/icon_push.png" width="15px" style="margin: 0px 7px 0px 0px;"/> <span class="span_li">Mensaje push</span>               
               </a>
             </li>
 
             <li>
               <a href="/admin/cupones">
-                <i class="fa fa-th"></i> <span>Cupones</span>               
+                <img src="/dist/img/icon_ticket.png" width="15px" style="margin: 0px 7px 0px 0px;"/> <span class="span_li">Cupones</span>               
               </a>
             </li>
 
             <li>
               <a href="/admin/estadistica-de-valoraciones">
-                <i class="fa fa-th"></i> <span>Estadistica de valoraciones(*)</span>               
+                <img src="/dist/img/icon_estadistica.png" width="15px" style="margin: 0px 7px 0px 0px;"/> <span class="span_li">Estadistica de valoraciones(*)</span>               
               </a>
             </li>
 
             <li>
               <a href="/admin/comentario-de-comensales">
-                <i class="fa fa-th"></i> <span>Comentario de comensales(*)</span>               
+                <img src="/dist/img/icon_comment.png" width="15px" style="margin: 0px 7px 0px 0px;"/><span class="span_li">Comentario de comensales(*)</span>               
               </a>
             </li>
 
             <li>
               <a href="/admin/perfiles-y-puntajes">
-                <i class="fa fa-th"></i> <span>Perfiles y puntajes(*)</span>               
+                <i class="fa fa-user"></i> <span class="span_li">Perfiles y puntajes(*)</span>               
               </a>
             </li>
 
             <li>
               <a href="/admin/configuraciones">
-                <i class="fa fa-th"></i> <span>Configuraciones</span>               
+                <img src="/dist/img/icon_settings.png" width="15px" style="margin: 0px 7px 0px 0px;"/> <span class="span_li">Configuraciones</span>               
               </a>
             </li>
 
             <li>
               <a href="/admin/analitycs">
-                <i class="fa fa-th"></i> <span>Analitycs</span>               
+                <img src="/dist/img/icon_analitycs.png" width="15px" style="margin: 0px 7px 0px 0px;"/> <span class="span_li">Analitycs</span>               
               </a>
             </li>
 
             <li>
               <a href="/admin/traducciones">
-                <i class="fa fa-th"></i> <span>Traducciones</span>               
+                  <img src="/dist/img/icon_language.png" width="15px" style="margin: 0px 7px 0px 0px;"/> <span class="span_li">Traducciones</span>               
               </a>
             </li>
 

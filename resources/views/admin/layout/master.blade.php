@@ -8,8 +8,9 @@
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/css/library.css">
-  <link rel="stylesheet" href="/dist/css/AdminLTE.css?v=2">
+  <link rel="stylesheet" href="/css/library.css"> 
+  <link rel="stylesheet" href="/css/app.css"> 
+  <link rel="stylesheet" href="/dist/css/skins/skin-purple.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -21,7 +22,7 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition sidebar-collapse skin-green sidebar-mini">
+<body class="hold-transition sidebar-collapse skin-purple sidebar-mini">
 <div class="wrapper">
 
   

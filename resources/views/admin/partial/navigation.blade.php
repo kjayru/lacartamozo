@@ -1,13 +1,33 @@
 
-<nav class="navbar navbar-static-top">
+<nav class="navbar navbar-fixed-top">
+    
         <!-- Sidebar toggle button-->
-        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <div href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
           <span class="sr-only">Toggle navigation</span>
-        </a>
-  
+            Menu
+        </div>
+        <div href="#" class="label_head">
+            <a href="/admin" class="logo2">
+              <!-- mini logo for sidebar mini 50x50 pixels -->
+              <span class="logo-mini"><img src="/images/logo.png"  width="55px" style="margin-top: -6px; margin-right: 30px;"></span> 
+            </a>
+            PANEL GENERAL
+        </div>
         <div class="navbar-custom-menu">
           <ul class="nav navbar-nav">
-            
+              
+              <li class="dropdown notifications-menu">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <button>Crear</button>
+                  </a>
+              </li>
+              
+              <li class="dropdown notifications-menu">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                      <input type="search" name=""> 
+                        <button>Buscar</button>
+                  </a>
+              </li>
             <!-- Notifications: style can be found in dropdown.less -->
             <li class="dropdown notifications-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -88,11 +108,8 @@
                   </div>
                 </li>
               </ul>
-            </li>
-            <!-- Control Sidebar Toggle Button -->
-            <li>
-              <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-            </li>
+                
+            </li> 
           </ul>
         </div>
       </nav>
