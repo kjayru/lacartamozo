@@ -1,11 +1,63 @@
 @extends('admin.layout.master')
 
 @section('content')
-
-  
+ 
       <!-- Main content -->
-      <section class="content">
-          </br></br></br>
+      <section class="content" style="float: none; width: 100%;">
+ 
+        <div class="upper-dashboard">
+            <div class="tablero-dash-opc">
+                <a href=""><i class="fa fa-plus" style="color: #777778; margin-right: 15px;"></i></a>
+                <a href=""><i class="fa fa-calendar" style="color: #777778; margin-right: 15px;"></i></a>
+                <a href=""><i class="fa fa-calendar" style="color: #777778; margin-right: 15px;"></i></a>
+                <a href=""><i class="fa fa-check-square" style="color: #777778; margin-right: 15px;"></i></a>
+                <a href=""><i class="fa fa-user" style="color: #777778; margin-right: 10px;"></i></a>
+            </div>  
+            </br>
+            <div class="tablero-sub-title">
+                TABLERO
+            </div>
+            <div class="myquerymain">
+                <i class="fa fa-search" style="color: #777778; margin-right: 10px;"></i>Buscar en todas las categorias<input type="query" name="" value="" style="margin-left: 12px; width: 190px; background-color:#d3d3d3; border: 0px; height: 32px;" />                     
+            </div>
+            <div  style="float: right; margin-right: 3px; margin-top: -35px; width: 130px;">
+                <div class="input-group margin">
+                  <div class="input-group-btn">
+                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="height: 28px; padding-top: 3px;">Mas
+                      <span class="fa fa-caret-down"></span></button>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">Action</a></li>
+                      <li><a href="#">Another action</a></li>
+                      <li><a href="#">Something else here</a></li>
+                      <li class="divider"></li>
+                      <li><a href="#">Separated link</a></li>
+                    </ul>
+                  </div> 
+                </div>
+            </div>
+        </div>  
+  
+        <div style="margin: 0 auto; height: 30px;">
+
+            <div  style="float: right; margin-right: 2px; margin-top: -60px; width: 130px;">
+                <div class="input-group margin">
+                  <div class="input-group-btn">
+                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="height: 28px; padding-top: 3px;">Añadir widget
+                      <span class="fa fa-caret-down"></span></button>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">Action</a></li>
+                      <li><a href="#">Another action</a></li>
+                      <li><a href="#">Something else here</a></li>
+                      <li class="divider"></li>
+                      <li><a href="#">Separated link</a></li>
+                    </ul>
+                  </div> 
+                </div>
+            </div>
+            
+        </div>
+          
+
         <div class="row">
           
             <div class="col-md-3">

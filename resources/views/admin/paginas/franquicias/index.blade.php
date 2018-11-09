@@ -11,7 +11,7 @@
                         <h3 class="box-title2">FRANQUICIADO</h3>
                     </div>
                     <div style="float:right; margin-right: 15px;">
-                        <button onclick="nuevo_franquiciado" name="" value="ok" style="background-color: #cd853f; margin-top: 5px; width: 180px; height: 36px; font-size: 1.2em;">Nuevo Franquiciado</button>
+                        <button onclick="nuevo_franquiciado" name="" value="ok" style="background-color: #cd853f; margin-top: 5px; width: 180px; height: 36px; font-size: 1.2em; border: 0px;">Nuevo Franquiciado</button>
                     </div>
                 </div>
                 <!-- /.box-header -->
@@ -133,6 +133,7 @@
                     </form>
                     
                   
+                    <div id="googleMap" style="width:90%; height:350px;"></div>
                   
                 </div>
               </div>
@@ -140,5 +141,16 @@
     </div>
 </div>
 
+<script>
+function myMap() {
+var mapProp= {
+    center:new google.maps.LatLng(51.508742,-0.120850),
+    zoom:5,
+};
+var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script>
  
 @endsection

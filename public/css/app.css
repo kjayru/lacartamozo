@@ -95,6 +95,41 @@
     padding: 0px;
 }   
 
+.tablero-dash-opc{
+    float: right; 
+    margin: 0 auto;
+    height: 35px;
+    margin-top: -7px;
+} 
+
+.tablero-sub-title{
+    margin: 0px 0px 0px 35px;
+    border-top: 2px solid #d3ae9d;
+    background-color: #fbfbfb;
+    height: 35px;
+}
+
+.myquerymain{
+    width: 450px; 
+    padding-top: 5px;
+    padding-left: 18px;
+    height: 45px;
+    margin: 0 auto;
+    margin-top: -25px;
+    background-color: #e5e5e5; 
+    color: #777778;
+    border: 2px solid #d3d3d3;
+}
+
+.upper-dashboard{
+    height: 90px;
+    width: 100%;
+    background-color: #fff; 
+    margin-bottom: 50px; 
+    border-bottom: 1px solid #f3f3f3;
+    float: none;
+}
+
 .content{
     float:left; 
 }
@@ -105,6 +140,7 @@
     width:70%;
     height: 100%;
     padding: 0px;
+    overflow-y: auto;
 }
 
 .content2{
@@ -113,7 +149,7 @@
     width:30%;
     height: 100%;
     overflow-y: auto;
-    padding: 1px;
+    padding: 2px;
 }
 
 .box2{

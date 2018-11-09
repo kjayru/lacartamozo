@@ -2,20 +2,20 @@
 
 @section('content')
 
-
-<div class="col-md-8"> 
-          <!-- Main content -->
-          
-          <section class="content">
-          
-            <div class="row">
-                <div class="col-md-12">
-                  <div class="box">
-                    <div class="box-header">
-                      <h3 class="box-title">CLIENTES</h3>
+<div class="container">
+    <div class="content1 content">
+  
+            <div class="box2">
+                <div class="box-header2">
+                    <div style="float:left">
+                        <h3 class="box-title2">CLIENTES</h3>
                     </div>
+                    <div style="float:right; margin-right: 15px;">
+                        <button onclick="nuevo_franquiciado" name="" value="ok" style="background-color: #cd853f; margin-top: 5px; width: 180px; height: 36px; font-size: 1.2em; border: 0px;">Nuevo Franquiciado</button>
+                    </div>
+                </div>
                     <!-- /.box-header -->
-                    <div class="box-body padleft30">
+            <div class="box-body2">
                       <table id="tb-cliente" class="table table-responsive table-hover">
                         <thead>
                         <tr>
@@ -43,22 +43,16 @@
                         </tbody>
                       </table>
                     </div>
-                    <!-- /.box-body -->
-                  </div>
-                </div>
-            </div>
-      
-          </section>
+              <!-- /.box-body -->
+            </div> 
 
-</div>
+    </div>
+    <div class="content2 content">
 
-    <div class="col-md-4" id="detalle">
-      <section class="content">
-        
-          <div class="row">
-            <div class="col-md-12">
-              <div class="box">
-                  <form class="form-horizontal" id="fr-cliente">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="box">
+ <form class="form-horizontal" id="fr-cliente">
                       <fieldset>
                       
                       <!-- Form Name -->
@@ -139,12 +133,15 @@
                       
                       </fieldset>
                       </form>
-                     
-                
-                
+
+
+                </div>
               </div>
-            </div>
-        </div>
-      </section>
+          </div>
+        
     </div>
+</div>
+ 
+
+
  @endsection
