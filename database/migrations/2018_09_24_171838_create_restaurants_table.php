@@ -15,6 +15,9 @@ class CreateRestaurantsTable extends Migration
     {
         Schema::create('restaurants', function (Blueprint $table) {
             $table->increments('id');
+           
+            $table->unsignedInteger('person_franchise_id');
+            $table->foreign('person_franchise_id')->references('id')->on('person_franchises');
             $table->string('pais');
             $table->string('ciudad');
             $table->string('direccion');

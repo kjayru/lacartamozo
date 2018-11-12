@@ -4,9 +4,8 @@ use Faker\Generator as Faker;
 
 $factory->define(App\PersonFranchise::class, function (Faker $faker) {
     return [
-        'names' => $faker->name,
-        'lastname' => $faker->lastname,
-        'email' => $faker->unique()->safeEmail,
+        
+        'user_id' => App\User::all()->random()->id,
         'pais' => $faker->country,
         'ciudad' => $faker->city, 
     ];

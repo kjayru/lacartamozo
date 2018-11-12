@@ -2,7 +2,7 @@
 
 use Faker\Generator as Faker;
 use App\CustomerState;
-use App\User;
+use App\Cliente;
 
 $factory->define(App\CustomerDetail::class, function (Faker $faker) {
     return [

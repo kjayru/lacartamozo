@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
-use App\Role;
+
 use App\CustomerState;
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +16,7 @@ use App\CustomerState;
 
 $factory->define(App\User::class, function (Faker $faker) {
     return [
-        'role_id'=>$faker->randomElement([Role::PERSONAL]),
+        
         'name' => $faker->name,
         'lastname' => $faker->lastname,
         'email' => $faker->unique()->safeEmail,
