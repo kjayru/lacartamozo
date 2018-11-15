@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePackagesTable extends Migration
+class CreateMozosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreatePackagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('packages', function (Blueprint $table) {
+        Schema::create('mozos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre');
-            $table->decimal('price',8,2);
-            $table->decimal('promoprice',8,2);
-            $table->integer('state')->default(1);
             $table->timestamps();
         });
     }
@@ -30,6 +26,6 @@ class CreatePackagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('packages');
+        Schema::dropIfExists('mozos');
     }
 }
