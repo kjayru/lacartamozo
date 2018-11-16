@@ -28,14 +28,15 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function role()
-    {
-        return $this->belongsTo('App\Role');
-    }
+   
 
     public function costumerdetail()
     {
         return $this->hasOne('App\CustomerDetail');
+    }
+    
+    public function personfranchises(){
+        return $this->hasMany('App\PersonFranchise');
     }
 
 }

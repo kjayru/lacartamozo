@@ -17,14 +17,18 @@
                 <!-- /.box-header -->
                 <div class="box-body2">
                     <table id="example2" class="table table-bordered table-hover">
-                        <thead>
+                        <thead style="background-color: #696969; color: #fff;">
                             <tr>
-                                <th>Nº</th>
-                                <th>Nombres</th>
-                                <th>Email</th>
-                                <th>Pais</th>
-                                <th>Fecha</th>
-                                <th></th>
+                                <th>Id</th>
+                                <th>Foto</th>
+                                <th>Nombre de Negocio</th>
+                                <th>Direccion</th>
+                                <th>Ciudad</th>
+                                <th>Provincia</th>
+                                <th>Celular</th>
+                                <th>Paquete</th>
+                                <th>Franquiciado</th>
+                                <th>Estado</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -145,7 +149,7 @@
 function myMap() {
 var mapProp= {
     center:new google.maps.LatLng(51.508742,-0.120850),
-    zoom:5,
+    zoom:5
 };
 var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
 }

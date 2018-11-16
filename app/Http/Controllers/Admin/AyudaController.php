@@ -4,13 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
-use App\User;
-use App\PersonFranchise;
-use App\Pais;
-use App\Ciudad;
 
-class FranchiseController extends Controller
+class AyudaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,13 +14,7 @@ class FranchiseController extends Controller
      */
     public function index()
     {
-        $paises = Pais::orderBy('Pais','asc')->get();
-
-        $franquicias = PersonFranchise::orderBy('id','desc')->get();
-
-       
-                
-        return view('admin.paginas.franquicias.index',['franquicias'=>$franquicias,'paises'=>$paises]);
+        return view('admin.paginas.ayuda.index');
     }
 
     /**
@@ -68,8 +57,7 @@ class FranchiseController extends Controller
      */
     public function edit($id)
     {
-        $franchise = PersonFranchise::find($id);
-        return response()->json(['person' => $franchise]);
+        //
     }
 
     /**
@@ -93,18 +81,5 @@ class FranchiseController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function getCiudad($codigo){
-
-        $ciudades = Ciudad::where('Paises_Codigo',$codigo)->orderBy('idCiudades','asc')->get();
-
-        return response()->json(['ciudades'=>$ciudades]);
-    }
-    
-    
-    public function demotab(){
-        
-        return view('admin.paginas.franquicias.tabs');
     }
 }

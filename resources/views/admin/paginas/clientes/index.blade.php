@@ -17,7 +17,7 @@
                     <!-- /.box-header -->
             <div class="box-body2">
                       <table id="tb-cliente" class="table table-responsive table-hover">
-                        <thead>
+                        <thead style="background-color: #696969; color: #fff;">
                         <tr>
                           <th>Nº</th>
                           <th>Nombres</th>

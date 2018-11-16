@@ -32,14 +32,20 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/estadistica-de-valoraciones','Admin\StatisticController@index');
     Route::get('/comentario-de-comensales','Admin\CommentController@index');
     Route::get('/perfiles-y-puntajes','Admin\PerfilController@index');
-    Route::get('/configuraciones','Admin\ConfigurationController@index');
     Route::get('/analitycs','Admin\AnalitycController@index');
     Route::get('/traducciones','Admin\TranslateController@index');
 
     Route::get('/getfranquiciado/{id}/edit','Admin\FranchiseController@edit');
+    Route::get('/demotab','Admin\FranchiseController@demotab');
+    
     Route::get('/getCiudad/{any}','Admin\FranchiseController@getCiudad');
 
     Route::get('/getcliente/{id}/edit','Admin\ClientController@edit');
 
+    Route::get('/miposicionpuntos','Admin\MiPosicionPuntosController@index');
+    Route::get('/productoscarta','Admin\ProductosCartaController@index');
+    Route::get('/ayuda','Admin\AyudaController@index');
+    Route::get('/configuraciones','Admin\ConfigurationController@index');
+    Route::get('/precios','Admin\PreciosController@index');
 });
 Route::get('/home', 'HomeController@index')->name('home');
