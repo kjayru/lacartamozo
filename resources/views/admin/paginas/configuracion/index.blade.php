@@ -111,7 +111,7 @@
         
         <div class="col-md-2">
             
-            <div class="box" id="opc_conf_div" onclick="onPaquetes()">  
+            <div class="box" id="opc_conf_div" onclick="onPaisProvincia()">  
                 <div class="box-body no-padding" > 
                     <img src="../images/world.png" width="65px" height="65px" style="margin-left: 65px; margin-top: 15px;" />
                     <h4 style="margin-left: 0px;" align="center">PAIS - PROVINCIA - LOCALIDAD</h4>
@@ -125,4 +125,18 @@
     
     
 </section>
+
+<script>
+    function onPaquetes(){  window.location.href = "/admin/paquetes"; }
+    function onTiposComida(){  window.location.href = "/admin/tiposcomida"; }
+    function onMail(){  window.location.href = "/admin/mail_sms"; }
+    function onTraducciones(){  window.location.href = "/admin/traducciones"; }
+    function onVinos(){  window.location.href = "/admin/paquetes"; }
+    function onPrinter(){  window.location.href = "/admin/setting_impresora"; }
+    function onCodigoWeb(){  window.location.href = "/admin/codigoweb"; }
+    function onMetodoPago(){  window.location.href = "/admin/metodopago"; }
+    function onPuntos(){  window.location.href = "/admin/puntos"; }
+    function onPaisProvincia(){  window.location.href = "/admin/paisprovincialocalidad"; }
+    
+</script>
 @endsection

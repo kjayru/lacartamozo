@@ -31,7 +31,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/cupones','Admin\CouponController@index');
     Route::get('/estadistica-de-valoraciones','Admin\StatisticController@index');
     Route::get('/comentario-de-comensales','Admin\CommentController@index');
-    Route::get('/perfiles-y-puntajes','Admin\PerfilController@index');
+    Route::get('/publicidad','Admin\PublicidadController@index');
     Route::get('/analitycs','Admin\AnalitycController@index');
     Route::get('/traducciones','Admin\TranslateController@index');
 
@@ -47,5 +47,17 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/ayuda','Admin\AyudaController@index');
     Route::get('/configuraciones','Admin\ConfigurationController@index');
     Route::get('/precios','Admin\PreciosController@index');
+    Route::get('/codigoweb','Admin\CodigoWebController@index');
+    Route::get('/mail_sms','Admin\MailSMSController@index');
+    Route::get('/paquetes','Admin\PaquetesController@index');
+    Route::get('/puntos','Admin\PuntosController@index');
+    Route::get('/setting_impresora','Admin\SettingImpresoraController@index');
+    Route::get('/tiposcomida','Admin\TiposComidaController@index');
+    Route::get('/metodopago','Admin\MetodoPagoController@index');
+    Route::get('/paisprovincialocalidad','Admin\PaisPLController@index');
+    Route::get('/push_comercios','Admin\PushComerciosController@index');
+    Route::get('/push_comensal','Admin\PushComensalController@index');
+    
+    
 });
 Route::get('/home', 'HomeController@index')->name('home');

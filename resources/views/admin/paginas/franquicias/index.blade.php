@@ -1,12 +1,14 @@
 @extends('admin.layout.master')
 
 @section('content')
-
+ 
+<section class="content">
+    
 <div class="container">
     <div class="content1 content">
 
-        <div class="box2">
-                <div class="box-header2">
+        <div class="box2" style="background-color: #696969;">
+            <div class="box-header2" style="min-width: 300px; max-width: 700px;">
                     <div style="float:left">
                         <h3 class="box-title2">FRANQUICIADO</h3>
                     </div>
@@ -14,9 +16,10 @@
                         <button onclick="nuevo_franquiciado" name="" value="ok" style="background-color: #cd853f; margin-top: 5px; width: 180px; height: 36px; font-size: 1.2em; border: 0px;">Nuevo Franquiciado</button>
                     </div>
                 </div>
-                <!-- /.box-header -->
-                <div class="box-body2">
-                    <table id="example2" class="table table-bordered table-hover">
+                <!-- /.box-body -->
+          </div>
+
+        <table class="table" style="width: 1500px; table-layout:fixed;">
                         <thead style="background-color: #696969; color: #fff;">
                             <tr>
                                 <th>Id</th>
@@ -51,11 +54,7 @@
                             </tr>
                             @endforeach
                         </tbody>
-                    </table>
-                </div>
-                <!-- /.box-body -->
-          </div>
-
+                    </table> 
     </div>
     <div class="content2 content">
         
@@ -144,6 +143,9 @@
           </div>
     </div>
 </div>
+
+    
+</section>
 
 <script>
 function myMap() {

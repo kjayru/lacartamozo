@@ -98,7 +98,7 @@
             </li>
 
             <li>
-              <a href="/admin/perfiles-y-puntajes">
+              <a href="/admin/publicidad">
                 <i class="fa fa-user"></i> <span class="span_li">Publicidad</span>               
               </a>
             </li>

@@ -1,22 +1,23 @@
 
-<nav class="navbar navbar-fixed-top">
+    <!-- Logo -->
+    <a href="../../index2.html" class="logo">
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <span class="logo-mini"><img src="/images/logo.png"  width="35px" style="margin-top: 0px;" ></span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg"><img src="/images/logo.png"  width="45px" style="margin-top: 0px;" ></span>
+    </a>
+ 
+    <nav class="navbar navbar-static-top" >
     
-        <!-- Sidebar toggle button-->
+        <!-- Sidebar toggle button-->     
         <div href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-          <span class="sr-only">Toggle navigation</span>
-            Menu
-        </div>
-        <div href="#" class="label_head">
-            <a href="/admin" class="logo2">
-              <!-- mini logo for sidebar mini 50x50 pixels -->
-              <span class="logo-mini"><img src="/images/logo.png"  width="55px" style="margin-top: -6px; margin-right: 30px;"></span> 
-            </a>
-            PANEL GENERAL
-        </div>
+            <span class="sr-only">Toggle navigation</span>
+        </div>      
+         
         <div class="navbar-custom-menu">
           <ul class="nav navbar-nav">
               
-              <li class="dropdown notifications-menu">
+              <li class="dropdown notifications-menu hidden-xs">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <button>Crear</button>
                   </a>
@@ -24,7 +25,7 @@
               
               <li class="dropdown notifications-menu">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                      <input type="search" name=""> 
+                      <input type="search" name="" style="width: 120px; max-width: 150px;"> 
                         <button>Buscar</button>
                   </a>
               </li>

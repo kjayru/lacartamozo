@@ -1,50 +1,50 @@
 @extends('admin.layout.master')
 
 @section('content')
-
+ 
+ 
+<section class="content">
+    
 <div class="container">
     <div class="content1 content">
-  
-            <div class="box2">
-                <div class="box-header2">
-                    <div style="float:left">
-                        <h3 class="box-title2">CLIENTES</h3>
-                    </div>
-                    <div style="float:right; margin-right: 15px;">
-                        <button onclick="nuevo_franquiciado" name="" value="ok" style="background-color: #cd853f; margin-top: 5px; width: 180px; height: 36px; font-size: 1.2em; border: 0px;">Nuevo Franquiciado</button>
-                    </div>
+
+        <div class="box2" style="background-color: #696969;">
+            <div class="box-header2" style="min-width: 300px; max-width: 700px;">
+                <div style="float:left">
+                    <h3 class="box-title2">CLIENTES</h3>
                 </div>
-                    <!-- /.box-header -->
-            <div class="box-body2">
-                      <table id="tb-cliente" class="table table-responsive table-hover">
-                        <thead style="background-color: #696969; color: #fff;">
-                        <tr>
-                          <th>Nº</th>
-                          <th>Nombres</th>
-                          <th>Email</th>
-                          <th>Telefono</th>
-                          <th>Avatar</th>
-                          <th>Fecha</th>
-                          <th></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                          @foreach($users as $key => $user)
-                        <tr>
-                          <th>{{ $key + 1 }}</th>
-                          <td>{{ $user->name }} </td>
-                          <td>{{ $user->email }}</td>
-                          <td> {{ $user->telefono }}</td>
-                          <td><img src="{{ $user->foto }}" width="80"></td>
-                          <td>{{ $user->created_at }}</td>
-                          <td> <a href="#" class="btn btn-xs btn-primary btn-editar btn-cliente-edit" data-id="{{ $user->id }}">Editar</a><a href="#" class="btn btn-xs btn-danger btn-eliminar">Eliminar</a></td>
-                        </tr>
-                        @endforeach
-                        </tbody>
-                      </table>
-                    </div>
-              <!-- /.box-body -->
+                <div style="float:right; margin-right: 15px;">
+                    <button onclick="nuevo_franquiciado" name="" value="ok" style="background-color: #cd853f; margin-top: 5px; width: 180px; height: 36px; font-size: 1.2em; border: 0px;">Nuevo Cliente</button>
+                </div>
             </div> 
+        </div> 
+        
+        <table class="table" style="width: 1500px; table-layout:fixed;">
+            <thead style="background-color: #696969; color: #fff;">
+            <tr>
+              <th>Nº</th>
+              <th>Nombres</th>
+              <th>Email</th>
+              <th>Telefono</th>
+              <th>Avatar</th>
+              <th>Fecha</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody>
+              @foreach($users as $key => $user)
+            <tr>
+              <th>{{ $key + 1 }}</th>
+              <td>{{ $user->name }} </td>
+              <td>{{ $user->email }}</td>
+              <td> {{ $user->telefono }}</td>
+              <td><img src="{{ $user->foto }}" width="80"></td>
+              <td>{{ $user->created_at }}</td>
+              <td> <a href="#" class="btn btn-xs btn-primary btn-editar btn-cliente-edit" data-id="{{ $user->id }}">Editar</a><a href="#" class="btn btn-xs btn-danger btn-eliminar">Eliminar</a></td>
+            </tr>
+            @endforeach
+            </tbody>
+        </table>
 
     </div>
     <div class="content2 content">
@@ -142,6 +142,8 @@
     </div>
 </div>
  
+</section>
+
 
 
  @endsection

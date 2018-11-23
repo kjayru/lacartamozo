@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class PerfilController extends Controller
+class CodigoWebController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class PerfilController extends Controller
      */
     public function index()
     {
-        return view('admin.paginas.perfiles.index');
+        return view('admin.paginas.codigoweb.index');
     }
 
     /**
