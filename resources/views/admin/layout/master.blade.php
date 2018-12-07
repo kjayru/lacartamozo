@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="/css/library.css"> 
   <link rel="stylesheet" href="/css/app.css"> 
   <link rel="stylesheet" href="/dist/css/skins/skin-purple.css">
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>  
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

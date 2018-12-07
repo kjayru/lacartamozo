@@ -89,8 +89,8 @@
   
           
 
-        <div class="row">
-          
+        <div class="row" id="r1">
+          <!--
             <div  class="col-md-3" style="min-width:  270px; max-width: 380px; ">
                     
                   <div class="box">
@@ -107,7 +107,7 @@
                             </tr>
                         </table> 
                   </div>
-                  <!-- /.box-header -->
+                  
                   <div class="box-body no-padding">
                     <table class="table table-condensed">
                       <tr>
@@ -126,8 +126,7 @@
                      @endforeach
                     </table>
                   </div>
-                  <!-- /.box-body -->
-                        <!-- /.box-footer -->
+                 
                         <div class="box-footer" style="padding: 5px;"> 
                             <table style="width: 100%;">
                                 <col>
@@ -160,8 +159,7 @@
                                     </th>
                                 </tr>
                             </table>  
-                        </div>
-                    <!-- /.box-header -->
+                        </div> 
                     <div class="box-body no-padding">
                       <table class="table table-condensed">
                         <tr>
@@ -179,9 +177,7 @@
                         </tr>
                         @endforeach
                       </table>
-                    </div>
-                    <!-- /.box-body -->
-                        <!-- /.box-footer -->
+                    </div> 
                         <div class="box-footer" style="padding: 5px;"> 
                             <table style="width: 100%;">
                                 <col>
@@ -197,7 +193,6 @@
                         </div>
                   </div>
             </div>
-
 
 
             <div  class="col-md-3" style="min-width:  270px; max-width: 380px;">
@@ -215,8 +210,7 @@
                                 </th>
                             </tr>
                         </table> 
-                    </div>
-                    <!-- /.box-header -->
+                    </div> 
                     <div class="box-body no-padding">
                       <table class="table table-condensed">
                         <tr>
@@ -234,9 +228,7 @@
                         </tr>
                         @endforeach
                       </table>
-                    </div>
-                    <!-- /.box-body -->
-                        <!-- /.box-footer -->
+                    </div> 
                         <div class="box-footer" style="padding: 5px;"> 
                             <table style="width: 100%;">
                                 <col>
@@ -258,8 +250,7 @@
 
             <div  class="col-md-3" style="min-width:  270px; max-width: 380px;">
 
-                        <div class="box">
-                        <!-- /.box-header -->
+                        <div class="box"> 
                         <div class="box-header" style="height: 45px;"> 
                             <table style="width: 100%;">
                                 <col>
@@ -273,8 +264,7 @@
                                 </tr>
                             </table> 
                         </div>
-                            
-                        <!-- /.box-body -->
+                             
                         <div class="box-body no-padding">
                           <table class="table table-condensed">
                             <tr>
@@ -293,8 +283,7 @@
                             @endforeach
                           </table>
                         </div>
-                        
-                        <!-- /.box-footer -->
+                         
                         <div class="box-footer" style="padding: 5px;"> 
                             <table style="width: 100%;">
                                 <col>
@@ -313,11 +302,12 @@
             </div>
             
             
+-->
 
         </div>
           
           
-          <div class="row">
+          <div class="row" id="r2">
 
             <div  class="col-md-3" style="min-width:  270px; max-width: 380px;"> 
                 <div class="box">
@@ -477,7 +467,7 @@
               
           </div>
           
-          <div class="row">
+          <div class="row" id="r3">
 
             <div  class="col-md-3" style="min-width:  270px; max-width: 380px;"> 
                 <div class="box">
@@ -523,4 +513,109 @@
     </div>
 
   </section>
+      
+<script>
+$( document ).ready(function() {
+    console.log( "ready!" );
+    
+    var titulo = "FRANQUICIADO";
+    
+    var new_col = document.createElement('div');
+    new_col.style = 'min-width:  270px; max-width: 380px;';
+    new_col.className = 'col-md-3';
+    
+    var box = document.createElement('div');
+    box.className = 'box';
+    
+    var box_header = document.createElement('div');
+    box_header.className = 'box_header';
+    box_header.style = 'height: 45px;';
+    
+    var box_header_table = document.createElement('table');
+    box_header_table.style = 'width: 100%;';
+    var col1 = document.createElement('col');
+    var col2 = document.createElement('col');
+    col2.width = '56px';
+    box_header_table.appendChild(col1);
+    box_header_table.appendChild(col2);
+    var bht_r1 = box_header_table.insertRow(0);
+    var cell0 = bht_r1.insertCell(0);
+    var cell1 = bht_r1.insertCell(1);
+    cell0.innerHTML = '<h3 class="box-title"><p>'+titulo+'</p></h3>';
+    cell1.innerHTML = '<a href="#"><img src="/dist/img/icon_close.png" width="21px" style="margin: -12px 7px 0px 0px;"/></a>'+
+                      '<a href="#"><img src="/dist/img/icon_lista.png" width="25px" style="margin: -12px 0px 0px 0px;"/></a>';
+    
+    box_header.appendChild(box_header_table);
+    
+    var box_body = document.createElement('div');
+    
+    var box_footer = document.createElement('div');
+    box_footer.className = 'box-footer';
+    box_footer.style = 'padding: 5px;';
+    
+    box.appendChild(box_header);
+    box.appendChild(box_body);
+    box.appendChild(box_footer);
+    new_col.appendChild(box);
+    
+    $("#r1").append( new_col );
+    
+    /*
+     *  <div  class="col-md-3" style="min-width:  270px; max-width: 380px; ">
+                    
+                  <div class="box">
+                  <div class="box-header" style="height: 45px;">
+                        <table style="width: 100%;">
+                            <col>
+                            <col width="56px;">
+                            <tr>
+                                <th><h3 class="box-title"><p>FRANQUICIADOS</p></h3></th>
+                                <th>
+                                    <a href="#"><img src="/dist/img/icon_close.png" width="21px" style="margin: -12px 7px 0px 0px;"/></a>
+                                    <a href="#"><img src="/dist/img/icon_lista.png" width="25px" style="margin: -12px 0px 0px 0px;"/></a>
+                                </th>
+                            </tr>
+                        </table> 
+                  </div>
+                  
+                  <div class="box-body no-padding">
+                    <table class="table table-condensed">
+                      <tr>
+                        <th style="width: 10px">#</th>
+                        <th>Nombre</th>
+                       
+                        <th style="width: 40px">Label</th>
+                      </tr>
+                      @foreach($franquicias as $k => $frank)
+                      <tr>
+                        <td>{{ $k+1 }}</td>
+                        <td>{{ $frank->names }}</td>
+                        
+                        <td><a href="#" class="btn btn-xs">ver</a></td>
+                      </tr>
+                     @endforeach
+                    </table>
+                  </div>
+                 
+                        <div class="box-footer" style="padding: 5px;"> 
+                            <table style="width: 100%;">
+                                <col>
+                                <col width="35px;">
+                                <tr>
+                                    <th></th>
+                                    <th>
+                                        <a href=""><img src="/dist/img/icon_refresh.png" width="12px" style="margin: -10px 7px 0px 0px;"/></a>
+                                        <a href=""><img src="/dist/img/icon_delete.png" width="10px" style="margin: -9px 0px 0px 0px;"/></a>
+                                    </th>
+                                </tr>
+                            </table>
+                        </div>
+                </div>
+
+            </div>
+     */
+});
+    
+</script>
+      
 @endsection
