@@ -15,7 +15,7 @@ class CreateClientsTable extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('franchisee_id')->references('id')->on('franchisees');
+            $table->unsignedInteger('franchise_id')->references('id')->on('franchisees');
             $table->string('cover');
             $table->string('name');
             $table->string('address');
