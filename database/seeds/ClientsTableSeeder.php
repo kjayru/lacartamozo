@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB; 
-class PersonalTableSeeder extends Seeder
+class ClientsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,7 +12,7 @@ class PersonalTableSeeder extends Seeder
     public function run()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-        $Quantity = 300;
-        factory(App\Personal::class, $Quantity)->create();
+        $Quantity = 60;
+        factory(App\Client::class, $Quantity)->create();
     }
 }
