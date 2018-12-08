@@ -4,7 +4,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Franchise::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
+        'names' => $faker->name,
         'address' => $faker->address,
         'city' => $faker->city, 
         'province' => $faker->state,

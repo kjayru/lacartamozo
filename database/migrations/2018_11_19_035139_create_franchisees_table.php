@@ -15,7 +15,7 @@ class CreateFranchiseesTable extends Migration
     {
         Schema::create('franchisees', function (Blueprint $table) {
             $table->increments('id');
-           $table->string('names');
+            $table->string('names');
             $table->string('address');
             $table->string('city');
             $table->string('province');
