@@ -19,13 +19,13 @@ class FranchiseController extends Controller
      */
     public function index()
     {
-        $paises = Pais::orderBy('Pais','asc')->get();
+       // $paises = Pais::orderBy('Pais','asc')->get();
 
-        $franquicias = PersonFranchise::orderBy('id','desc')->get();
+        $franquicias = Franchise::orderBy('id','desc')->get();
 
        
                 
-        return view('admin.paginas.franquicias.index',['franquicias'=>$franquicias,'paises'=>$paises]);
+        return view('admin.paginas.franquicias.index',['franquicias'=>$franquicias]);
     }
 
     /**
