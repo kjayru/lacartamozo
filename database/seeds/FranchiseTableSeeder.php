@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB; 
 
-class PersonFranchiseTableSeeder extends Seeder
+class FranchiseTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class PersonFranchiseTableSeeder extends Seeder
     {
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         $Quantity = 30;
-        factory(App\PersonFranchise::class, $Quantity)->create();
+        factory(App\Franchise::class, $Quantity)->create();
     }
 }
