@@ -148,8 +148,8 @@ nameboxes.push(b4);
 nameboxes.push(b5);
 nameboxes.push(b6);
 nameboxes.push(b7);
-nameboxes.push(b8);
-nameboxes.push(b9);
+//nameboxes.push(b8);
+//nameboxes.push(b9);
 
 $( document ).ready(function() {
     updateBoxes(); 
