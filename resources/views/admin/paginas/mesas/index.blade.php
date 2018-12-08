@@ -12,20 +12,24 @@
                         <h3 class="box-title2">MOZOS Y MEZAS</h3>
                     </div>
                     <div style="float:right; margin-right: 15px;">
-                        <button onclick="nuevo_franquiciado" name="" value="ok" style="background-color: #cd853f; margin-top: 5px; width: 180px; height: 36px; font-size: 1.2em; border: 0px;">Nuevo Franquiciado</button>
+                        <button onclick="nuevo_mozo" name="" value="ok" style="background-color: #cd853f; margin-top: 5px; width: 180px; height: 36px; font-size: 1.2em; border: 0px;">Agregar Mozo</button>
                     </div>
                 </div>
                     <!-- /.box-header -->
             <div class="box-body2">
                       <table id="tb-cliente" class="table table-responsive table-hover">
-                        <thead>
+                        <thead style="background-color: #696969; color: #fff;">
                         <tr>
-                          <th>Nº</th>
-                          <th>Restaurant</th>
-                          <th>Numero mesa</th>
-                          
-                          <th>Fecha</th>
+                          <th>Id</th>
+                          <th>Foto</th>
+                          <th>Nombre</th>
+                          <th>Direccion</th>
+                          <th>Ciudad</th>
+                          <th>Pais</th>
+                          <th>Celular</th>
+                          <th>Alta</th>
                           <th></th>
+                          <th>Estado</th> 
                         </tr>
                         </thead>
                         <tbody>

@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="/css/library.css"> 
   <link rel="stylesheet" href="/css/app.css"> 
   <link rel="stylesheet" href="/dist/css/skins/skin-purple.css">
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>  
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -22,7 +23,7 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition sidebar-collapse skin-purple sidebar-mini">
+<body class="hold-transition sidebar-collapse skin-purple fixed sidebar-mini">
 <div class="wrapper">
 
   
@@ -32,6 +33,7 @@
  @include('admin.partial.sidebar')
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
+
     <!-- Content Header (Page header) -->
    @yield('content')
     <!-- /.content -->
