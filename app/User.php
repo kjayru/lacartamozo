@@ -29,14 +29,8 @@ class User extends Authenticatable
     ];
 
    
-
-    public function costumerdetail()
-    {
-        return $this->hasOne('App\CustomerDetail');
-    }
-    
-    public function personfranchises(){
-        return $this->hasMany('App\PersonFranchise');
+    public function Franchisees(){
+        return $this->hasMany('App\Franchise');
     }
 
 }

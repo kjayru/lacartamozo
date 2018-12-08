@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\PersonFranchise;
+use App\Franchise;
 use App\Personal;
 use App\Order;
-use App\CategoryDetail;
+use App\Category;
 
 class DashboardController extends Controller
 {
@@ -18,10 +18,12 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $franquicias = PersonFranchise::take(5)->get();
-        $personas = Personal::take(5)->get();
-        $pedidos = Order::take(5)->get();
-        $productos = CategoryDetail::take(5)->get();
+        $franquicias = Franchise::take(5)->get();
+        //$personas = Personal::take(5)->get();
+        $personas='';
+        //$pedidos = Order::take(5)->get();
+        $pedidos = '';
+        $productos = Category::take(5)->get();
         return view('admin.paginas.dashboard.index',['franquicias'=>$franquicias,'personas'=>$personas,'pedidos'=>$pedidos,'productos'=>$productos]);
     }
 
