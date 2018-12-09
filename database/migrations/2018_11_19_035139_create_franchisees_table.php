@@ -20,6 +20,8 @@ class CreateFranchiseesTable extends Migration
             $table->string('city');
             $table->string('province');
             $table->string('cellphone');
+            $table->string('mail');
+            $table->string('avatar');
             $table->integer('status');
             $table->unsignedInteger('package_id');
             $table->foreign('package_id')->references('id')->on('packages');
