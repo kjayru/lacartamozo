@@ -11,14 +11,22 @@
   <link rel="stylesheet" href="/css/library.css"> 
   <link rel="stylesheet" href="/css/app.css"> 
   <link rel="stylesheet" href="/dist/css/skins/skin-purple.css">
-  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>  
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> 
+  <script src="/js/ownWidgets.js"></script>   
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
+  <![endif]--> 
+  
+  <!-- Para calendario, popup, progress bar -->
+    <link rel="stylesheet" href="/js//themes/base/jquery.ui.all.css">
+    <script src="/js/jquery-1.8.3.js"></script>
+    <script src="/js/ui/jquery.ui.core.js"></script>
+    <script src="/js/ui/jquery.ui.widget.js"></script>
+    <script src="/js/ui/jquery.ui.datepicker.js"></script> 
 
   <!-- Google Font -->
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
