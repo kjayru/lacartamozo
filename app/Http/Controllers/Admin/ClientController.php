@@ -20,7 +20,7 @@ class ClientController extends Controller
         
         //$users = CustomerDetail::all();
         //$clientes = RestaurantDetail::where('customer_detail_id',$user->id)->get();
-        $clientes = clients::all();
+        $clientes = client::all();
         return view('admin.paginas.clientes.index',['clients'=>$clientes]);
     }
 
