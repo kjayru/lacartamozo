@@ -31,9 +31,21 @@ class UserTableSeeder extends Seeder
             'description' => 'Administrador de franquicias',
         ]);
         Role::create([
-            'name' => 'Cliente',
-            'slug' => 'cliente',
-            'description' => 'Cliente ',
+            'name' => 'Mozo',
+            'slug' => 'mozo',
+            'description' => 'mozo ',
+        ]);
+
+        Role::create([
+            'name' => 'Caja',
+            'slug' => 'caja',
+            'description' => 'caja ventas ',
+        ]);
+
+        Role::create([
+            'name' => 'usuario',
+            'slug' => 'usuario',
+            'description' => 'usuario app o restaurant',
         ]);
     }
 

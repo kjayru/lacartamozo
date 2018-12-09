@@ -522,8 +522,7 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
- 
-
+  
 #btn_mm
 {
     background-color: #2E8B57;

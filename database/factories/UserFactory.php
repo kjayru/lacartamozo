@@ -23,7 +23,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'telefono' => $faker->e164PhoneNumber,
         'sexo' => $faker->randomElement(['M','F']),
         'edad' => $faker->numberBetween($min=20, $max=50),
-        'foto' => $faker->imageUrl($width=200, $height=180),
+        'foto' => '/users/'.\Faker\Provider\Image::image(storage_path().'/app/public/users',200,200,'people'),
         'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
         'remember_token' => str_random(10),
         

@@ -67,5 +67,36 @@ class PermissionsTableSeeder extends Seeder
             'slug' => 'roles.destroy',
             'description' => 'Elimnar rol',
         ]);
+
+        //Franchisse
+        Permission::create([
+            'name' => 'Navegar franquicia',
+            'slug' => 'franchisees.index',
+            'description' => 'Lista y navega franquicia',
+        ]);
+
+        Permission::create([
+            'name' => 'ver detalle franquicia',
+            'slug' => 'franchisees.show',
+            'description' => 'ver detalle franquicia',
+        ]);
+
+        Permission::create([
+            'name' => 'crear  franquicia',
+            'slug' => 'franchisees.create',
+            'description' => 'ver detalle franquicia',
+        ]);
+
+        Permission::create([
+            'name' => 'Edicion franquicia',
+            'slug' => 'franchisees.edit',
+            'description' => 'editar detalle franquicia',
+        ]);
+
+        Permission::create([
+            'name' => 'Eliminar franquicia',
+            'slug' => 'franchisees.destroy',
+            'description' => 'Elimnar franquicia',
+        ]);
     }
 }

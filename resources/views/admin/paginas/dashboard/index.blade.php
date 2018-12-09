@@ -3,7 +3,10 @@
 @section('content')
   
 <section class="content-header" >  
-    </section>
+       
+
+       
+</section>
 
       <!-- Main content -->
       <section class="content" style="position: relative; width: 100%; min-width: 300px; padding: 15px; padding-top: 25px;">
@@ -103,6 +106,15 @@
   </section>
       
 <script>
+    
+
+data = {name_col:['Nombre','Ver'],
+data_row:[
+    @foreach($franquicias as $fran)
+        {data1:'{{ $fran->user->name}}',data2:'{{ $fran->user->lastname }}',data3:'<a href="/admin/franquiciados/{{ $fran->user->id }}">Ver</a>' },
+        
+        @endforeach
+    ] };
 
 class BoxInDashboard
 {
@@ -118,15 +130,15 @@ var id_boxes = 0;
 var totalWidgetsNames = ["FRANQUICIADOS", "MOZOS - MESAS - MIGRACIONES", "DELIVERY", "PRODUCTOS",
 "CUENTAS - RESTOS", "PATROCINADORES - PUBLICIDAD", "CONFIGURACIONES", "MARKETING"];
 
-var b1 = new BoxInDashboard("FRANQUICIADOS", 0, "", id_boxes); id_boxes++;
+var b1 = new BoxInDashboard("FRANQUICIADOS", 0, data, id_boxes); id_boxes++;
 var b2 = new BoxInDashboard("MOZOS - MESAS - MIGRACIONES", 0, "", id_boxes); id_boxes++;
 var b3 = new BoxInDashboard("DELIVERY", 0, "", id_boxes); id_boxes++;
 var b4 = new BoxInDashboard("PRODUCTOS", 0, "", id_boxes); id_boxes++;
 var b5 = new BoxInDashboard("CUENTAS - RESTOS", 0, "", id_boxes); id_boxes++;
 var b6 = new BoxInDashboard("PATROCINADORES - PUBLICIDAD", 0, "", id_boxes); id_boxes++;
 var b7 = new BoxInDashboard("CONFIGURACIONES", 0, "", id_boxes); id_boxes++;
-var b8 = new BoxInDashboard("MARKETING", 0, "", id_boxes); id_boxes++;
-var b9 = new BoxInDashboard("MARKETING", 0, "", id_boxes); id_boxes++;
+/*var b8 = new BoxInDashboard("MARKETING", 0, "", id_boxes); id_boxes++;
+var b9 = new BoxInDashboard("MARKETING", 0, "", id_boxes); id_boxes++;*/
 
 var nameboxes = [];
 nameboxes.push(b1);
@@ -136,8 +148,8 @@ nameboxes.push(b4);
 nameboxes.push(b5);
 nameboxes.push(b6);
 nameboxes.push(b7);
-nameboxes.push(b8);
-nameboxes.push(b9);
+//nameboxes.push(b8);
+//nameboxes.push(b9);
 
 $( document ).ready(function() {
     updateBoxes(); 
@@ -182,9 +194,10 @@ function loadDataBox(index)
     }, "json" );
 }
 
-//data = {name_col:['Nombre','Label'], data_row:[{data1, data2}] }
+/**/
 function setDataBox(data, id)
 { 
+    console.log(data);
     var idTable = "tb"+id;  
     var currTable = document.getElementById(idTable.toString() );
     currTable.innerHTML = ""; //limpia los datos que estuvieron
@@ -194,15 +207,45 @@ function setDataBox(data, id)
     var tb_th_0 = document.createElement('th');
     var tb_th_1 = document.createElement('th');
     var tb_th_2 = document.createElement('th');
+    var tb_th_3 = document.createElement('th');
+
     
+    var tbd = currTable.createTBody();
     tb_th_0.width = '10px';
     tb_th_0.innerHTML = '#'; 
     tb_th_1.innerHTML = 'Nombre'; 
-    tb_th_2.width = '40px';
-    tb_th_2.innerHTML = 'Label';
+    tb_th_2.innerHTML = 'Apellidos'; 
+    tb_th_3.width = '40px';
+    tb_th_3.innerHTML = 'Ver';
+    
     tbh_r1.appendChild(tb_th_0);
     tbh_r1.appendChild(tb_th_1);
     tbh_r1.appendChild(tb_th_2);
+    tbh_r1.appendChild(tb_th_3);
+
+$.each(data.data_row,function(i,e){
+
+   
+    var tbd_r1 = tbd.insertRow();
+    var tb_td_0 = document.createElement('td');
+    var tb_td_1 = document.createElement('td');
+    var tb_td_2 = document.createElement('td');
+    var tb_td_3 = document.createElement('td');
+    //
+    tb_td_0.innerHTML = i; 
+    tb_td_1.innerHTML = e.data1; 
+    tb_td_2.innerHTML = e.data2;
+    tb_td_3.innerHTML = e.data3;
+    
+    tbd_r1.appendChild(tb_td_0);
+    tbd_r1.appendChild(tb_td_1);
+    tbd_r1.appendChild(tb_td_2);
+    tbd_r1.appendChild(tb_td_3);
+});
+    
+
+
+   
      
     /*
     @foreach($franquicias as $k => $frank)
