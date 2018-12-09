@@ -38,7 +38,7 @@
                       <td><img src="/storage/{{ $client->cover }}"  width="40" alt=""> </td>
                       <td>{{ $client->name }}</td>
                       <td> {{ $client->address }}</td>
-                      <td class="hidden-xs"><img src="{{ $client->city }}" width="80"></td>
+                      <td class="hidden-xs">{{ $client->city }}</td>
                       <td class="hidden-xs">{{ $client->province }}</td>
                       <td class="hidden-xs">{{ $client->cellphone }}</td>
                      
