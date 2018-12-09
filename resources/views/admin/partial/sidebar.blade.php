@@ -50,7 +50,7 @@
             
             <li>
               <a href="/admin/pedidos">
-                <img src="/dist/img/icon_pedidos.png" width="15px" style="margin: 0px 7px 0px 0px;"/><span class="span_li">Pedidos</span>               
+                <img src="/dist/img/icon_pedidos.png" width="15px" style="margin: 0px 7px 0px 0px;"/><span class="span_li">Delivery</span>               
               </a>
             </li>
 

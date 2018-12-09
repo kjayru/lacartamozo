@@ -613,97 +613,98 @@ $(document).ready( function() {
         }
 
     });
-    function readURLLogo(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                $('#img-upload_logo').attr('src', e.target.result);
-            };
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    function readURLFranquiciado(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                $('#img-upload_franquiciado').attr('src', e.target.result);
-            };
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    function readURLF1(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                $('#img-upload_f1').attr('src', e.target.result);
-            };
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    function readURLF2(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                $('#img-upload_f2').attr('src', e.target.result);
-            };
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    function readURLF3(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                $('#img-upload_f3').attr('src', e.target.result);
-            };
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    function readURLF4(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                $('#img-upload_f4').attr('src', e.target.result);
-            };
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-    $("#imgInpLogo").change(function(){
-        readURLLogo(this); 
-    }); 
-    
-    $("#imgInpFranquiciado").change(function(){
-        readURLFranquiciado(this); 
-    }); 
-    
-    $("#imgInpF1").change(function(){
-        readURLF1(this); 
-    }); 
-    
-    $("#imgInpF2").change(function(){
-        readURLF2(this); 
-    }); 
-    
-    $("#imgInpF3").change(function(){
-        readURLF3(this); 
-    }); 
-    
-    $("#imgInpF4").change(function(){
-        readURLF4(this); 
-    }); 
 });
+
+function readURLLogo(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#img-upload_logo').attr('src', e.target.result);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+function readURLFranquiciado(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#img-upload_franquiciado').attr('src', e.target.result);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+function readURLF1(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#img-upload_f1').attr('src', e.target.result);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+function readURLF2(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#img-upload_f2').attr('src', e.target.result);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+function readURLF3(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#img-upload_f3').attr('src', e.target.result);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+function readURLF4(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#img-upload_f4').attr('src', e.target.result);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+$("#imgInpLogo").change(function(){
+    readURLLogo(this); 
+}); 
+
+$("#imgInpFranquiciado").change(function(){
+    readURLFranquiciado(this); 
+}); 
+
+$("#imgInpF1").change(function(){
+    readURLF1(this); 
+}); 
+
+$("#imgInpF2").change(function(){
+    readURLF2(this); 
+}); 
+
+$("#imgInpF3").change(function(){
+    readURLF3(this); 
+}); 
+
+$("#imgInpF4").change(function(){
+    readURLF4(this); 
+}); 
 
  
 $(document).ready(function(){ 
@@ -718,18 +719,14 @@ $(document).ready(function(){
 
 </script>
 
-<script>
-
-
+<script> 
 function myMap() {
     var mapProp= {
         center:new google.maps.LatLng(51.508742,-0.120850),
         zoom:5
     };
     var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-}
-
-
+} 
 </script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDI_HGADUhhryYf0nHOo7BNtFM8DGBzVk&callback=myMap"></script>
