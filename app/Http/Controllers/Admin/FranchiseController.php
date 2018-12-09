@@ -20,7 +20,7 @@ class FranchiseController extends Controller
     {
        // $paises = Pais::orderBy('Pais','asc')->get();
 
-        $franquicias = Franchise::orderBy('id','desc')->get();
+        $franquicias = Franchise::orderBy('id','desc')->paginate(10);
 
        
                 
