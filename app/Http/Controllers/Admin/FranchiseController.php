@@ -6,9 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use App\User;
-use App\PersonFranchise;
-use App\Pais;
-use App\Ciudad;
+use App\Franchise;
+
 
 class FranchiseController extends Controller
 {
@@ -97,9 +96,9 @@ class FranchiseController extends Controller
 
     public function getCiudad($codigo){
 
-        $ciudades = Ciudad::where('Paises_Codigo',$codigo)->orderBy('idCiudades','asc')->get();
+        //$ciudades = Ciudad::where('Paises_Codigo',$codigo)->orderBy('idCiudades','asc')->get();
 
-        return response()->json(['ciudades'=>$ciudades]);
+        //return response()->json(['ciudades'=>$ciudades]);
     }
     
     
