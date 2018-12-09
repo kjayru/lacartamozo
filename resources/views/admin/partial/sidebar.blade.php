@@ -59,7 +59,7 @@
               </a>
             </li>
             @endcan
-            @can('users.index')
+           
             <div class="line_h">
                 
             </div>
