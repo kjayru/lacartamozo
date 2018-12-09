@@ -21,26 +21,28 @@
                 <table id="dtBasicExample"  class="table-striped" style="margin-top: -1px; "> 
                     <thead style="background-color: #696969; color: #fff;" class="header12">
                     <tr style=" height: 45px;">
-                      <th width="40px;" style="padding-left: 15px;">Id</th>
-                      <th width="280px;">Nombres</th>
-                      <th width="200px;">Email</th>
-                      <th width="140px;">Telefono</th>
-                      <th width="90px;" class="hidden-xs">Avatar</th>
-                      <th width="140px;" class="hidden-xs">Fecha</th>
-                      <th width="140px;"></th>
+                      <th width="40px;" style="padding-left: 15px;">#</th>
+                      <th width="280px;">Imagen</th>
+                      <th width="200px;">Nombre</th>
+                      <th width="140px;">Dirección</th>
+                      <th width="90px;" class="hidden-xs">Ciudad</th>
+                      <th width="140px;" class="hidden-xs">Provincia</th>
+                      <th width="140px;">Celular</th>
                       <th width="90px;">Estado</th>
                     </tr>
                     </thead>
                     <tbody >
-                      @foreach($users as $key => $user)
+                      @foreach($clients as $key => $client)
                     <tr>
                       <td align="center">{{ $key + 1 }}</th>
-                      <td>{{ $user->name }} </td>
-                      <td>{{ $user->email }}</td>
-                      <td> {{ $user->telefono }}</td>
-                      <td class="hidden-xs"><img src="{{ $user->foto }}" width="80"></td>
-                      <td class="hidden-xs">{{ $user->created_at }}</td>
-                      <td> <a href="#" class="btn btn-xs btn-primary btn-editar btn-cliente-edit" data-id="{{ $user->id }}">Editar</a><a href="#" class="btn btn-xs btn-danger btn-eliminar">Eliminar</a></td>
+                      <td><img src="/storage/{{ $client->cover }}"  width="40" alt=""> </td>
+                      <td>{{ $client->name }}</td>
+                      <td> {{ $client->address }}</td>
+                      <td class="hidden-xs"><img src="{{ $client->city }}" width="80"></td>
+                      <td class="hidden-xs">{{ $client->province }}</td>
+                      <td class="hidden-xs">{{ $client->cellphone }}</td>
+                     
+                      <td> <a href="#" class="btn btn-xs btn-primary btn-editar btn-cliente-edit" data-id="{{ $client->id }}">Editar</a><a href="#" class="btn btn-xs btn-danger btn-eliminar">Eliminar</a></td>
                       <td>
                         <label class="switch"> 
                             <input type="checkbox"/>
