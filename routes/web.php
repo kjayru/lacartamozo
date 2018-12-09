@@ -17,7 +17,7 @@ Route::get('/','Auth\LoginController@showLoginForm');
 Auth::routes();
 Route::group(['prefix' => 'admin'], function () {
 
-    Route::get('/','Admin\DashboardController@index');
+    Route::get('/','Admin\DashboardController@index')->name('dashboard.index');
 
     
     Route::post('roles/store','admin\RoleController@store')->name('roles.store')
