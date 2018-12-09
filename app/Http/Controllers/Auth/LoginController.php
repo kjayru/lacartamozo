@@ -17,8 +17,19 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
+    use AuthenticatesUsers {
+        attemptLogin as attemptLoginAtAuthenticatesUsers;
+    }
 
-    use AuthenticatesUsers;
+    /**
+     * Show the application's login form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showLoginForm()
+    {
+        return view('auth.login');
+    }
 
     /**
      * Where to redirect users after login.
