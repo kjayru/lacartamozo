@@ -26,7 +26,7 @@
                                 <th width="40px;" style="padding-left: 15px;">Id</th>
                                 <th width="140px;"  class="hidden-xs">Foto</th>
                                 <th width="120px;">Nombre de Negocio</th>
-                                <th width="150px;">Direccion</th>
+                                <th width="150px;" class="hidden-xs">Direccion</th>
                                 <th width="80px;">Ciudad</th>
                                 <th width="90px;" class="hidden-xs">Provincia</th>
                                 <th width="100px;">Celular</th>
@@ -38,14 +38,14 @@
                         <tbody >
                             @foreach($franquicias as $key => $fran)
                             <tr>
-                                <td align="center">{{ $key + 1 }}</td>
-                                <td  class="hidden-xs"></td>
+                                <td >{{ $key + 1 }}</td>
+                                <td> <img src="/storage/{{ $fran->avatar }}" width="40" alt=""> </td>
                                 <td>{{ $fran->names }} </td>
-                                <td></td> 
-                                <td>{{ $fran->email }}</td>
-                                <td class="hidden-xs">{{ $fran->pais }}</td>
-                                <td></td>
-                                <td class="hidden-xs">{{ $fran->created_at }}</td>
+                                <td>{{ $fran->address }}</td> 
+                                <td>{{ $fran->city }}</td>
+                                <td >{{ $fran->province }}</td>
+                                <td>{{ $fran->cellphone }}</td>
+                                <td >{{ $fran->created_at }}</td>
                                 <td> 
                                     <a href="/admin/clientes/{{ $fran->id }}" class="btn btn-xs btn-success btn-clientes-list" >Clientes</a>
                                     <a href="#" class="btn btn-xs btn-primary btn-franciado-edit" data-id="{{$fran->id}}">Editar</a>
@@ -111,11 +111,7 @@
 
                             <label class="col-md-3 control-label" for="pais">Pais</label>
                             <div class="col-md-8">
-                              <select id="pais" name="pais" style="background-color: #e5e5e5;" class="form-control">
-                                @foreach ($paises as $p)
-                                    <option value="{{ $p->Codigo }}">{{ $p->Pais }}</option>
-                                @endforeach
-                              </select>
+                              
                             </div> 
 
                             <label class="col-md-3 control-label" for="estado">Alta</label>
