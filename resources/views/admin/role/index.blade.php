@@ -1,19 +1,12 @@
-@extends('layouts.app')
+@extends('admin.layout.master')
 
-@section('contentheader_title')
-	Podcast
-@endsection
-@section('contentheader_description')
-  Lista de Podcast
-@endsection
-
-@section('main-content')
-	<div class="container-fluid spark-screen">
-		<div class="row">
+@section('content')
+	<div class="container-fluid  spark-screen">
+		<div class="row interno">
 			<div class="col-md-12 ">
 
 				<!-- Default box -->
-				<div class="box">
+				<div class="boxing">
 					<div class="box-header with-border">
 						<h3 class="box-title">REGISTRO DE ROLES</h3>
 
@@ -46,11 +39,6 @@
                                         <td>{{ $rol->slug }}</td>
                                         <td>{{ $rol->description }}</td>
 
-                                        <td width="15">
-                                            @can('roles.show')
-                                            <a href="{{route('roles.show',$rol->id )}}" class="btn btn-primary pull-right">Ver</a>
-                                            @endcan
-                                        </td>
                                         <td width="15">
                                                 @can('roles.edit')
                                                 <a href="{{route('roles.edit',$rol->id )}}" class="btn btn-success pull-right">Editar</a>

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\admin;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Caffeinated\Shinobi\Models\Role;
@@ -17,6 +17,7 @@ class RoleController extends Controller
     public function index()
     {
         $roles = Role::all();
+       
         return view('admin.role.index',['roles'=>$roles]);
     }
 

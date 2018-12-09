@@ -1,15 +1,8 @@
-@extends('layouts.app')
+@extends('admin.layout.master')
 
-@section('contentheader_title')
-	Roles
-@endsection
-@section('contentheader_description')
-  Editar Role
-@endsection
-
-@section('main-content')
+@section('content')
 	<div class="container-fluid spark-screen">
-		<div class="row">
+		<div class="row interno">
 			<div class="col-md-12 ">
 
 				<!-- Default box -->

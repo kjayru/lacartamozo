@@ -5,18 +5,11 @@
           <!-- Sidebar user panel -->
           
           <!-- search form -->
-       
+         
           <!-- /.search form -->
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu" data-widget="tree" >
-              @can('roles.index')
-              <li  {{{ (Request::is('roles') ? 'class=active' : '') }}}>
-                  <a href="{{ route('roles.index')}}">
-                  <i class="fa fa-table"></i>
-                  <span>Roles</span>
-                  </a>
-              </li>
-              @endcan
+             
               @can('users.index')
               <li>
               <a href="/admin/">
@@ -24,6 +17,15 @@
               </a> 
             </li>
             @endcan
+            @can('roles.index')
+            <li  {{{ (Request::is('roles') ? 'class=active' : '') }}}>
+                <a href="{{ route('roles.index')}}">
+                <i class="fa fa-table"></i>
+                <span>Roles</span>
+                </a>
+            </li>
+            @endcan
+
             @can('franchisees.index')
             <li>
               <a href="/admin/franquiciados">

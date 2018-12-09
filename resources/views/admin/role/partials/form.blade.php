@@ -30,8 +30,8 @@
         <div class="form-group">
         <label for="nombre" class="col-sm-1 control-label" ></label>
              <div class="col-sm-10">
-                <label><input type="radio" value="all-access" name="special" @if($role->special=="all-access") checked @endif>acceso total </label><br>
-                <label><input type="radio" value="no-access" name="special"  @if($role->special=="no-access") checked @endif>Ningun acceso </label>
+                <label><input type="radio" value="all-access" name="special" @if(@$role->special=="all-access") checked @endif>acceso total </label><br>
+                <label><input type="radio" value="no-access" name="special"  @if(@$role->special=="no-access") checked @endif>Ningun acceso </label>
             </div>
         </div>
 
