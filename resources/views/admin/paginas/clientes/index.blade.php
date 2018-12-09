@@ -53,6 +53,8 @@
                     @endforeach
                     </tbody>
                 </table> 
+
+                {{ $clients->render() }}
             </div>
             <!-- /.end box-body -->
         </div>

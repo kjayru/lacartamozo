@@ -61,6 +61,7 @@
                             @endforeach
                         </tbody>
                 </table> 
+                {{ $franquicias->render() }}
             </div>
         </div>
  
