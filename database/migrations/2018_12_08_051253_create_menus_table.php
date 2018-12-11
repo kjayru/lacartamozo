@@ -24,12 +24,10 @@ class CreateMenusTable extends Migration
             $table->integer('celiaco')->nullable();
             $table->integer('delivery')->nullable();
             $table->integer('vegetariano')->nullable();
-
+            
 
             $table->integer('state')->default(1);
-            $table->unsignedInteger('client_id');
-            $table->foreign('client_id')->references('id')->on('clients');
-
+           
             $table->unsignedInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
 

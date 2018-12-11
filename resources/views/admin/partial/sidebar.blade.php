@@ -40,9 +40,9 @@
               </a>
             </li>
             @endcan
-            @can('mesas.index')
+            @can('users.index')
             <li>
-              <a href="/admin/mesas">
+              <a href="/admin/mozos">
                 <i class="fa fa-address-book"></i> <span class="span_li">Mozos y Mesas</span>               
               </a>
             </li>

@@ -82,7 +82,28 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::get('franchisees/{franchise}/edit','admin\PodcastController@edit')->name('franchisees.edit')
     ->middleware('permission:franchisees.edit');
+  
+    //mozos
+  Route::post('mozos/store','admin\MozoController@store')->name('mozos.store')
+  ->middleware('permission:mozos.create');
 
+  Route::get('mozos','admin\MozoController@index')->name('mozos.index')
+  ->middleware('permission:mozos.index');
+
+  Route::get('mozos/create','admin\MozoController@create')->name('mozos.create')
+  ->middleware('permission:mozos.create');
+
+  Route::put('mozos/{mozo}','admin\MozoController@update')->name('mozos.update')
+  ->middleware('permission:mozos.edit');
+
+  Route::get('mozos/{mozo}','admin\MozoController@show')->name('mozos.show')
+  ->middleware('permission:mozos.show');
+
+  Route::delete('mozos/{mozo}','admin\MozoController@destroy')->name('mozos.destroy')
+  ->middleware('permission:mozos.destroy');
+
+  Route::get('mozos/{mozo}/edit','admin\MozoController@edit')->name('mozos.edit')
+  ->middleware('permission:mozos.edit');
     
     
     Route::get('/cuadro-de-comandos','Admin\CenterCommandController@index');

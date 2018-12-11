@@ -1,17 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
+use App\IngredientClient;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use App\Category;
-use App\Menu;
-use App\Ingredient;
 
-use App\Salsa;
-
-class ProductosCartaController extends Controller
+class IngredientClientController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,13 +14,7 @@ class ProductosCartaController extends Controller
      */
     public function index()
     {
-      
-        $categorias = Category::where('client_id',Auth::user()->id)->orderBy('id','desc')->get();
-       
-        $menus = Menu::where('category_id',$categorias[0]->id)->get();
-        $ingredientes = Ingredient::where('client_id',Auth::user()->id)->orderBy('id','desc')->get();
-     
-        return view('admin.paginas.productoscarta.index',['categorias'=>$categorias,'menus'=>$menus,'ingredientes'=>$ingredientes]);
+        //
     }
 
     /**
@@ -53,10 +41,10 @@ class ProductosCartaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\IngredientClient  $ingredientClient
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(IngredientClient $ingredientClient)
     {
         //
     }
@@ -64,10 +52,10 @@ class ProductosCartaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\IngredientClient  $ingredientClient
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(IngredientClient $ingredientClient)
     {
         //
     }
@@ -76,10 +64,10 @@ class ProductosCartaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\IngredientClient  $ingredientClient
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, IngredientClient $ingredientClient)
     {
         //
     }
@@ -87,10 +75,10 @@ class ProductosCartaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\IngredientClient  $ingredientClient
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(IngredientClient $ingredientClient)
     {
         //
     }

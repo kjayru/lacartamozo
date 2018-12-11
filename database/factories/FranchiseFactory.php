@@ -10,7 +10,7 @@ $factory->define(App\Franchise::class, function (Faker $faker) {
         'province' => $faker->state,
         'cellphone' =>$faker->phoneNumber,
         'mail' => $faker->unique()->safeEmail,
-        'avatar' => '/franchise/'.\Faker\Provider\Image::image(storage_path().'/app/public/franchise',200,200,'people'),
+        'avatar' => $faker->image('public/storage/franchise',400,300, 'business', false),
         'status' => '1',
         'package_id' => App\Package::all()->random()->id,
 

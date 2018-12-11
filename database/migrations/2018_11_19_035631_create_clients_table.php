@@ -25,7 +25,9 @@ class CreateClientsTable extends Migration
            
             $table->decimal('latitude',11,8);
             $table->decimal('longitude',11,8);
+            $table->integer('numesas');
             $table->integer('status');
+           
             $table->timestamps();
         });
     }

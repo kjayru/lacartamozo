@@ -8,10 +8,12 @@
     <div id="one" style="margin: 0px; padding: 0px; ">  
         
          <ul class="nav nav-tabs" id="myTab" role="tablist" style="height: 43px;" >
+       
           <li class="nav-item active">
             <a class="nav-link" id="home-tab" data-toggle="tab" href="#productos" role="tab" aria-controls="productos" aria-selected="true">Productos</a>
           </li>
-          <li class="nav-item">
+   
+         <li class="nav-item">
             <a class="nav-link" id="profile-tab" data-toggle="tab" href="#ingredientes" role="tab" aria-controls="ingredientes" aria-selected="false">Ingredientes</a>
           </li>
           <li class="nav-item">
@@ -55,7 +57,18 @@
                                   <th></th> 
                                 </tr>
                               </thead>
-                              <tbody> 
+                              <tbody>
+                                  @foreach($menus as $k => $menu)
+                                  <tr>
+                                      <td>{{ @$k +1 }}</td>
+                                    <td><img src="/menus/{{ @$menu->menuphotos[0]->photo }}" alt="" width="70"> </td>
+                                    <td> {{ $menu->titulo }}</td>
+                                    <td>{{ $menu->price1 }}</td>
+                                    <td>{{ $menu->price2 }}</td>
+                                    <td>{{ $menu->state }}</td>
+                                </tr>
+                                  
+                                  @endforeach 
                               </tbody>
                             </table>
                         </div> 
@@ -90,6 +103,17 @@
                             </tr>
                             </thead>
                             <tbody> 
+                                    @foreach($ingredientes as $k => $ing)
+                                    <tr>
+                                        <td>{{ @$k +1 }}</td>
+                                      <td></td>
+                                      <td> {{ $ing->name }}</td>
+                                      <td>{{ $ing->price }}</td>
+                                     
+                                      <td>{{ $ing->state }}</td>
+                                  </tr>
+                                    
+                                    @endforeach 
                             </tbody>
                           </table>
                     </div>
@@ -225,10 +249,14 @@ function setSideBarCategorias()
     ul1.innerHTML = "";
     
     //from server recive categorias
-    var array = ["Bebidas","Cafeterias","Platos principales","Postres"];
-    for(i =0; i<array.length; i++)
+    var cats=[];
+    @foreach($categorias as $cat)
+          cats.push('{{$cat->name}}');
+    @endforeach
+   // var cats = ["Bebidas","Cafeterias","Platos principales","Postres"];
+    for(i =0; i<cats.length; i++)
     {
-        var name = array[i];
+        var name = cats[i];
         var categoria = document.createElement("li");   
         var a1 = document.createElement("a"); 
         a1.href = "#";

@@ -4,9 +4,9 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Mesa::class, function (Faker $faker) {
     return [
-        'restaurant_detail_id' => App\RestaurantDetail::all()->random()->id,
-        'numeromersa' => $faker->numberBetween($min = 1, $max = 20),
-        'detalle' =>  $faker->sentence($nbWords = 6, $variableNbWords = true),
+        'client_id' => App\Client::all()->random()->id,
+        'codeqr' => '/dist/img/qr_sample.png',
+        'nummesas' =>  $faker->numberBetween($min = 1, $max = 20),
     ];
 });
 
