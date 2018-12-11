@@ -28,7 +28,7 @@
           <div class="col-md-12" >
             <div class="box"> 
                 
-                <form class="form-horizontal" id="fr-franchise"> 
+                <form class="form-horizontal" id="fr-franchise" method="post" action="#"> 
                 <div class="row" style="padding: 2px; margin: 0px;">
                     <div class="col-md-12" style="padding: 0px;">
                       <div class="box" style="background-color: #fff; padding: 0px;">
@@ -59,15 +59,56 @@
 <script> 
     
     var two = document.getElementById("two").hidden = true;   
-    
-    $(document).ready(function(){          
-        getPedidosVariosDias();
+    var listaMesasQR = {};
+    $(document).ready(function(){            
+        //TODO, al ingresar a esta pagina se ingresa un id  dle cliente franquiciado o id del local        
+        getPedidosVariosDias(); //demo, borrar cuando este completo
+        //http://localhost/admin/reservas?id=5
+        //caso de admin o administrador de franquicias se ingresa aqui desde seccion de franquicias 
+        //envia id, fechaactual en utc horario
+        //recibe dato: fecha, idpedido, fullname, personas, hora ingreso, hora salida, celular, sector, estado, puntaje
+        //[ {fecha:yyyy-MM-dd HH:mm:ss, pedidos:[{idpedido, fullname, personas, ..},{idpedido, ...}, ...] }, {...} ]
+        //NOTA: solo enviar los pedidos de la fecha de hoy, mañana y pasado mañana
+        var currFecha = new Date();  
+        //alert(currFecha.toISOString());
+        var id = getUrlParameter('id'); 
+        $.post("test0", { id: id, currfecha: currFecha.toISOString() }).done(function( data ) { 
+            
+            //para cada fecha
+            for(i=0; i<data.length; i++)
+            {
+
+                var bpedidos = document.getElementById("body_pedidos");
+                bpedidos.innerHTML = "";
+
+                var pedidoEnFecha = data[i];
+                var fecha1 = pedidoEnFecha.fecha;   
+                getPedidoDia( bpedidos, fecha1, "dtBasicExample1"+i.toString()); 
+
+            }
+            
+        });
     });
      
 </script>
 
 <script>
-    
+
+    var getUrlParameter = function getUrlParameter(sParam) {
+        var sPageURL = window.location.search.substring(1),
+            sURLVariables = sPageURL.split('&'),
+            sParameterName,
+            i;
+
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+
+            if (sParameterName[0] === sParam) {
+                return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+            }
+        }
+    };
+
     function nuevaReserva()
     { 
         var two = document.getElementById("two");
@@ -76,48 +117,89 @@
         var record = document.getElementById("content_add_record"); 
         record.innerHTML = "";
         
-        var cantidad = ["1","2","3","4","5","6","7","8","9","10","11","12"];
-        var estados = ["reservado","en proceso", "finalizado"];
-        var horas = ["6:00","7:00","8:00","9:00","10:00","11:00","12:00","13:00","14:00"," 15:00",
-        "16:00","17:00","118:00","19:00","02:00","21:00"];
-         
+        var horas_name = [];
+        var horas_val = [];
+        for(i=0;i<23;i++){ horas_name.push( i.toString() + ":00"); }
+        for(i=0;i<23;i++){ horas_val.push( i ); }
+     
         addTextForm(record, "nombre", "Nombre y Apellido");
-        addSelectForm(record, "cantidad", "Cantidad de Personas",cantidad); 
-        addTextForm(record, "hinicio", "Horario Inicio");
-        addTextForm(record, "hfin", "Horario Fin");
-        addSelectForm(record, "sector", "Sector", estados); 
+        addNumberForm(record, "cantidad", "Cantidad de Personas", 0, 100, 1); 
+        addSelectForm(record, "hinicio", "Horario Inicio (0-23h)", horas_name, horas_val);
+        addSelectForm(record, "hfin", "Horario Fin (0-23h)",horas_name, horas_val);
+        addTextForm(record, "sector", "Sector"); 
         addTextForm(record, "celular", "Celular");
         addTextForm(record, "estado", "Estado de la reserva");
+        //TODO addBotonSubmit, envia al servidor para agregar un nuevo pedido
+        //envias: nombre, personas, hinico, hfinal, sector, celular, estado e input oculto denominado  mesas[]
+        addBotonSubmit(record);
+        addBubTitle(record,"Verifique la disponibilidad de mesas");
         addCalendar(record);
-        addSelectForm(record, "hora", "Hora", horas); 
-        
-        //para el numero de mesas en el rest
-        for(i=0; i<18; i++){
-            createBtnMesa(record, i.toString(), function(){ 
-                
-                if( this.id === "btn_mesa_disable" ){
-                    continue;
-                }
-                
-                if( this.id === "btn_mesa" ){
-                    this.id = "btn_mesa_active";
-                    listaMesasQR.push( parseInt( this.innerHTML ) );
-                }else
+        createBtnMM(record, "Verificar disponibilidad", function(){
+            //TODO, al ingresar a esta pagina se ingresa un id  dle cliente franquiciado o id del local
+            //http://localhost/admin/reservas?id=5
+            //caso de admin o administrador de franquicias se ingresa aqui desde seccion de franquicias 
+            var id = getUrlParameter('id'); 
+            
+            //TODO, Al seleccionar una fecha le server devuelve la lista de mesas
+            //y los horarios reservados
+            //ingresar data : data= {("idclientefranquiciado o local":"dd/MM/yyyy")}
+            //devuelve data : data= [ {"idmesa":176,"nummesa":2,"horasreservadas":[8, 17, 21]} , {}, ... ]  // es por horas y de 0 a 23 horas
+            //cambiar test.php
+            var dia = $('#datetimepicker').val();
+            if( dia === "" )
+            {
+                alert("Seleccione una fecha");
+            }
+            
+            $.get( "test.php", { idlocal: id, fecha: dia }, function (mesasHoras){      
+                var currHora = $('#hora option:selected').val();
+                listaMesasQR = [];
+                for( i = 0; i < mesasHoras.length; i++ )
                 {
-                    this.id = "btn_mesa"; 
-                    var idx = listaMesasQR.indexOf( parseInt( this.innerHTML ) ); 
-                    listaMesasQR.splice( idx ,1 ); 
+                    var mesaDisponible = true;
+                    var mesaHora = mesasHoras[i];
+                    for( j=0; j<mesaHora.horasresevadas.length; j++ )
+                    {
+                        if( currHora === mesaHora.horasresevadas[j] ){
+                            mesaDisponible = false;
+                            break;
+                        }
+                    }
+                    
+                    if( mesaDisponible === true ){ 
+                        crearMesaDisponible(record, mesaHora.nummesa); 
+                    }
+                    else{ 
+                        createBtnMesaDisable(record, mesaHora.nummesa, function(){});
+                    }
                 }
-            });
-        } 
-        
-        for(i=0; i<5; i++){
-            createBtnMesaDisable(record, i.toString(), function(){ 
-                 
-            });
-        } 
-                 
-        addBotonSubmit(record);        
+            } );
+            
+        }); 
+        addSelectForm(record, "hora", "Hora", horas_name, horas_val); 
+         
+    }
+    
+    function crearMesaDisponible(record, numMesa)
+    { 
+        createBtnMesa(record, numMesa, function(){ 
+
+            if( this.id === "btn_mesa_disable" ){
+                return;
+            }
+
+            if( this.id === "btn_mesa" ){
+                this.id = "btn_mesa_active";
+                listaMesasQR.push( parseInt( this.innerHTML ) );
+                addHiddenForm(record, "mesas[]", "hid"+this.innerHTML, this.innerHTML );
+            }else
+            {
+                this.id = "btn_mesa"; 
+                var idx = listaMesasQR.indexOf( parseInt( this.innerHTML ) ); 
+                listaMesasQR.splice( idx ,1 ); 
+                removeHiddenForm( "hid"+this.innerHTML  );
+            }
+        });
     }
     
     function getPedidosVariosDias()
@@ -145,6 +227,9 @@
         var days = daysBeetween(showPedidosFecha, currFecha);
         if( days > 10 ) return;
         
+        var div0 = document.createElement("div");
+        div0.style = "overflow-y: auto;";
+        
         var div1 = document.createElement("div");
         div1.className = "box-header4";
         div1.style = "font-size: 1.5em;";
@@ -162,20 +247,20 @@
         
         var table1 = document.createElement("table");
         table1.id = idtable;
-        table1.className = "table table-responsive table-hover table-striped";
+        table1.className = "table table-responsive table-striped";
         table1.style = "color: #000;";
         
         var thead1 = table1.createTHead();
         thead1.style = "background-color: #ffc057; color: #444;";
         switch( days ){
             case 0: 
-                thead1.style = "background-color: #ADFF2F";
-                break;
-            case 1: 
                 thead1.style = "background-color: #FFC057";
                 break;
-            default: 
+            case 1: 
                 thead1.style = "background-color: #ADFF2F";
+                break;
+            default: 
+                thead1.style = "background-color: #FFC057";
                 break; 
         }
         var rowHead = thead1.insertRow(0);
@@ -189,15 +274,26 @@
         var cell7 = document.createElement("th");
         var cell8 = document.createElement("th");
         cell0.innerHTML = "Id";
-        cell0.style = "width: 70px; padding-left: 25px;";
+        cell0.style = "width: 50px;";
+        cell0.className = "text-center";
         cell1.innerHTML = "Nombre y Apellido";
+        cell1.width = 220;
+        cell1.className = "text-center";
         cell2.innerHTML = "Cant. de Personas";
+        cell2.className = "text-center";
         cell3.innerHTML = "Horario de ingreso";
+        cell3.className = "text-center";
         cell4.innerHTML = "Horario de salida";
+        cell4.className = "text-center";
         cell5.innerHTML = "Celular";
+        cell5.className = "text-center";
+        cell5.width = 90;
         cell6.innerHTML = "Sector";
+        cell6.className = "text-center";
         cell7.innerHTML = "Estado";
+        cell7.className = "text-center";
         cell8.innerHTML = "Puntaje";
+        cell8.className = "text-center";
         
         rowHead.appendChild(cell0);
         rowHead.appendChild(cell1);
@@ -211,11 +307,13 @@
         
         var tbody1 = document.createElement("tbody");
         
+        //TODDO completar con codigo
         for(i=0; i<10; i++) //para cada fila
         {
             var tr1 = document.createElement('tr');
             for (var j = 0; j < 9; j++) { //para cada columna
                 var td1 = document.createElement('td');
+                td1.align = "center";
                 td1.innerHTML = j.toString();
                 tr1.appendChild(td1);
             }
@@ -223,10 +321,10 @@
         }
         table1.appendChild(tbody1);
         
+        div0.appendChild(div1);
+        div0.appendChild(table1);
+        parent.appendChild(div0);
         
-        parent.appendChild(div1);
-        parent.appendChild(table1);
-                 
         var nameidtable = "#"+idtable;
         $(nameidtable).DataTable({
           "paging": true,
