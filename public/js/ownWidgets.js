@@ -28,8 +28,9 @@ function addTextForm(form, name, title)
     form.appendChild(div1); 
 }
 
-function addSelectForm(form, name, title, array)
+function addSelectForm(form, name, title, arrayname, arrayvalue)
 {
+    //arrayname.length === arrayvalue.length
     var label = document.createElement("label");
     label.className = "col-md-3 control-label";
     label.for = name;
@@ -42,13 +43,14 @@ function addSelectForm(form, name, title, array)
     var select = document.createElement("select");
     select.className = "selectpicker";
     select.style = "margin-top: 7px;";
+    select.id = name;
     
-    if( array !== null)
+    if( arrayname !== null)
     {
-        for (var i = 0; i < array.length; i++) {
+        for (var i = 0; i < arrayname.length; i++) {
             var option = document.createElement("option");
-            option.value = array[i];
-            option.text = array[i];
+            option.value = arrayvalue[i];
+            option.text = arrayname[i];
             select.appendChild(option);
         }
     }
@@ -209,8 +211,65 @@ function addCalendar(parent)
         id: 'datetimepicker',
         placeholder: 'Fecha'
     }).datepicker().appendTo(div1);
-
-    //div1.appendChild(input1);
+  
+    
     parent.appendChild(div1);
      
+}
+
+function addBubTitle(parent, title)
+{ 
+    var div1 = document.createElement("div");
+    div1.className = "col-sm-6";
+    div1.style = "width: 100%; padding: 10px 4px 10px 4px;";  
+    
+    var h31 = document.createElement("h4");  
+    h31.style = "background-color: #ccc; padding: 12px;";
+    h31.innerHTML = title;
+    
+    div1.appendChild(h31); 
+    parent.appendChild(div1); 
+}
+
+function addHiddenForm(parent, name, idname, value)
+{ 
+   var input1 = document.createElement("input");  
+   input1.type = "hidden";
+   input1.name = name;
+   input1.id = idname;
+   input1.value = value;
+   input1.className = "form-control input-md";
+
+   parent.appendChild(input1); 
+}
+
+function removeHiddenForm( idname )
+{ 
+    $("hid"+idname).remove(); 
+}
+
+function addNumberForm(form, name, title, minimo, maximo, step)
+{
+    var label = document.createElement("label");
+    label.className = "col-md-3 control-label";
+    label.for = name;
+    label.innerHTML = title;
+
+    var div1 = document.createElement("div");
+    div1.className = "col-md-8";
+
+    var input1 = document.createElement("input");
+    input1.id = name;
+    input1.style = "background-color: #e5e5e5;";
+    input1.type = "number";
+    input1.name = name;
+    input1.min = minimo;
+    input1.max = maximo;
+    input1.step = step;
+    input1.className = "form-control input-md";
+
+    div1.appendChild(input1);
+
+    form.appendChild(label);
+    form.appendChild(div1); 
 }
