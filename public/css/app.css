@@ -589,3 +589,30 @@ input:checked + .slider:before {
     background-color: #696969; 
     height: 48px;  
 }
+
+#top_posiciones_btn { 
+    display:inline-block;
+    border:0;
+    width:196px;
+    height:210px;
+    position: relative;
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(1); 
+    -ms-transition: all 200ms ease-in;
+    -ms-transform: scale(1); 
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(1);
+    transition: all 200ms ease-in;
+    transform: scale(1);
+}
+
+#top_posiciones_btn:hover
+{
+      margin-top: -10px;
+      margin-bottom: -15px;
+      background-color: lighten(#EDEDED, 5%);
+      transition: background-color .4s ease-in-out;
+      z-index: 1;
+      zoom: 1.1;
+}
+
