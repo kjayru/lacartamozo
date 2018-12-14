@@ -10,10 +10,13 @@
   <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="/css/library.css"> 
   <link rel="stylesheet" href="/css/app.css">
+  <link rel="stylesheet" href="/css/image-picker.css">
   <link rel="stylesheet" href="/css/main.css"> 
   <link rel="stylesheet" href="/dist/css/skins/skin-purple.css">
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> 
-  <script src="/js/ownWidgets.js"></script>   
+  <script src="/js/ownWidgets.js"></script> 
+  <script src="/js/image-picker.js"></script>   
+  <script src="/js/image-picker.min.js"></script>   
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

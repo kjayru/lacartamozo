@@ -6,15 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    public function categoryDetails(){
-        return $this->hasMany('App\CategoryDetail');
+    public function menus(){
+        return $this->hasMany('App\Menu');
     }
 
-    public function categoryorderdetails(){
-        return $this->hasMany('App\CategoryOrderDetail');
+    public function client(){
+        return $this->belongsTo('App\Client');
     }
-
-    public function restaurantdetail(){
-        return $this->belongsTo('App\RestaurantDetail');
-    }
+    
 }
