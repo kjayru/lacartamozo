@@ -5,9 +5,9 @@
 <section class="content" style="width:100%; position: relative; padding: 0px;"> 
     </br></br></br></br>
  
-    <div style="width: 600px; margin-left: auto; margin-right: auto;">
+    <div style="min-width: 340px; max-width: 600px; margin:0 auto;">
         
-        <div  class="col-md-3" style="width: 300px;">  
+        <div  class="col-md-3" style="width: 300px; margin:0 auto;">  
             <div class="box" style="cursor: pointer; height: 320px;" onclick="onComercios()">
               
                 <!-- /.box-body -->
@@ -20,7 +20,7 @@
             </div>
         </div>
          
-        <div  class="col-md-3" style="width: 300px;"> 
+        <div  class="col-md-3" style="width: 300px; margin:0 auto;"> 
 
             <div class="box" style="cursor: pointer; height: 320px;" onclick="onComensal()">
                  
@@ -36,6 +36,7 @@
         </div>
         
     </div>
+    </br></br></br></br>
          
     
 </section>

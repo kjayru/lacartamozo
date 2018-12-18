@@ -292,6 +292,8 @@ function createBox(titulo, row_id, idarr, idTable)
     
     var box_header_table = document.createElement('table');
     box_header_table.style = 'width: 100%;';
+    box_header_table.id = idTable;
+            
     var col1 = document.createElement('col');
     var col2 = document.createElement('col');
     var col_group = document.createElement('colgroup');
@@ -409,7 +411,7 @@ function searchInBoxes() {
           tr[i].style.display = "";
         } else {
           tr[i].style.display = "none";
-        }x
+        }
       } 
     }
     // end for tr
