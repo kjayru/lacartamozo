@@ -1,0 +1,9 @@
+.container-fluid.spark-screen {
+    width: 80%;
+    height: 100vh;
+    margin-top: 20px;
+}
+.interno .box-body {
+        height: auto;
+    
+}
