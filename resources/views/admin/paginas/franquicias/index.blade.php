@@ -156,6 +156,7 @@
 
     
 </section>
+@include('admin.partial.scripts')
 
 <script>
     

@@ -89,6 +89,7 @@
 </div>
       
 </section>
+@include('admin.partial.scripts')
 
 <script>
     $(document).ready(function(){ 

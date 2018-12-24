@@ -1,6 +1,7 @@
 @extends('admin.layout.master')
 
 @section('content')
+ 
 	<div class="container-fluid  spark-screen">
 		<div class="row interno">
 			<div class="col-md-12 ">
@@ -67,4 +68,6 @@
 			</div>
 		</div>
 	</div>
+ 
+@include('admin.partial.scripts')    
 @endsection
