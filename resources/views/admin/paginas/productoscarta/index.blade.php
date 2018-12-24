@@ -3,7 +3,7 @@
 
 @section('content')
 
-<section class="content" style="padding-right: 0px; background-color: #f7f7f7;">
+<section class="content" style="padding-right: 0px; background-color: #f7f7f7; margin: 54px 0 0 45px;">
      
 <div id="wrappermini">
     <div id="one" style="margin: 0px; padding: 0px; ">  
@@ -224,6 +224,7 @@
 </div>
       
 </section>
+@include('admin.partial.scripts')
 
 
 <script>    
