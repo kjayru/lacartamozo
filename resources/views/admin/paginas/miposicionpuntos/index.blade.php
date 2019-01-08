@@ -2,7 +2,7 @@
 
 @section('content')
 
-<section class="content" style="padding-right: 0px; background-color: #f7f7f7;">
+<section class="content" style="padding-right: 0px; padding-top: 0px; background-color: #f7f7f7;">
 
     <div width="100%"  class="  inline-block" style="background-color: #fff;"> 
         <button type="button" class="btn btn-light" style="margin:8px; background-color: #fff; color: #000; cursor: none;">

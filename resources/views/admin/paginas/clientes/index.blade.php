@@ -2,23 +2,27 @@
 
 @section('content')
  
-<section class="content" style="padding-right: 0px; background-color: #f7f7f7;">
+<section class="content" style="padding: 0px; background-color: #f7f7f7;">
      
 <div id="wrappermini">
-    <div id="one" style="margin: 0px; padding: 0px; "> 
+    <div id="one"> 
+    
+        <!-- /.box-header -->
+         <nav class="navbar navbar-inverse" style="margin: 0px; padding: 0px; background-color: #555;">
+              <div class="container-fluid" style="margin: 0px; padding: 0px;">
+                <div class="navbar-header" style="margin: 0px; padding: 0px;">
+                  <a class="navbar-brand" href="#" style="margin-left:8px; color: #fff;" >CLIENTES DE FRANQUICIADO</a>
+                </div>  
+                <button class="btn btn-warning navbar-btn navbar-right " onclick="nuevo_cliente"  style="margin-right: 12px;">Nuevo Cliente</button>
+              </div>
+		</nav> 
+			
         <div class="box2" style="margin: 0; padding: 0; padding-bottom: 25px; background-color: #fff;">
-            
-            <!-- /.box-header -->
-            <div class="box-header2" style="min-width: 300px; background-color: #696969; height: 55px;">
-                <h3 style="margin: 0; padding: 0; width: 190px; float: left;">CLIENTES</h3> 
-                <div style="float:left; margin-right: 15px; margin: 0; padding: 0; float: right;">
-                    <button  class="hidden-xs" onclick="nuevo_cliente" name="" value="ok" style="background-color: #cd853f; margin-top: -2px; min-width: 140px; height: 36px; font-size: 1.1em; border: 0px;">Nuevo Cliente</button>
-                </div>
-            </div>
+ 
             <!-- /.box-body -->
             <div class="box-body" style=" padding: 0;margin: 0; height: 800px; min-width: 150px;"> 
                           
-                <table id="dtBasicExample"  class="table-striped" style="margin-top: -1px; "> 
+                <table id="dtBasicExample"  class="table table-responsive table-striped" style="margin-top: -1px; "> 
                     <thead style="background-color: #696969; color: #fff;" class="header12">
                     <tr style=" height: 45px;">
                       <th width="40px;" style="padding-left: 15px;">#</th>
@@ -28,6 +32,7 @@
                       <th width="90px;" class="hidden-xs">Ciudad</th>
                       <th width="140px;" class="hidden-xs">Provincia</th>
                       <th width="140px;">Celular</th>
+                      <th width="90px;">Opciones</th>
                       <th width="90px;">Estado</th>
                     </tr>
                     </thead>
@@ -60,7 +65,7 @@
         </div>
  
     </div>
-    <div id="two" style="padding: 0px;">
+    <div id="two">
  
         <form class="form-horizontal" id="fr-franchise"> 
         <div class="row" style="padding: 2px; margin: 0px;">
@@ -72,10 +77,10 @@
                         <!-- Form Name -->
                         <legend style="background-color: #6a5acd; margin: 0px; padding-left: 15px; color:#fff; height: 55px;"></legend>
 
-                        <div style=" margin: 0 auto; max-width: 210px;" >
+                        <div class="btn-group" >
                             <!-- 1 es id de la carta-->
-                            <button onclick="goMozos(1)" type="button" class="btn btn-primary" style="background-color:#7700ff">Mozos y Mesas</button>
-                            <button onclick="goCarta(1)" type="button" class="btn btn-primary" style="background-color:#77aa00">La Carta</button>
+                            <button onclick="goMozos(1)" type="button" class="btn btn-primary" style="background-color:#7700ff; ">Mozos y Mesas</button>
+                            <button onclick="goCarta(1)" type="button" class="btn btn-primary" style="background-color:#77aa00; ">La Carta</button>
                         </div>
                         
                         <!-- form-group -->
@@ -159,7 +164,7 @@
                             </div>
                             <img id='img-upload_franquiciado' style="padding: 15px; width: 100%;"/>
                             
-                            <div id="googleMap" style="width:100%; height:350px; margin: 5px; padding: 5px;"></div>
+                            <div id="googleMap" style=" height:350px; margin: 5px; padding: 5px;"></div>
                              
                         </div>  
                         <!-- /.form-group -->
@@ -717,8 +722,7 @@ $(document).ready(function(){
     "paging": true
   });
   $('.dataTables_length').addClass('bs-select');
-  
-  
+    
 }); 
  
 
@@ -732,6 +736,9 @@ function myMap() {
     };
     var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
 } 
+var titulo_seccion = document.getElementById("titulo_seccion");
+titulo_seccion.innerHTML = "CLIENTES";
+
 </script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDI_HGADUhhryYf0nHOo7BNtFM8DGBzVk&callback=myMap"></script>

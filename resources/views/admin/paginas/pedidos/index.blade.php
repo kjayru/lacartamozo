@@ -5,7 +5,7 @@
 <section class="content" style="padding-right: 0px; background-color: #f7f7f7;">
      
 <div id="wrappermini">
-    <div id="one" style="margin: 0px; padding: 0px;">   
+    <div id="one" >   
         
         <ul class="nav nav-tabs" id="myTab" role="tablist" style="height: 43px;" >
             <li class="nav-item active">
@@ -216,7 +216,7 @@
         
         
     </div> 
-    <div id="two" style="padding: 0px;">  
+    <div id="two" >  
          <div class="row">
           <div class="col-md-12" >
             <div class="box"> 

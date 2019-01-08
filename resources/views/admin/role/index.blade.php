@@ -69,5 +69,12 @@
 		</div>
 	</div>
  
+    <script>
+    	var titulo_seccion = document.getElementById("titulo_seccion");
+        titulo_seccion.innerHTML = "ROLES";
+    </script>
+ 
 @include('admin.partial.scripts')    
 @endsection
+
+

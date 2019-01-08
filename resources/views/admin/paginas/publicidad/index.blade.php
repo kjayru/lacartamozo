@@ -5,17 +5,20 @@
 <section class="content" style="padding-right: 0px; background-color: #f7f7f7;">
      
 <div id="wrappermini">
-    <div id="one" style="margin: 0px; padding: 0px; ">  
+    <div id="one" >  
+    
+        <!-- /.box-header -->
+         <nav class="navbar navbar-inverse" style="margin: 0px; padding: 0px; background-color: #555;">
+              <div class="container-fluid" style="margin: 0px; padding: 0px;">
+                <div class="navbar-header" style="margin: 0px; padding: 0px;">
+                  <a class="navbar-brand" href="#" style="margin-left:8px; color: #fff;" >PUBLICIDAD</a>
+                </div>   
+                <button class="btn btn-warning navbar-btn navbar-right " onclick="nuevaReserva()"  style="margin-right: 12px;">Agregar Auspiciante</button> 
+              </div>
+		</nav> 
+		
         <div class="box2" style="margin: 0; padding: 0; padding-bottom: 25px; background-color: #fff;">
-            
-            <!-- /.box-header -->
-            <div class="box-header2" style="min-width: 300px; background-color: #696969; height: 55px;">
-                <h3 style="margin: 0; padding: 0; width: 190px; float: left;">PUBLICIDAD</h3> 
-                <div style="float:left; margin-right: 15px; margin: 0; padding: 0; float: right;">
-                    <button  class="hidden-xs" onclick="addAuspiciante()" name="" value="ok" style="background-color: #cd853f; margin-top: -2px; min-width: 140px; height: 36px; font-size: 1.1em; border: 0px;">Agregar Auspiciante</button>
-                </div>
-            </div>
-            
+             
             <!-- /.box-body --> 
             <div id="body_pedidos" class="box-body" style=" padding: 0; margin: 0; height: 840px; overflow-y: auto;">   
                 <table id="tb-cliente0" class="table table-responsive table-hover">
@@ -39,7 +42,7 @@
         </div>
     </div>
     
-    <div id="two" style="padding: 0px;">  
+    <div id="two" >  
             <div classss="row" style="padding: 0px; margin: 0px;">
                 <div class="col-md-12" style="padding: 0px;">
                   <div class="box" style="background-color: #fff; padding: 8px;">
@@ -163,6 +166,9 @@
         $('.dataTables_length').addClass('bs-select'); 
     
     });
+
+    var titulo_seccion = document.getElementById("titulo_seccion");
+    titulo_seccion.innerHTML = "PUBLICIDAD";
 </script>
  
 

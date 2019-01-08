@@ -6,17 +6,20 @@
     
 
 <div id="wrappermini">
-    <div id="one" style="margin: 0; padding: 0; "> 
+    <div id="one"> 
+    
+        <!-- /.box-header -->
+         <nav class="navbar navbar-inverse" style="margin: 0px; padding: 0px; background-color: #555;">
+              <div class="container-fluid" style="margin: 0px; padding: 0px;">
+                <div class="navbar-header" style="margin: 0px; padding: 0px;">
+                  <a class="navbar-brand" href="#" style="margin-left:8px; color: #fff;" >FRANQUICIADO</a>
+                </div>  
+                <button class="btn btn-warning navbar-btn navbar-right " onclick="nuevo_franquiciado"  style="margin-right: 12px;">Nuevo Franquiciado</button>
+              </div>
+		</nav> 
+		
         <div class="box2" style="margin: 0; padding: 0; padding-bottom: 25px; background-color: #fff;">
-            
-            <!-- /.box-header -->
-            <div class="box-header2" style="min-width: 300px; background-color: #696969; height: 55px;">
-                <h3 style="margin: 0; padding: 0; width: 190px; float: left;">FRANQUICIADO</h3> 
-                <div style="float:left; margin-right: 15px; margin: 0; padding: 0; float: right;">
-                    <button class="hidden-xs" onclick="nuevo_franquiciado" name="" value="ok" style="background-color: #cd853f; margin-top: -2px; min-width: 140px; height: 36px; font-size: 1.1em; border: 0px;">Nuevo Franquiciado</button>
-                </div>
-            </div>
-            
+             
             <!-- /.box-body -->
             <div class="box-body" style=" padding: 0;margin: 0; height: 800px; min-width: 150px;">     
                  
@@ -66,7 +69,7 @@
         </div>
  
     </div>
-    <div id="two" style="padding: 0px;">
+    <div id="two">
  
         <div class="row" style="padding: 2px; margin: 0px;">
             <div class="col-md-12" style="padding: 0px;">
@@ -140,7 +143,7 @@
                             <img id='img-upload' style="padding: 15px;"/>
 
                         </div> 
-                        <div id="googleMap" style="width:100%; height:350px; margin: 2px; padding: 2px;"></div>
+                        <div id="googleMap" style="height:350px; margin: 2px; padding: 2px;"></div>
                       
                       </fieldset>
                       </form>
@@ -204,7 +207,9 @@ $(document).ready(function(){
   });
   $('.dataTables_length').addClass('bs-select');   
 }); 
- 
+  
+var titulo_seccion = document.getElementById("titulo_seccion");
+titulo_seccion.innerHTML = "FRANQUICIADO";
 
 </script>
 
@@ -219,7 +224,7 @@ function myMap() {
 }
 </script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDI_HGADUhhryYf0nHOo7BNtFM8DGBzVk&callback=myMap"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4Fu4NmzS3qhAudwO3IMQzLEW2BQprLHw&callback=myMap"></script>
   
 
 @endsection

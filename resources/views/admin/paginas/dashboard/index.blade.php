@@ -42,7 +42,7 @@
 
                     <div class="row" style="float: right; max-width: 300px; padding-right: 10px;" >
 
-                        <div  style="float: left; margin-right: 3px; margin-top: -15px; width: 80px;">
+                        <!--div  style="float: left; margin-right: 3px; margin-top: -15px; width: 80px;">
                             <div class="input-group margin">
                                 <div class="input-group-btn">
                                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="height: 28px; padding-top: 3px;">Mas
@@ -56,7 +56,7 @@
                                 </ul>
                                 </div> 
                             </div>
-                        </div>
+                        </div-->
 
                         <div style="float: left; margin: 0 auto; height: 30px;">
 
@@ -65,19 +65,8 @@
                                     <div class="input-group-btn">
                                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="height: 28px; padding-top: 3px;">Añadir widget
                                         <span class="fa fa-caret-down"></span></button>
-                                    <ul class="dropdown-menu" id='listaWidgets'>
-                                        <li><a href="#" onclick='addBox("FRANQUICADOS")'>Franquiciados</a></li>
-                                        <li><a href="#" onclick='addBox("CLIENTES")'>Clientes</a></li>
-                                        <li><a href="#" onclick='addBox("MOZOS - MESAS - MIGRACIONES")'>Mozos y mesas</a></li>
-                                        <li><a href="#" onclick='addBox("PRODUCTOS")'>Productos de la carta</a></li>
-                                        <li><a href="#" onclick='addBox("CUENTAS - RESTOS")'>Mi posicion - puntos</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="#" onclick='addBox("PEDIDOS")'>Pedidos</a></li>
-                                        <li><a href="#" onclick='addBox("RESERVAS")'>Reservas</a></li>
-                                        <li><a href="#" onclick='addBox("NEWSLETTER")'>Newsletter</a></li>
-                                        <li><a href="#" onclick='addBox("CUPONES Y REGALOS")'>Cupones y regales</a></li>
-                                        <li><a href="#" onclick='addBox("MARKETING")'>Informes y estadistica</a></li> 
-                                    </ul>
+                                        <ul class="dropdown-menu" id='listaWidgets'> 
+                                        </ul>
                                     </div> 
                                 </div>
                             </div>
@@ -104,7 +93,10 @@
 <!--INICIO DE SCRIPT-->
 @include('admin.partial.scripts')
 <script>
-            
+ 
+		var titulo_seccion = document.getElementById("titulo_seccion");
+		titulo_seccion.innerHTML = "PANEL GENERAL";
+
         data = {name_col:['Nombre','Ver'],
         data_row:[
             @foreach($franquicias as $fran)
@@ -125,15 +117,14 @@
         var id_boxes = 0;
 
         var totalWidgetsNames = ["FRANQUICIADOS", "MOZOS - MESAS - MIGRACIONES", "DELIVERY", "PRODUCTOS",
-        "CUENTAS - RESTOS", "PATROCINADORES - PUBLICIDAD", "CONFIGURACIONES", "MARKETING"];
+        "CUENTAS - RESTOS", "PATROCINADORES - PUBLICIDAD", "MARKETING"];
 
         var b1 = new BoxInDashboard("FRANQUICIADOS", 0, data, id_boxes); id_boxes++;
         var b2 = new BoxInDashboard("MOZOS - MESAS - MIGRACIONES", 0, "", id_boxes); id_boxes++;
         var b3 = new BoxInDashboard("DELIVERY", 0, "", id_boxes); id_boxes++;
         var b4 = new BoxInDashboard("PRODUCTOS", 0, "", id_boxes); id_boxes++;
         var b5 = new BoxInDashboard("CUENTAS - RESTOS", 0, "", id_boxes); id_boxes++;
-        var b6 = new BoxInDashboard("PATROCINADORES - PUBLICIDAD", 0, "", id_boxes); id_boxes++;
-        var b7 = new BoxInDashboard("CONFIGURACIONES", 0, "", id_boxes); id_boxes++;
+        var b6 = new BoxInDashboard("PATROCINADORES - PUBLICIDAD", 0, "", id_boxes); id_boxes++; 
         /*var b8 = new BoxInDashboard("MARKETING", 0, "", id_boxes); id_boxes++;
         var b9 = new BoxInDashboard("MARKETING", 0, "", id_boxes); id_boxes++;*/
 
@@ -143,13 +134,16 @@
         nameboxes.push(b3);
         nameboxes.push(b4);
         nameboxes.push(b5);
-        nameboxes.push(b6);
-        nameboxes.push(b7);
+        nameboxes.push(b6); 
         //nameboxes.push(b8);
         //nameboxes.push(b9);
 
         $( document ).ready(function() {
             updateBoxes(); 
+
+        	$( "#listaWidgets" ).select(function() {
+        		alert( "Handler for .select() called." );
+        	});
         });
 
         function updateBoxes()
@@ -180,15 +174,70 @@
 
         function loadDataBox(index)
         {
-            //TODO link    
-            //data = {name_col:['Nombre','Label'], data_row:[{data1, data2}] }
-            $.get( nameboxes[index].titulo, function( data ) { //data en formato json como resultado
-            
-            nameboxes[index].loaded = 1;
-            nameboxes[index].data = data;
-            setDataBox(data, nameboxes[index].id);
-            
-            }, "json" );
+
+        	alert(nameboxes[index].titulo);
+
+        	//TODO actualiza la informacion de los boxes
+        	switch(nameboxes[index].titulo)
+        	{
+        	case "FRANQUICIADOS": 
+                $.get( nameboxes[index].titulo, function( data ) { //data en formato json como resultado
+                    
+                    nameboxes[index].loaded = 1;
+                    nameboxes[index].data = data;
+                    setDataBox(data, nameboxes[index].id);
+                    
+                }, "json" );
+            	break;
+        	case "MOZOS - MESAS - MIGRACIONES": 
+                $.get( nameboxes[index].titulo, function( data ) { //data en formato json como resultado
+                    
+                    nameboxes[index].loaded = 1;
+                    nameboxes[index].data = data;
+                    setDataBox(data, nameboxes[index].id);
+                    
+                }, "json" );
+            	break;
+        	case "DELIVERY": 
+                $.get( nameboxes[index].titulo, function( data ) { //data en formato json como resultado
+                    
+                    nameboxes[index].loaded = 1;
+                    nameboxes[index].data = data;
+                    setDataBox(data, nameboxes[index].id);
+                    
+                }, "json" );
+            	break;
+        	case "PRODUCTOS": 
+                $.get( nameboxes[index].titulo, function( data ) { //data en formato json como resultado
+                    
+                    nameboxes[index].loaded = 1;
+                    nameboxes[index].data = data;
+                    setDataBox(data, nameboxes[index].id);
+                    
+                }, "json" );
+            	break;
+        	case "CUENTAS - RESTOS": 
+                $.get( nameboxes[index].titulo, function( data ) { //data en formato json como resultado
+                    
+                    nameboxes[index].loaded = 1;
+                    nameboxes[index].data = data;
+                    setDataBox(data, nameboxes[index].id);
+                    
+                }, "json" );
+            	break;
+        	case "PATROCINADORES - PUBLICIDAD": 
+                $.get( nameboxes[index].titulo, function( data ) { //data en formato json como resultado
+                    
+                    nameboxes[index].loaded = 1;
+                    nameboxes[index].data = data;
+                    setDataBox(data, nameboxes[index].id);
+                    
+                }, "json" );
+            	break;
+        	default:
+            	break;
+        	}
+ 
         }
 
         /**/
@@ -219,30 +268,28 @@
             tbh_r1.appendChild(tb_th_1);
             tbh_r1.appendChild(tb_th_2);
             tbh_r1.appendChild(tb_th_3);
-
-        $.each(data.data_row,function(i,e){
-
-        
-            var tbd_r1 = tbd.insertRow();
-            var tb_td_0 = document.createElement('td');
-            var tb_td_1 = document.createElement('td');
-            var tb_td_2 = document.createElement('td');
-            var tb_td_3 = document.createElement('td');
-            //
-            tb_td_0.innerHTML = i; 
-            tb_td_1.innerHTML = e.data1; 
-            tb_td_2.innerHTML = e.data2;
-            tb_td_3.innerHTML = e.data3;
-            
-            tbd_r1.appendChild(tb_td_0);
-            tbd_r1.appendChild(tb_td_1);
-            tbd_r1.appendChild(tb_td_2);
-            tbd_r1.appendChild(tb_td_3);
-        });
-            
-
-
-        
+    
+            $.each(data.data_row,function(i,e){
+     
+                var tbd_r1 = tbd.insertRow();
+                var tb_td_0 = document.createElement('td');
+                var tb_td_1 = document.createElement('td');
+                var tb_td_2 = document.createElement('td');
+                var tb_td_3 = document.createElement('td');
+                //
+                tb_td_0.innerHTML = i; 
+                tb_td_1.innerHTML = e.data1; 
+                tb_td_2.innerHTML = e.data2;
+                tb_td_3.innerHTML = e.data3;
+                
+                tbd_r1.appendChild(tb_td_0);
+                tbd_r1.appendChild(tb_td_1);
+                tbd_r1.appendChild(tb_td_2);
+                tbd_r1.appendChild(tb_td_3);
+                
+            });
+                
+ 
             
             /*
             @foreach($franquicias as $k => $frank)
@@ -265,7 +312,7 @@
         }
 
         function addBox(nombre)
-        {
+        { 
             var bx = new BoxInDashboard(nombre, 0, "", id_boxes); id_boxes++;
             nameboxes.push(bx); 
             updateBoxes();
@@ -277,12 +324,17 @@
             var new_col = document.createElement('div');
             new_col.style = 'min-width:  270px; max-width: 380px;'; 
             new_col.classList.add('col-md-3');
+            new_col.setAttribute("draggable", "true");
+            new_col.id = idarr; 
+
+            $( function() {
+                $( "#"+idarr ).draggable(); 
+            } );
+            
             
             var box = document.createElement('div'); 
             box.classList.add('box');
-            
-            
-            
+             
             
             var box_header = document.createElement('div');  
             box_header.style = 'height: 45px; background-color: #ff4500; padding: 10px;';
@@ -294,7 +346,7 @@
             var col1 = document.createElement('col');
             var col2 = document.createElement('col');
             var col_group = document.createElement('colgroup');
-            col2.width = '56px';
+            col2.width = '24px';
             col_group.appendChild(col1);
             col_group.appendChild(col2);
             box_header_table.appendChild(col_group); 
@@ -306,8 +358,8 @@
             h3_1.style = 'margin: 2px 0 0 0; color: #fff; font-size: 1.3em;';
             h3_1.innerHTML = '<p>'+titulo+'</p>'; 
             cell0.appendChild(h3_1);
-            cell1.innerHTML = '<img onclick="closeBox('+idarr+')" src="/dist/img/icon_close.png" width="21px" style="margin: -12px 7px 0px 0px; cursor: pointer;"/>'+
-                            '<img src="/dist/img/icon_lista.png" width="25px" style="margin: -12px 0px 0px 0px; cursor: pointer;"/>';
+            cell1.innerHTML = '<img onclick="closeBox('+idarr+')" src="/dist/img/icon_close.png" width="21px" style="margin: -12px 0px 0px 0px; cursor: pointer;"/>';
+            //'<img onclick="dragAndDrop('+idarr+')" src="/dist/img/icon_lista.png" width="25px" style="margin: -12px 0px 0px 0px; cursor: pointer;"/>'
             bht_r1.appendChild(cell0);
             bht_r1.appendChild(cell1);
             box_header.appendChild(box_header_table);
@@ -333,7 +385,7 @@
             var col_f1 = document.createElement('col');
             var col_f2 = document.createElement('col');
             var col_group_f = document.createElement('colgroup');
-            col_f2.width = '35px';
+            col_f2.width = '20px';
             col_group_f.appendChild(col_f1);
             col_group_f.appendChild(col_f2);
             table_f.appendChild(col_group_f);
@@ -341,9 +393,8 @@
             
             var table_f_r1 = table_f.insertRow(0); 
             var cell0 = table_f_r1.insertCell(0);
-            var cell1 = table_f_r1.insertCell(1);
-            cell1.innerHTML = '<a href="#" onclick="loadDataBox('+idarr+')"><img src="/dist/img/icon_refresh.png" width="12px" style="margin: -10px 7px 0px 0px;"/></a>'+
-                            '<a href="#" onclick="cancelUpdateDataTable('+idarr+')"><img src="/dist/img/icon_delete.png" width="10px" style="margin: -9px 0px 0px 0px;"/></a>';
+            var cell1 = table_f_r1.insertCell(1); 
+            cell1.innerHTML = '<a href="#" onclick="loadDataBox('+idarr+')"><img src="/dist/img/icon_refresh.png" width="12px" style="margin: -10px 0px 0px 0px;"/></a>';
             
             box.appendChild(box_header);
             box.appendChild(box_body);
@@ -355,6 +406,7 @@
             
         function updateListaWidgets()
         {
+            
             var listaWidgets = document.getElementById("listaWidgets");
             listaWidgets.innerHTML = "";
             
@@ -371,18 +423,18 @@
                 }
                 if( isShowWidget === 0 ){            
                     //enable list widget
+                    var nombre = totalWidgetsNames[i];
                     var n_li = document.createElement("li");
                     var n_li_a = document.createElement("a");
                     n_li_a.href = "#";
                     n_li_a.style = "font-size: 0.81em;";
-                    n_li_a.onclick = "addBox("+totalWidgetsNames[i]+")";
+                    n_li_a.onclick = function(){ addBox(nombre); }; 
                     n_li_a.innerHTML = totalWidgetsNames[i];
                     n_li.appendChild(n_li_a);
                     listaWidgets.appendChild(n_li);
                 }
             }
-            
-            
+              
         }
 
 
@@ -421,7 +473,8 @@
         {
             var box = nameboxes[index];
         }
-
+ 
+        
 </script>
       
 @endsection
