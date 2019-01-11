@@ -67,7 +67,6 @@
 
 .box-body{
     height: 180px;
-    overflow-y: auto;
     font-size: 0.85em;
 }
 
@@ -399,12 +398,11 @@
 #wrappermini div { 
    padding: 10px;
 }
-#one { 
-  float:left; 
-  margin: 0px; 
+#one {
+  float:left;
+  margin: 0px;
   padding: 0px;
-  max-width: 1030px;
-  min-width: 240px;  
+  min-width: 240px;
 }
 
 #two { 
@@ -657,4 +655,24 @@ input:checked + .slider:before {
   display: none;
 }
 
-
+/*implementacion wile*/
+ .pad-10{
+     padding:10px;
+ }
+ #dtBasicExample thead tr th{
+    padding-top: 8px;
+    padding-bottom: 8px;
+    text-align: center;
+ }
+ table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_desc_disabled:after {
+    position: absolute;
+    bottom: 15px;
+    right: 9px;
+    display: block;
+    font-family: 'Glyphicons Halflings';
+    opacity: 0.5;
+}
+td.sorting_1 {
+    text-align: center;
+    font-weight: bold;
+}

@@ -74,5 +74,7 @@
             @yield('content')
         </main>
     </div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key={{env("GOOGLE_API_KEY")}}&callback=myMap"></script>
 </body>
 </html>

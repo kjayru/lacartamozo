@@ -9,4 +9,3 @@
 <script src="/js/ui/jquery.ui.datepicker.js"></script> 
 
 <script src="/js/all.js?v=10"></script>
-<script src="/dist/js/demo.js?v={{ uniqid() }}"></script>

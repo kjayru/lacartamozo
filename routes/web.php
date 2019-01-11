@@ -110,7 +110,7 @@ Route::group(['prefix' => 'admin'], function () {
     
     
     Route::get('/cuadro-de-comandos','Admin\CenterCommandController@index');
-    Route::get('/franquiciados','Admin\FranchiseController@index');
+    //Route::get('/franquiciados','Admin\FranchiseController@index');
     Route::get('/clientes','Admin\ClientController@index');
     Route::get('/clientes/{id}','Admin\ClientController@show');
     Route::get('/mesas','Admin\MesaController@index');

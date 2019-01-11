@@ -29,7 +29,7 @@
 
             @can('franchisees.index')
             <li>
-              <a href="/admin/franquiciados">
+              <a href="/admin/franchisees">
                   <img src="/dist/img/icon_franquiciados.png" width="15px" style="margin: 0px 7px 0px 0px;"/><span class="span_li">Franquiciados</span>               
               </a>
             </li>

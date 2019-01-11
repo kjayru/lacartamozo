@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Franchise;
 
@@ -67,8 +68,12 @@ class FranchiseController extends Controller
      */
     public function edit($id)
     {
-        $franchise = PersonFranchise::find($id);
-        return response()->json(['person' => $franchise]);
+        $user_id = Auth::id();
+        $franchise = Franchise::find($id);
+
+       
+
+        return response()->json($franchise);
     }
 
     /**
@@ -80,7 +85,21 @@ class FranchiseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $franchise = Franchise::find($id);
+
+        $franchise->names = $request->name;
+        $franchise->address = $request->address;
+        $franchise->city = $request->city;
+        $franchise->province = $request->province;
+        $franchise->cellphone = $request->cellphone;
+        $franchise->mail = $request->mail;
+
+        //$franchise->latitude = $request->latitude;
+        //$franchise->longitude = $request->longitude;
+
+        $franchise->save();
+
+        return response()->json(['person' => $franchise]);
     }
 
     /**
@@ -105,5 +124,15 @@ class FranchiseController extends Controller
     public function demotab(){
         
         return view('admin.paginas.franquicias.tabs');
+    }
+
+    public function cambioestado(Request $request, $id){
+
+        $franchise = Franchise::find($id);
+        $franchise->status = $request->status;
+
+        $franchise->save();
+
+        return response()->json(['rpta'=>'ok']);
     }
 }
