@@ -6,8 +6,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 use App\User;
 use App\Franchise;
+use App\Package;
+use App\Classification;
 
 
 class FranchiseController extends Controller
@@ -21,11 +24,13 @@ class FranchiseController extends Controller
     {
        // $paises = Pais::orderBy('Pais','asc')->get();
 
-        $franquicias = Franchise::orderBy('id','desc')->paginate(10);
+        $franquicias = Franchise::orderBy('status','desc2')->get();
 
-       
+        $packages = Package::all();
+
+        $classifications = Classification::all();
                 
-        return view('admin.paginas.franquicias.index',['franquicias'=>$franquicias]);
+        return view('admin.paginas.franquicias.index',['franquicias'=>$franquicias,'packages'=>$packages,'classifications'=>$classifications]);
     }
 
     /**
@@ -35,7 +40,7 @@ class FranchiseController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -46,7 +51,39 @@ class FranchiseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user_id = Auth::id();
+        $file = $request->file('avatar');
+            
+        $input['imagename'] = time().'.'.$file->getClientOriginalExtension();
+        $destinationPath = public_path('/storage/franchise');
+        $file->move($destinationPath, $input['imagename']);
+
+       /* $image = new Photo();
+        $image->user_id = $request->admin_id;
+        $image->name = $input['imagename'];
+        $image->save();*/
+
+        
+
+        $franchise = new Franchise();
+
+        $franchise->names = $request->names;
+        $franchise->address = $request->address;
+        $franchise->city = $request->city;
+        $franchise->province = $request->province;
+        $franchise->cellphone = $request->cellphone;
+        $franchise->mail = $request->mail;
+        $franchise->avatar =  $input['imagename'];
+        $franchise->classification_id = $request->classification_id;
+        $franchise->package_id = $request->package_id;
+        $franchise->status =2;
+        $franchise->user_id = $user_id;
+        //$franchise->latitude = $request->latitude;
+        //$franchise->longitude = $request->longitude;
+
+        $franchise->save();
+
+        return response()->json(['rpta' => 'ok']);
     }
 
     /**
@@ -85,21 +122,39 @@ class FranchiseController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+       // dd($request->file('avatar'));
+              
+        $file = $request->file('avatar');
+            
+                $input['imagename'] = time().'.'.$file->getClientOriginalExtension();
+                $destinationPath = public_path('/storage/franchise');
+                $file->move($destinationPath, $input['imagename']);
+
+               /* $image = new Photo();
+                $image->user_id = $request->admin_id;
+                $image->name = $input['imagename'];
+                $image->save();*/
+        
+           
+    
         $franchise = Franchise::find($id);
 
-        $franchise->names = $request->name;
+        $franchise->names = $request->names;
         $franchise->address = $request->address;
         $franchise->city = $request->city;
         $franchise->province = $request->province;
         $franchise->cellphone = $request->cellphone;
         $franchise->mail = $request->mail;
-
+        $franchise->avatar =  $input['imagename'];
+        $franchise->classification_id = $request->classification_id;
+        $franchise->package_id = $request->package_id;
         //$franchise->latitude = $request->latitude;
         //$franchise->longitude = $request->longitude;
 
         $franchise->save();
 
-        return response()->json(['person' => $franchise]);
+        return response()->json(['rpta' => 'ok']);
     }
 
     /**

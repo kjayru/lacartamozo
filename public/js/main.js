@@ -61,10 +61,16 @@ $(".btn-franciado-edit").on('click',function(){
             
             $("#fr-franchise #cellphone").val(response.cellphone);
             $("#fr-franchise #city").val(response.city);
-            $("#fr-franchise #mails").val(response.mail);
+            $("#fr-franchise #mail").val(response.mail);
             $("#fr-franchise #province").val(response.province);
             $("#fr-franchise #address").val(response.address);
-          
+            
+            $("#fr-franchise #franchise_id").val(response.id);
+
+            $("#fr-franchise #classification_id").val(response.classification_id);
+            $("#fr-franchise #package_id").val(response.package_id);
+
+            $("#fr-franchise #metodo").val('PUT');
             $("#img-upload").attr("src",'/storage/franchise/'+response.avatar);
 
             
@@ -85,39 +91,60 @@ $(".btn-franciado-edit").on('click',function(){
 
 $(".table-franquicia .estado").on('change',function(){
     let id = $(this).data('id');
+    var token = $("#fr-franchise input[name='_token']").val();
+    let data='';
+    if($(this).data('estado')=="activo"){
+         data = ({'id':id,'status':1,'_token':token,'_method':'PUT'});  
+    }else{
+         data = ({'id':id,'status':2,'_token':token,'_method':'PUT'});  
+    }
+    
     $.ajax({
-        url:`/admin/franchisees/${id}/edit`,
-        type:"PUT",
+        url:'/admin/franchisees-estado/'+id,
+        type:"POST",
         dataType:"json",
+        data:data,
         beforeSend:function(){},
         success:function(response){
-            $("#fr-franchise #nombre").val(response.names);
-            $("#fr-franchise #nombre").val(response.names);
-            $("#fr-franchise #nombre").val(response.names);
-            $("#fr-franchise #nombre").val(response.names);
-            $("#fr-franchise #nombre").val(response.names);
-            $("#fr-franchise #nombre").val(response.names);
+           alert("estado actualizado");
         }
     });
 });
 
 
 
-$('#fr-profile').on('submit', (function (e) {
+$('#fr-franchise').on('submit', (function (e) {
     e.preventDefault()
-    var id = $('#fr-profile #admin_id').val()
-
+    var id = $('#fr-franchise #franchise_id').val();
+    var metodo = $('#fr-franchise #metodo').val();
+    let url ='';
+    if(metodo=='POST'){
+        url ='/admin/franchisees/store';
+    }else{
+        url = '/admin/franchisees/' + id;
+    }
     $.ajax({
-      url: '/admin/profile/' + id,
+        url: url,
       type: 'POST',
       data: new FormData(this),
       contentType: false,
       processData: false,
       success: function (response) {
-        window.location.reload()
+          if(response.rpta=='ok'){
+            window.location.reload();
+          }
       },
       error: function (err) {
         console.log(err)
       }
     })
   }))
+
+ $(".nuevo_franquiciado").on('click',function(e){
+    e.preventDefault();
+    $("#fr-franchise input[type=text]").val('');
+    $("#fr-franchise select").val('');
+    $("#img-upload").attr('src','');
+    $('#fr-franchise #metodo').val('POST');
+ });
+  

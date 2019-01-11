@@ -12,23 +12,20 @@ class ClassificationTableSeeder extends Seeder
     public function run()
     {
         Classification::create([
-            'name' => 'Bebidas',
-            'decription' => 'Bebidas '
+            'name' => 'Restaurants',
+            'decription' => 'restuarantes de todo tipo '
         ]);
 
         Classification::create([
-            'name' => 'Cafeteria',
-            'decription' => 'Cafeteria '
+            'name' => 'Comida rapida',
+            'decription' => 'Comidas rapidas '
         ]);
 
         Classification::create([
-            'name' => 'Platos',
-            'decription' => 'Platos principales '
+            'name' => 'Panificación',
+            'decription' => 'Tortas pasteles'
         ]);
 
-        Classification::create([
-            'name' => 'Postres',
-            'decription' => 'Postres'
-        ]);
+        
     }
 }

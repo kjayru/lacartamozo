@@ -14,20 +14,20 @@
                 <div class="navbar-header" style="margin: 0px; padding: 0px;">
                   <a class="navbar-brand" href="#" style="margin-left:8px; color: #fff;" >FRANQUICIADO</a>
                 </div>  
-                <button class="btn btn-warning navbar-btn navbar-right " onclick="nuevo_franquiciado"  style="margin-right: 12px;">Nuevo Franquiciado</button>
+                <button class="btn btn-warning navbar-btn navbar-right nuevo_franquiciado"  style="margin-right: 12px;">Nuevo Franquiciado</button>
               </div>
 		</nav> 
 		
         <div class="box2" style="margin: 0; padding: 0; padding-bottom: 25px; background-color: #fff;">
              
             <!-- /.box-body -->
-            <div class="box-body" style=" padding: 0;margin: 0; height: 800px; min-width: 150px;">     
+            <div class="box-body" style=" padding: 0;margin: 0; min-width: 150px;">     
                  
                 <table id="dtBasicExample"   class="table-striped table-franquicia table-responsive" style="margin-top: -1px; ">
                         <thead style="background-color: #696969; color: #fff;">
                             <tr>
                                 <th width="40px;" style="padding-left: 15px;">#</th>
-                                <th width="140px;"  class="hidden-xs">Foto</th>
+                                <th width="60px;"  class="hidden-xs">Foto</th>
                                 <th width="120px;">Nombre de Negocio</th>
                                 <th width="150px;" class="hidden-xs">Direccion</th>
                                 <th width="80px;">Ciudad</th>
@@ -56,7 +56,7 @@
                                 </td>
                                 <td>
                                     <label class="switch">
-                                        <input type="checkbox" class="estado" data-id="{{$fran->id}}" @if($fran->status==2) checked @endif >
+                                        <input type="checkbox" class="estado" data-id="{{$fran->id}}"  @if($fran->status==2) data-estado="activo" checked @else data-estado="inactivo" @endif >
                                         <span class="slider round" ></span>
                                     </label>
                                 </td>
@@ -64,7 +64,7 @@
                             @endforeach
                         </tbody>
                 </table> 
-                {{ $franquicias->render() }}
+               
             </div>
         </div>
  
@@ -73,70 +73,11 @@
  
         <div class="row" style="padding: 2px; margin: 0px;">
             <div class="col-md-12" style="padding: 0px;">
-                <div class="box" style="background-color: #fff; padding: 0px;">
- 
-                    <form class="form-horizontal" id="fr-franchise">
-                      <fieldset>
-
-                      <!-- Form Name -->
-                      <legend style="background-color: #6a5acd; margin: 0px; padding-left: 15px; color:#fff; height: 55px;"></legend>
-
-                        <!-- Text input-->
-                        <div class="form-group">
-                            <label class="col-md-3 control-label" for="names">Nombres y Apellidos</label>  
-                            <div class="col-md-8">
-                            <input id="names" name="names" style="background-color: #e5e5e5;" type="text" placeholder="Nombres y apellidos" class="form-control input-md">                        
-                            </div> 
-
-                            <label class="col-md-3 control-label" for="address">Direccion</label>  
-                            <div class="col-md-8">
-                            <input id="address" name="address" style="background-color: #e5e5e5;" type="text" placeholder="Direccion" class="form-control input-md">
-                            </div> 
-
-                            <label class="col-md-3 control-label" for="city">Ciudad</label>  
-                            <div class="col-md-8">
-                            <input id="city" name="city" style="background-color: #e5e5e5;" type="text" placeholder="Ciudad" class="form-control input-md">
-                            </div> 
-
-                            <label class="col-md-3 control-label" for="province">Provincia</label>  
-                            <div class="col-md-8">
-                            <input id="province" name="province" style="background-color: #e5e5e5;" type="text" placeholder="Provincia" class="form-control input-md">
-                            </div> 
-
-                            <label class="col-md-3 control-label" for="cellphone">Celular</label>  
-                            <div class="col-md-8">
-                            <input id="cellphone" name="cellphone" style="background-color: #e5e5e5;" type="text" placeholder="Celular" class="form-control input-md">
-                            </div> 
-
-                            <label class="col-md-3 control-label" for="mail">Email</label>  
-                            <div class="col-md-8">
-                            <input id="mail" name="mail" style="background-color: #e5e5e5;" type="text" placeholder="Email" class="form-control input-md">
-                            </div> 
-
-                            <label class="col-md-3 control-label" for="country">Pais</label>
-                            <div class="col-md-8">
-                               <input id="country" name="country" style="background-color: #e5e5e5;" type="text" placeholder="Pais" class="form-control input-md">
-                            </div> 
-
-                            <input id="latitude" name="latitude" style="background-color: #e5e5e5;" type="hidden">
-                            <input id="longitude" name="longitude" style="background-color: #e5e5e5;" type="hidden" >
-                            
-                            <label class="col-md-3 control-label" style="padding-left: 15px;"  for="btn-save">Imagen</label> 
-                            <div class="input-group col-md-8">
-                                <span class="input-group-btn">
-                                    <span class="btn btn-default btn-file">
-                                        Browse… <input type="file" name="avatar" id="imgInp">
-                                    </span>
-                                </span>
-                                <input type="text" class="form-control"  readonly>
-                            </div>
-                            <img id='img-upload' class="img-responsive" style="padding: 15px; "/>
-
-                        </div> 
-                      
-                      
-                      </fieldset>
-                      </form>
+                <div class="box box-info" style="background-color: #fff; padding: 0px;">
+                    <div class="box-header with-border">
+                        Formulario de datos
+                    </div>
+                     @include('admin.paginas.franquicias.partial.form')
  
                 </div>
             </div>

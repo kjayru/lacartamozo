@@ -66,13 +66,14 @@
 }
 
 .box-body{
-    height: 180px;
+    /* height: 180px; */
     font-size: 0.85em;
+    padding: 10px !important;
 }
 
 .box-footer{
-    height: 25px;
-    background-color: #f7f7f7; 
+    height: auto;
+    background-color: #f7f7f7;
 }
 
 .table-condensed tr td{
@@ -393,26 +394,28 @@
     overflow:hidden;
     margin-bottom: 50px;
     background-color: #f7f7f7;
+    margin-top: 20px;
 }
 
-#wrappermini div { 
-   padding: 10px;
+#wrappermini div {
+   padding: 0 10px 0 10px;
 }
 #one {
   float:left;
   margin: 0px;
-  padding: 0px;
+  padding: 10px;
   min-width: 240px;
 }
 
-#two { 
+#two {
   background-color: white;
-  overflow:hidden; 
-  margin:0;  
+  overflow:hidden;
+  margin:0;
   padding-left: 0;
-  background-color:#f7f7f7; 
+  background-color:#f7f7f7;
   min-height: 280px;
   min-width: 240px;
+  padding: 10px;
 }
 
 @media screen and (max-width: 400px) {
@@ -451,7 +454,7 @@
 }
 
 #img-upload{
-    width: 100%;
+    width: 400px;
 }
 
 
@@ -660,8 +663,8 @@ input:checked + .slider:before {
      padding:10px;
  }
  #dtBasicExample thead tr th{
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: 18px;
+    padding-bottom: 18px;
     text-align: center;
  }
  table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_desc_disabled:after {
@@ -675,4 +678,27 @@ input:checked + .slider:before {
 td.sorting_1 {
     text-align: center;
     font-weight: bold;
+}
+#wrappermini .box-header {
+    color: white;
+    display: block;
+    padding: 10px !important;
+    position: relative;
+    background-color: #6a5acd !important;
+}
+#wrappermini .box-footer {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-top: 1px solid #f4f4f4;
+    padding: 10px !important;
+    background-color: #ffffff;
+}
+#wrappermini .box-body {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    padding: 10px !important;
 }

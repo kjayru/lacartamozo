@@ -43,7 +43,7 @@ Route::group(['prefix' => 'admin'], function () {
 
 
     //users
-
+/*
     Route::get('users','Admin\UserController@index')->name('users.index')
     ->middleware('permission:users.index');
 
@@ -58,7 +58,7 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::delete('users/{user}','Admin\UserController@destroy')->name('users.destroy')
     ->middleware('permission:users.destroy');
-
+*/
 
 
     //podcast
@@ -82,7 +82,10 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::get('franchisees/{franchise}/edit','Admin\FranchiseController@edit')->name('franchisees.edit')
     ->middleware('permission:franchisees.edit');
-  
+   
+
+    Route::put('franchisees-estado/{franchise}','Admin\FranchiseController@cambioestado')->name('franchisees.estado')
+    ->middleware('permission:franchisees.edit');
     //mozos
 
     Route::get('mozos','Admin\MozoController@index')->name('mozos.index')
