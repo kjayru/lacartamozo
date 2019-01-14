@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Client extends Model
 {
 
-    protected $table ="clients";
+    
 
     public function franchise()
     {
@@ -30,21 +30,17 @@ class Client extends Model
     public function salsas(){
         return $this->hasMany('App\Salsa');
     }
-}
-/*
-<?php
 
-namespace App;
-
-use Illuminate\Database\Eloquent\Model;
-
-class Client extends Model
-{
-
-    protected $table ="clients";
-    
-    public function Franchise(){
-        return $this->belongsTo('App\Franchise');
+    public function clientphotos(){
+        return $this->hasMany('App\ClientPhoto');
     }
-}*/
+
+    public function services(){
+        return $this->belongsToMany('App\Service');
+    }
+    public function configurations()
+    {
+        return $this->belongsToMany('App\Configuration');
+    }
+}
 

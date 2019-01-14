@@ -42,26 +42,50 @@ Route::group(['prefix' => 'admin'], function () {
     ->middleware('permission:roles.edit');
 
 
-    //users
-/*
-    Route::get('users','Admin\UserController@index')->name('users.index')
-    ->middleware('permission:users.index');
+    //clients
 
-    Route::get('users/{user}/edit','Admin\UserController@edit')->name('users.edit')
-    ->middleware('permission:users.edit');
+    Route::get('clients','Admin\ClientController@index')->name('clients.index')
+    ->middleware('permission:clients.index');
 
-    Route::put('users/{user}','Admin\UserController@update')->name('users.update')
-    ->middleware('permission:users.edit');
+    Route::post('clients/store','Admin\ClientController@store')->name('clients.store')
+    ->middleware('permission:clients.create');
 
-    Route::get('users/{user}','Admin\UserController@show')->name('users.show')
-    ->middleware('permission:users.show');
+    Route::get('clients/{client}/edit','Admin\ClientController@edit')->name('clients.edit')
+    ->middleware('permission:clients.edit');
 
-    Route::delete('users/{user}','Admin\UserController@destroy')->name('users.destroy')
-    ->middleware('permission:users.destroy');
-*/
+    Route::put('clients/{client}','Admin\ClientController@update')->name('clients.update')
+    ->middleware('permission:clients.edit');
+
+    Route::get('clients/{client}','Admin\ClientController@show')->name('clients.show')
+    ->middleware('permission:clients.show');
+
+    Route::delete('clients/{client}','Admin\ClientController@destroy')->name('clients.destroy')
+    ->middleware('permission:clients.destroy');
+
+    Route::post('clients/foto','Admin\ClientController@foto')->name('clients.foto')
+    ->middleware('permission:clients.create');
+
+    Route::put('clients/foto/{client}','Admin\ClientController@fotoupdate')->name('clients.fotoupdate')
+    ->middleware('permission:clients.edit');
 
 
-    //podcast
+    Route::post('clients/service','Admin\ClientController@service')->name('clients.service')
+    ->middleware('permission:clients.create');
+
+    Route::put('clients/service/{client}','Admin\ClientController@serviceUpdate')->name('clients.serviceUpdate')
+    ->middleware('permission:clients.edit');
+
+
+    Route::post('clients/configuration','Admin\ClientController@configuration')->name('clients.configuration')
+    ->middleware('permission:clients.create');
+
+    Route::put('clients/configuration/{client}','Admin\ClientController@configurationUpdate')->name('clients.configurationUpdate')
+    ->middleware('permission:clients.edit');
+
+    Route::put('clients-estado/{franchise}','Admin\ClientController@cambioestado')->name('clients.estado')
+    ->middleware('permission:clients.edit');
+
+    //franchise
     Route::post('franchisees/store','Admin\FranchiseController@store')->name('franchisees.store')
     ->middleware('permission:franchisees.create');
 

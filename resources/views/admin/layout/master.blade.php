@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="/css/library.css"> 
   <link rel="stylesheet" href="/css/app.css?v={{uniqid()}}">
   <link rel="stylesheet" href="/css/image-picker.css">
-  <link rel="stylesheet" href="/css/main.css"> 
+  <link rel="stylesheet" href="/css/main.css?v={{uniqid()}}"> 
   <link rel="stylesheet" href="/dist/css/skins/skin-purple.css">
   
 

@@ -23,7 +23,10 @@ class CreateClientsTable extends Migration
             $table->string('province');
             $table->string('country');
             $table->string('cellphone');
-            $table->string('mail');
+            $table->string('email');
+            $table->string('sexo');
+            $table->string('cashier');
+            $table->string('logo');
             $table->decimal('latitude',11,8);
             $table->decimal('longitude',11,8);
             $table->integer('status');

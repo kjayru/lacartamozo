@@ -50,7 +50,7 @@
                                 <td>{{ $fran->cellphone }}</td>
                                 <td >{{ $fran->created_at }}</td>
                                 <td> 
-                                    <a href="/admin/clientes/{{ $fran->id }}" class="btn btn-xs btn-success btn-clientes-list" >Clientes</a>
+                                    <a href="/admin/clients/{{ $fran->id }}" class="btn btn-xs btn-success btn-clientes-list" >Clientes</a>
                                     <a href="#" class="btn btn-xs btn-primary btn-franciado-edit" data-id="{{$fran->id}}">Editar</a>
 
                                 </td>
