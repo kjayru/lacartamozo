@@ -34,27 +34,7 @@
               </a>
             </li>
             @endcan
-            @can('clients.index')
-            <li>
-              <a href="/admin/clientes">
-                <i class="fa fa-user"></i> <span class="span_li">Clientes</span>               
-              </a>
-            </li>
-            @endcan
-            @can('mozos.index')
-            <li>
-              <a href="/admin/mozos">
-                <i class="fa fa-address-book"></i> <span class="span_li">Mozos y Mesas</span>               
-              </a>
-            </li>
-            @endcan
-            @can('menus.index')
-            <li>
-              <a href="/admin/productoscarta">
-                <i class="fa fa-book"></i> <span class="span_li">Productos de la carta</span>               
-              </a>
-            </li>
-            @endcan
+          
             @can('users.index')
             <li>
               <a href="/admin/miposicionpuntos">
