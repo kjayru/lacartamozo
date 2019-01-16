@@ -134,6 +134,23 @@ Route::group(['prefix' => 'admin'], function () {
 
   Route::get('mozos/{mozo}/edit','Admin\MozoController@edit')->name('mozos.edit')
   ->middleware('permission:mozos.edit');
+
+  //menu
+
+  Route::get('lacartas/create','Admin\MenuClientController@create')->name('lacartas.create')
+  ->middleware('permission:lacartas.create');
+
+  Route::put('lacartas/{lacarta}','Admin\MenuClientController@update')->name('lacartas.update')
+  ->middleware('permission:lacartas.edit');
+
+  Route::get('lacartas/{lacarta}','Admin\MenuClientController@show')->name('lacartas.show')
+  ->middleware('permission:lacartas.show');
+
+  Route::delete('lacartas/{lacarta}','Admin\MenuClientController@destroy')->name('lacartas.destroy')
+  ->middleware('permission:lacartas.destroy');
+
+  Route::get('lacartas/{lacarta}/edit','Admin\MenuClientController@edit')->name('lacartas.edit')
+  ->middleware('permission:lacartas.edit');
     
     
     Route::get('/cuadro-de-comandos','Admin\CenterCommandController@index');

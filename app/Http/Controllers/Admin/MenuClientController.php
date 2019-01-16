@@ -1,10 +1,15 @@
 <?php
+namespace App\Http\Controllers\Admin;
 
-namespace App\Http\Controllers;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 use App\MenuClient;
-use Illuminate\Http\Request;
 
+use App\Menu;
+use App\CLient;
+use App\Category;
+use App\Ingredient;
 class MenuClientController extends Controller
 {
     /**
@@ -44,9 +49,12 @@ class MenuClientController extends Controller
      * @param  \App\MenuClient  $menuClient
      * @return \Illuminate\Http\Response
      */
-    public function show(MenuClient $menuClient)
+    public function show($id)
     {
-        //
+        $categories = Categories::where('client_id',$id)->get();
+        $ingredient = Ingredient::all();
+       
+        return view('admin.paginas.productoscarta.index',['menus'=>$categories->menus,'categorias'=>$categories,'ingredientes'=>$ingredient]);
     }
 
     /**
@@ -55,7 +63,7 @@ class MenuClientController extends Controller
      * @param  \App\MenuClient  $menuClient
      * @return \Illuminate\Http\Response
      */
-    public function edit(MenuClient $menuClient)
+    public function edit($id)
     {
         //
     }
@@ -67,7 +75,7 @@ class MenuClientController extends Controller
      * @param  \App\MenuClient  $menuClient
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MenuClient $menuClient)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -78,7 +86,7 @@ class MenuClientController extends Controller
      * @param  \App\MenuClient  $menuClient
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MenuClient $menuClient)
+    public function destroy($id)
     {
         //
     }

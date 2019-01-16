@@ -280,6 +280,9 @@ $('#fr-clients').on('submit', (function (e) {
              $(".btn-submit-config").attr('disabled',false);
              $(".btn-submit-service").attr('disabled',false);
              $(".btn-client-foto").attr('disabled',false);
+
+             $("#btn-mozo").attr("data-id",id);
+             $("#btn-carta").attr("data-id",id);
         }
     });
   });
@@ -416,4 +419,24 @@ $('#fr-clients').on('submit', (function (e) {
            alert("estado actualizado");
         }
     });
+});
+
+
+$("#btn-mozo").on('click',function(e){
+    e.preventDefault();
+    let id = $(this).data('id');
+
+    let url = `/admin/mozos/${id}`;
+
+    window.location.href= url;
+    
+});
+
+$("#btn-carta").on('click',function(e){
+    e.preventDefault();
+    let id = $(this).data('id');
+   
+    let url = `/admin/lacartas/${id}`;
+
+    window.location.href= url;
 });
