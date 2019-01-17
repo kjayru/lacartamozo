@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\Franchise;
+use App\Package;
+use App\Classification;
 
 class AdminController extends Controller
 {
@@ -80,5 +84,15 @@ class AdminController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function apiFranquicia(){
+        $franquicias = Franchise::orderBy('status','desc')->get();
+
+        $packages = Package::all();
+
+        $classifications = Classification::all();
+
+        return response()->json(['franquicias'=>$franquicias,'packages'=>$packages,'clasificacion'=>$classifications]);
     }
 }

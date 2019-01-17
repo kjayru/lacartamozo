@@ -24,7 +24,7 @@ class FranchiseController extends Controller
     {
        // $paises = Pais::orderBy('Pais','asc')->get();
 
-        $franquicias = Franchise::orderBy('status','desc2')->get();
+        $franquicias = Franchise::orderBy('status','desc')->get();
 
         $packages = Package::all();
 
@@ -190,4 +190,8 @@ class FranchiseController extends Controller
 
         return response()->json(['rpta'=>'ok']);
     }
+
+
+  
 }
+

@@ -19,7 +19,7 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::get('/','Admin\DashboardController@index')->name('dashboard.index');
 
-    
+
     Route::post('roles/store','Admin\RoleController@store')->name('roles.store')
     ->middleware('permission:roles.create');
 
@@ -106,53 +106,54 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::get('franchisees/{franchise}/edit','Admin\FranchiseController@edit')->name('franchisees.edit')
     ->middleware('permission:franchisees.edit');
-   
+
 
     Route::put('franchisees-estado/{franchise}','Admin\FranchiseController@cambioestado')->name('franchisees.estado')
     ->middleware('permission:franchisees.edit');
+    
     //mozos
 
     Route::get('mozos','Admin\MozoController@index')->name('mozos.index')
     ->middleware('permission:mozos.index');
 
-  Route::post('mozos/store','Admin\MozoController@store')->name('mozos.store')
-  ->middleware('permission:mozos.create');
+    Route::post('mozos/store','Admin\MozoController@store')->name('mozos.store')
+    ->middleware('permission:mozos.create');
 
- 
 
-  Route::get('mozos/create','Admin\MozoController@create')->name('mozos.create')
-  ->middleware('permission:mozos.create');
 
-  Route::put('mozos/{mozo}','Admin\MozoController@update')->name('mozos.update')
-  ->middleware('permission:mozos.edit');
+    Route::get('mozos/create','Admin\MozoController@create')->name('mozos.create')
+    ->middleware('permission:mozos.create');
 
-  Route::get('mozos/{mozo}','Admin\MozoController@show')->name('mozos.show')
-  ->middleware('permission:mozos.show');
+    Route::put('mozos/{mozo}','Admin\MozoController@update')->name('mozos.update')
+    ->middleware('permission:mozos.edit');
 
-  Route::delete('mozos/{mozo}','Admin\MozoController@destroy')->name('mozos.destroy')
-  ->middleware('permission:mozos.destroy');
+    Route::get('mozos/{mozo}','Admin\MozoController@show')->name('mozos.show')
+    ->middleware('permission:mozos.show');
 
-  Route::get('mozos/{mozo}/edit','Admin\MozoController@edit')->name('mozos.edit')
-  ->middleware('permission:mozos.edit');
+    Route::delete('mozos/{mozo}','Admin\MozoController@destroy')->name('mozos.destroy')
+    ->middleware('permission:mozos.destroy');
 
-  //menu
+    Route::get('mozos/{mozo}/edit','Admin\MozoController@edit')->name('mozos.edit')
+    ->middleware('permission:mozos.edit');
 
-  Route::get('lacartas/create','Admin\MenuClientController@create')->name('lacartas.create')
-  ->middleware('permission:lacartas.create');
+    //menu
 
-  Route::put('lacartas/{lacarta}','Admin\MenuClientController@update')->name('lacartas.update')
-  ->middleware('permission:lacartas.edit');
+    Route::get('lacartas/create','Admin\MenuClientController@create')->name('lacartas.create')
+    ->middleware('permission:lacartas.create');
 
-  Route::get('lacartas/{lacarta}','Admin\MenuClientController@show')->name('lacartas.show')
-  ->middleware('permission:lacartas.show');
+    Route::put('lacartas/{lacarta}','Admin\MenuClientController@update')->name('lacartas.update')
+    ->middleware('permission:lacartas.edit');
 
-  Route::delete('lacartas/{lacarta}','Admin\MenuClientController@destroy')->name('lacartas.destroy')
-  ->middleware('permission:lacartas.destroy');
+    Route::get('lacartas/{lacarta}','Admin\MenuClientController@show')->name('lacartas.show')
+    ->middleware('permission:lacartas.show');
 
-  Route::get('lacartas/{lacarta}/edit','Admin\MenuClientController@edit')->name('lacartas.edit')
-  ->middleware('permission:lacartas.edit');
-    
-    
+    Route::delete('lacartas/{lacarta}','Admin\MenuClientController@destroy')->name('lacartas.destroy')
+    ->middleware('permission:lacartas.destroy');
+
+    Route::get('lacartas/{lacarta}/edit','Admin\MenuClientController@edit')->name('lacartas.edit')
+    ->middleware('permission:lacartas.edit');
+
+
     Route::get('/cuadro-de-comandos','Admin\CenterCommandController@index');
     //Route::get('/franquiciados','Admin\FranchiseController@index');
     Route::get('/clientes','Admin\ClientController@index');
@@ -171,7 +172,7 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::get('/getfranquiciado/{id}/edit','Admin\FranchiseController@edit');
     Route::get('/demotab','Admin\FranchiseController@demotab');
-    
+
     Route::get('/getCiudad/{any}','Admin\FranchiseController@getCiudad');
 
     Route::get('/getcliente/{id}/edit','Admin\ClientController@edit');
@@ -192,10 +193,15 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/paisprovincialocalidad','Admin\PaisPLController@index');
     Route::get('/push_comercios','Admin\PushComerciosController@index');
     Route::get('/push_comensal','Admin\PushComensalController@index');
-    
-    
+
+
 });
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::get('/api/franquicias','AdminController@apiFranquicia')->name('api.franquicias');
+
+
 /*
 
 Auth::routes();
