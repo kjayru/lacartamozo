@@ -7,6 +7,12 @@ use App\User;
 use App\Franchise;
 use App\Package;
 use App\Classification;
+use App\Client;
+use App\ClientPhoto;
+use App\ClientConfiguration;
+use App\ClientService;
+use App\Service;
+use App\Configuration;
 
 class AdminController extends Controller
 {
@@ -94,5 +100,17 @@ class AdminController extends Controller
         $classifications = Classification::all();
 
         return response()->json(['franquicias'=>$franquicias,'packages'=>$packages,'clasificacion'=>$classifications]);
+    }
+
+
+    public function apiCliente($id)
+    {
+        $services = Service::all();
+      
+        $configurations = Configuration::all();
+        $clientes = Client::where('franchise_id',$id)->get();
+        $franchise_id = $id;
+        
+        return response()->json(['clients'=>$clientes,'franchise_id'=>$franchise_id,'services'=>$services,'configurations'=>$configurations]);
     }
 }

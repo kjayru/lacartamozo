@@ -201,7 +201,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/api/franquicias','AdminController@apiFranquicia')->name('api.franquicias');
 
-
+Route::get('/api/clients/{client}','AdminController@apiCliente')->name('api.clientes');
 /*
 
 Auth::routes();
