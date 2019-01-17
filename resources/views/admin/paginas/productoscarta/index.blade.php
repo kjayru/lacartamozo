@@ -41,7 +41,7 @@
                     </div>
                      
                         <nav class="subcontent0 sidebar_sub_1" > 
-                        asdasd
+                       
                             <ul class="list-group" data-widget="tree" id="prodCategorias"> 
                             @foreach($categorias as $cat)
                                 <li>{{ @$cat->name }} </li>
@@ -50,6 +50,10 @@
                         </nav> 
                         <!-- /.box-header -->
                         <div  class="subcontent0 subcontent1">
+
+                            @if($menus=="")
+                                <p>No existe datos  generados</p>
+                            @else
                             <table id="tb-cliente" class="table table-responsive table-hover">
                               <thead style="background-color: #696969; color: #fff;">
                                 <tr>
@@ -75,6 +79,8 @@
                                   @endforeach 
                               </tbody>
                             </table>
+                            @endif
+                       
                         </div> 
                  
                 </div>

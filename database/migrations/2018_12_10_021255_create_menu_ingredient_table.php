@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream:database/migrations/2018_12_10_021255_create_menu_ingredient_table.php
 <?php
 
 use Illuminate\Support\Facades\Schema;

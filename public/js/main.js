@@ -216,6 +216,10 @@ $('#fr-clients').on('submit', (function (e) {
     e.preventDefault();
     $(".capabox").fadeOut(350,'swing');
     let id = $(this).data('id');
+
+    $("#btn-mozo").attr("data-id",id);
+    $("#btn-carta").attr("data-id",id);
+
     $.ajax({
         url:`/admin/clients/${id}/edit`,
         type:"GET",
@@ -251,11 +255,12 @@ $('#fr-clients').on('submit', (function (e) {
             $("#fr-clients-service #metodo3").val('PUT');
             $("#fr-clients-config #metodo4").val('PUT');
 
-            $("#img-upload_f1").attr('src','/storage/client/'+response.fotos[0].photo);
-            $("#img-upload_f2").attr('src','/storage/client/'+response.fotos[1].photo);
-            $("#img-upload_f3").attr('src','/storage/client/'+response.fotos[2].photo);
-            $("#img-upload_f4").attr('src','/storage/client/'+response.fotos[3].photo);
-
+            if(response.fotos.lenght>0){
+                $("#img-upload_f1").attr('src','/storage/client/'+response.fotos[0].photo);
+                $("#img-upload_f2").attr('src','/storage/client/'+response.fotos[1].photo);
+                $("#img-upload_f3").attr('src','/storage/client/'+response.fotos[2].photo);
+                $("#img-upload_f4").attr('src','/storage/client/'+response.fotos[3].photo);
+            }
             $.each(response.services,function(i,e){
                 let serviceid= e.service_id;
                 $(`#service${serviceid}`).attr('checked',true);
@@ -281,8 +286,7 @@ $('#fr-clients').on('submit', (function (e) {
              $(".btn-submit-service").attr('disabled',false);
              $(".btn-client-foto").attr('disabled',false);
 
-             $("#btn-mozo").attr("data-id",id);
-             $("#btn-carta").attr("data-id",id);
+            
         }
     });
   });

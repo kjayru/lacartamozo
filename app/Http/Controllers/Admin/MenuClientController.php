@@ -51,10 +51,18 @@ class MenuClientController extends Controller
      */
     public function show($id)
     {
-        $categories = Categories::where('client_id',$id)->get();
+        $categories = Category::where('client_id',$id)->with('menus')->get();
+        $cat_total = Category::where('client_id',$id)->count();
         $ingredient = Ingredient::all();
-       
-        return view('admin.paginas.productoscarta.index',['menus'=>$categories->menus,'categorias'=>$categories,'ingredientes'=>$ingredient]);
+
+        
+       if($cat_total>0){
+        $lacarta = $categories[0]->menus;
+       }else{
+        $lacarta = "";
+       }
+
+        return view('admin.paginas.productoscarta.index',['menus'=>$lacarta,'categorias'=>$categories,'ingredientes'=>$ingredient]);
     }
 
     /**
