@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMesasTable extends Migration
+class CreateCodeqrsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreateMesasTable extends Migration
      */
     public function up()
     {
-        Schema::create('mesas', function (Blueprint $table) {
+        Schema::create('codeqrs', function (Blueprint $table) {
             $table->increments('id');
-          
-            $table->unsignedInteger('client_id');
-            $table->foreign('client_id')->references('id')->on('clients');
-            $table->string('codeqr');
-            $table->integer('nummesas');
-            $table->integer('estado')->default(1);
+            $table->unsignedInteger('mesa_id');
+            $table->foreign('mesa_id')->references('id')->on('mesas');
+            $table->string('path');
+            $table->string('detalle');
             $table->timestamps();
         });
     }
@@ -32,6 +30,6 @@ class CreateMesasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mesas');
+        Schema::dropIfExists('codeqrs');
     }
 }

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Salsa extends Model
 {
-    public function salsaclients(){
-        return $this->hasMany('App\SalsaClient');
+    public function clients(){
+        return $this->hasMany('App\Client');
     }
 }

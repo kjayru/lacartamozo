@@ -15,6 +15,10 @@ use App\Service;
 use App\Configuration;
 class ClientController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -193,7 +197,7 @@ class ClientController extends Controller
             
                 $input['imagename'] = time().'.'.$file->getClientOriginalExtension();
                 $destinationPath = public_path('/storage/client');
-                $image->move($destinationPath, $input['imagename']);
+                $file->move($destinationPath, $input['imagename']);
 
                 $image = new ClientPhoto();
                 $image->client_id = $request->client_id;

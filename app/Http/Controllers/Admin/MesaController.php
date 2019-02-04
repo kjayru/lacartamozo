@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\RestaurantDetail;
+
+use App\Mesa;
+use App\Mozo;
+
 class MesaController extends Controller
 {
     /**
@@ -38,7 +41,15 @@ class MesaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $mesa = new Mesa();
+
+        $mesa->nummesa = $request->nummesa;
+        $mesa->descripcion = $request->descripcion;
+        $mesa->client_id = $request->client_id;
+
+        $mesa->save();
+
+        return response()->json(['rpta'=>'ok','client_id'=>$mesa->client_id]);
     }
 
     /**
@@ -60,7 +71,9 @@ class MesaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $mesa = Mesa::find($id);
+
+        return response()->json($mesa);
     }
 
     /**
@@ -72,7 +85,15 @@ class MesaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $mesa =  Mesa::find($id);
+
+        $mesa->nummesa = $request->nummesa;
+        $mesa->descripcion = $request->descripcion;
+        $mesa->client_id = $request->client_id;
+
+        $mesa->save();
+
+        return response()->json(['rpta'=>'ok','client_id'=>$mesa->client_id]);
     }
 
     /**

@@ -119,8 +119,6 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('mozos/store','Admin\MozoController@store')->name('mozos.store')
     ->middleware('permission:mozos.create');
 
-
-
     Route::get('mozos/create','Admin\MozoController@create')->name('mozos.create')
     ->middleware('permission:mozos.create');
 
@@ -136,7 +134,36 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('mozos/{mozo}/edit','Admin\MozoController@edit')->name('mozos.edit')
     ->middleware('permission:mozos.edit');
 
+//mesas
+
+    Route::get('mesas','Admin\MesaController@index')->name('mesas.index')
+    ->middleware('permission:mesas.index');
+
+    Route::post('mesas/store','Admin\MesaController@store')->name('mesas.store')
+    ->middleware('permission:mesas.create');
+
+    Route::get('mesas/create','Admin\MesaController@create')->name('mesas.create')
+    ->middleware('permission:mesas.create');
+
+    Route::put('mesas/{mozo}','Admin\MesaController@update')->name('mesas.update')
+    ->middleware('permission:mesas.edit');
+
+    Route::get('mesas/{mozo}','Admin\MesaController@show')->name('mesas.show')
+    ->middleware('permission:mesas.show');
+
+    Route::delete('mesas/{mozo}','Admin\MesaController@destroy')->name('mesas.destroy')
+    ->middleware('permission:mesas.destroy');
+
+    Route::get('mesas/{mozo}/edit','Admin\MesaController@edit')->name('mesas.edit')
+    ->middleware('permission:mesas.edit');
+
+
     //menu
+    Route::get('lacartas','Admin\MenuClientController@index')->name('lacartas.index')
+    ->middleware('permission:lacartas.index');
+
+    Route::post('lacartas/store','Admin\MenuClientController@store')->name('lacartas.store')
+    ->middleware('permission:lacartas.create');
 
     Route::get('lacartas/create','Admin\MenuClientController@create')->name('lacartas.create')
     ->middleware('permission:lacartas.create');
@@ -153,6 +180,76 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('lacartas/{lacarta}/edit','Admin\MenuClientController@edit')->name('lacartas.edit')
     ->middleware('permission:lacartas.edit');
 
+    Route::get('replicate','Admin\MenuClientController@replicate')->name('lacartas.edit')
+    ->middleware('permission:lacartas.edit');
+
+    //ingredient
+    Route::get('ingredients','Admin\IngredientClientController@index')->name('ingredients.index')
+    ->middleware('permission:ingredients.index');
+
+    Route::post('ingredients/store','Admin\IngredientClientController@store')->name('ingredients.store')
+    ->middleware('permission:ingredients.create');
+
+    Route::get('ingredients/create','Admin\IngredientClientController@create')->name('ingredients.create')
+    ->middleware('permission:ingredients.create');
+
+    Route::put('ingredients/{ingredient}','Admin\IngredientClientController@update')->name('ingredients.update')
+    ->middleware('permission:ingredients.edit');
+
+    Route::get('ingredients/{ingredient}','Admin\IngredientClientController@show')->name('ingredients.show')
+    ->middleware('permission:ingredients.show');
+
+    Route::delete('ingredients/{ingredient}','Admin\IngredientClientController@destroy')->name('ingredients.destroy')
+    ->middleware('permission:ingredients.destroy');
+
+    Route::get('ingredients/{ingredient}/edit','Admin\IngredientClientController@edit')->name('ingredients.edit')
+    ->middleware('permission:ingredients.edit');
+
+    //categories
+    Route::get('categories','Admin\CategoryController@index')->name('categories.index')
+    ->middleware('permission:categories.index');
+
+    Route::post('categories/store','Admin\CategoryController@store')->name('categories.store')
+    ->middleware('permission:categories.create');
+
+    Route::get('categories/create','Admin\CategoryController@create')->name('categories.create')
+    ->middleware('permission:categories.create');
+
+    Route::put('categories/{ingredient}','Admin\CategoryController@update')->name('categories.update')
+    ->middleware('permission:categories.edit');
+
+    Route::get('categories/{ingredient}','Admin\CategoryController@show')->name('categories.show')
+    ->middleware('permission:categories.show');
+
+    Route::delete('categories/{ingredient}','Admin\CategoryController@destroy')->name('categories.destroy')
+    ->middleware('permission:categories.destroy');
+
+    Route::get('categories/{ingredient}/edit','Admin\CategoryController@edit')->name('categories.edit')
+    ->middleware('permission:categories.edit');
+
+
+     //salsas
+     Route::get('salsas','Admin\SalsaController@index')->name('salsas.index')
+     ->middleware('permission:salsas.index');
+ 
+     Route::post('salsas/store','Admin\SalsaController@store')->name('salsas.store')
+     ->middleware('permission:salsas.create');
+ 
+     Route::get('salsas/create','Admin\SalsaController@create')->name('salsas.create')
+     ->middleware('permission:salsas.create');
+ 
+     Route::put('salsas/{ingredient}','Admin\SalsaController@update')->name('salsas.update')
+     ->middleware('permission:salsas.edit');
+ 
+     Route::get('salsas/{ingredient}','Admin\SalsaController@show')->name('salsas.show')
+     ->middleware('permission:salsas.show');
+ 
+     Route::delete('salsas/{ingredient}','Admin\SalsaController@destroy')->name('salsas.destroy')
+     ->middleware('permission:salsas.destroy');
+ 
+     Route::get('salsas/{ingredient}/edit','Admin\SalsaController@edit')->name('salsas.edit')
+     ->middleware('permission:salsas.edit');
+ 
 
     Route::get('/cuadro-de-comandos','Admin\CenterCommandController@index');
     //Route::get('/franquiciados','Admin\FranchiseController@index');

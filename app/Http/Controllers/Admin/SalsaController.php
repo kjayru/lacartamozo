@@ -1,9 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 use App\Salsa;
-use Illuminate\Http\Request;
+
+
 
 class SalsaController extends Controller
 {
@@ -35,7 +39,20 @@ class SalsaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $salsa = new Salsa();
+        $salsa->name = $request->name;
+        $salsa->client_id = $request->client_id;
+        $salsa->price = $request->price;
+        $salsa->description = $request->description;
+
+        if ($request->hasFile('photo')) {
+            $photo = $request->file('photo')->store('salsas');
+            $salsa->photo = $photo;
+        }
+        $salsa->save();
+
+        return response()->json(['rpta'=>'ok']);
+
     }
 
     /**
@@ -44,7 +61,7 @@ class SalsaController extends Controller
      * @param  \App\Salsa  $salsa
      * @return \Illuminate\Http\Response
      */
-    public function show(Salsa $salsa)
+    public function show($id)
     {
         //
     }
@@ -55,9 +72,11 @@ class SalsaController extends Controller
      * @param  \App\Salsa  $salsa
      * @return \Illuminate\Http\Response
      */
-    public function edit(Salsa $salsa)
+    public function edit($id)
     {
-        //
+        $salsa = Salsa::find($id);
+
+        return response()->json($salsa);
     }
 
     /**
@@ -67,9 +86,21 @@ class SalsaController extends Controller
      * @param  \App\Salsa  $salsa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Salsa $salsa)
+    public function update(Request $request, $id)
     {
-        //
+        $salsa = Salsa::find($id);
+        $salsa->name = $request->name;
+        $salsa->client_id = $request->client_id;
+        $salsa->price = $request->price;
+        $salsa->description = $request->description;
+
+        if ($request->hasFile('photo')) {
+            $photo = $request->file('photo')->store('salsas');
+            $salsa->photo = $photo;
+        }
+        $salsa->save();
+
+        return response()->json(['rpta'=>'ok']);
     }
 
     /**
@@ -78,8 +109,10 @@ class SalsaController extends Controller
      * @param  \App\Salsa  $salsa
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Salsa $salsa)
+    public function destroy($id)
     {
-        //
+       Salsa::where('id',$id)->delete();
+
+       return response()->json(['rpta'=>'ok']);
     }
 }

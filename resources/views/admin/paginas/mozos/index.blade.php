@@ -2,10 +2,10 @@
 
 @section('content')
 
-<section class="content" style="padding-right: 0px; background-color: #f7f7f7;">
+<section class="content-fluid"  style="width:100%; padding-right: 0px; background-color: #f7f7f7;">
      
-<div id="wrappermini">
-    <div id="one">  
+<div id="wrappermini" class="seccion-mozo">
+    <div id="one" class="col-md-8">  
     
         <!-- /.box-header -->
          <nav class="navbar navbar-inverse" style="margin: 0px; padding: 0px; background-color: #555;">
@@ -13,82 +13,115 @@
                 <div class="navbar-header" style="margin: 0px; padding: 0px;">
                   <a class="navbar-brand" href="#" style="margin-left:8px; color: #fff;" >MOZOS Y MEZAS</a>
                 </div>  
-                <button class="btn btn-warning navbar-btn navbar-right " onclick="addMozo()"  style="margin-right: 12px;">Agregar Mozo</button>
-                <button class="btn btn-warning navbar-btn navbar-right " onclick="verQr([])"  style="margin-right: 12px;">Ver QR</button>
-              </div>
+                
+
+                |
+                <a href="#" data-id="{{$client_id}}"  class="btn btn-warning navbar-btn navbar-right btn-nuevo-mozo"   style="margin-right: 12px;">Nuevo Mozo</a>
+                <a href="#" data-id="{{$client_id}}" class="btn btn-warning navbar-btn navbar-right btn-nuevo-mesa"   style="margin-right: 12px;">Nueva Mesa</a>
+               
+               <a href="#"  class="btn btn-warning navbar-btn navbar-right btn-tb-mozo"  style="margin-right: 12px;">Mozos</a>
+                <a href="#"  class="btn btn-warning navbar-btn navbar-right btn-tb-mesa"   style="margin-right: 12px;">Mesas</a>   
+            </div>
 		</nav> 
 			
         <div class="box2" style="margin: 0; padding: 0; padding-bottom: 25px; background-color: #fff;">
              
             <!-- /.box-body -->
-            <div class="box-body" style=" padding: 0;margin: 0; height: 800px; min-width: 150px; max-width: 950px;"> 
-                
-                <table id="dtBasicExample"  class="table-striped" style="margin-top: -1px; "> 
-                    <thead style="background-color: #696969; color: #fff;" class="header12">
-                    <tr style=" height: 45px;">
-                      <th width="40px;" style="padding-left: 15px;">Id</th>
-                      <th width="120px;">Foto</th>
-                      <th width="280px;">Nombre</th>
-                      <th width="280px;">Direccion</th>
-                      <th width="280px;">Ciudad</th>
-                      <th>Pais</th>
-                      <th>Celular</th>
-                      <th>Alta</th>
-                      <th></th>
-                      <th width="120px;">Estado</th> 
-                    </tr>
-                    </thead>
-                    <tbody>
-                      @foreach($mozos as $key => $mozo)
-                    <tr>
-                      <th>{{ $key + 1 }}</th>
-                      <td><img src="/storage/{{ $mozo->avatar }}"  width="60" alt=""> </td>
-                      <td>
-                            {{ $mozo->name }}
-                      </td>
-                      <td>{{ $mozo->address }}</td>
-                      <td>{{ $mozo->city }}</td>
-                      <td>{{ $mozo->country }}</td>
-                      <td>{{ $mozo->cellphone }}</td>
-                      <td>{{ $mozo->created_at }}</td>
-                      <td> <a href="#" class="btn btn-xs btn-primary btn-editar">Editar</a><a href="#" class="btn btn-xs btn-danger btn-eliminar">Eliminar</a></td>
-                      <td>{{ $mozo->state }}</td>
-                    </tr>
-                    @endforeach
-                    </tbody>
-                  </table>
+            <div class="box-body" style=" padding: 0;margin: 0; height: 800px; min-width: 150px;"> 
+                <div id="bl-mozo">
+                    <h3>Mozos</h3>
+                    <table id="dtBasicExample"  class="table-striped table-responsive table" style="margin-top: -1px; "> 
+                        <thead style="background-color: #696969; color: #fff;" class="header12">
+                        <tr style=" height: 45px;">
+                        <th width="40px;" style="padding-left: 15px;">Id</th>
+                        <th width="120px;">Foto</th>
+                        <th width="280px;">Nombre</th>
+                        <th width="280px;">Direccion</th>
+                        <th width="280px;">Ciudad</th>
+                        <th>Pais</th>
+                        <th>Celular</th>
+                        <th>Alta</th>
+                        <th></th>
+                        <th width="120px;">Estado</th> 
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($mozos as $key => $mozo)
+                        <tr>
+                        <th>{{ $key + 1 }}</th>
+                        <td><img src="/storage/{{ $mozo->avatar }}"  width="60" alt=""> </td>
+                        <td>
+                                {{ $mozo->name }}
+                        </td>
+                        <td>{{ $mozo->address }}</td>
+                        <td>{{ $mozo->city }}</td>
+                        <td>{{ $mozo->country }}</td>
+                        <td>{{ $mozo->cellphone }}</td>
+                        <td>{{ $mozo->created_at }}</td>
+                        <td> <a href="#" data-id="{{ $mozo->id }}" class="btn btn-xs btn-primary btn-mozo-editar">Editar</a>
+                            <a href="#" data-id="{{ $mozo->id }}" class="btn btn-xs btn-danger btn-mozo-eliminar">Eliminar</a>
+                        </td>
+                        <td>{{ $mozo->state }}</td>
+                        </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <div id="bl-mesa" style="display: none">
+                    <h3>Mesas</h3>
+
+                    <table id="dtBasicExample"  class="table-striped table-responsive table" style="margin-top: -1px; "> 
+                        <thead style="background-color: #696969; color: #fff;" class="header12">
+                            <tr style=" height: 45px;">
+                                <th width="120px;">Número mesa</th>
+                                <th width="280px;">descripcion</th>   
+                                <th>QR</th>
+                                <th>Fecha</th>
+                                <th width="120px;">Estado</th> 
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($mesas as $key => $mesa)
+                            <tr>
+                                <td>{{ @$mesa->nummesa }} </td>
+                                <td>{{ @$mesa->descripcion }}</td>
+                                <td> {!! \QrCode::size(100)->generate(Request::url()); !!}</td>
+                                <td>{{ @$mesa->created_at }}</td>
+                                <td> <a href="#" data-id="{{ $mesa->id }}" class="btn btn-xs btn-primary btn-mesa-editar">Editar</a>
+                                    <a href="#" data-id="{{ $mesa->id }}" class="btn btn-xs btn-danger btn-mesa-eliminar">Eliminar</a>
+                                </td>                          
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div> 
         </div> 
     </div>
      
-    <div id="two" >  
-        
-        <form class="form-horizontal" id="fr-franchise"> 
-        <div class="row" style="padding: 2px; margin: 0px;">
-            <div class="col-md-12" style="padding: 0px;">
-              <div class="box" style="background-color: #fff; padding: 0px;">
+    <div id="two" class="col-md-4" style="position:relative;">
+      
+        <div class="capabox"></div>
+        <div class="bl-fr-mozo">
+            <div class="box-header with-border">
+            Mozos
+            </div>
+           @include('admin.paginas.mozos.partial.form')
+        </div>
 
-                      <fieldset>
-
-                        <!-- Form Name -->
-                        <legend style="background-color: #6a5acd; margin: 0px; padding-left: 15px; color:#fff; height: 55px;"></legend>
-
-                        <!-- form-group -->
-                        <div class="form-group" id="content_add_mozo_mesa"> 
-                        </div>  
-                        <!-- /.form-group -->
-                      </fieldset>
+        <div class="bl-fr-mesa" style="display: none">
+                <div class="box-header with-border">
+                Mesas
                 </div>
-              </div>
-          </div>
-        </form>
-  
+               @include('admin.paginas.mozos.partial.formmesa')
+        </div>
+
     </div> 
 </div>
       
 </section>
 @include('admin.partial.scripts')
-
+<!--
 <script>
     $(document).ready(function(){ 
        
@@ -408,5 +441,5 @@
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDI_HGADUhhryYf0nHOo7BNtFM8DGBzVk&callback=myMap" async defer></script>
 
-
+-->
 @endsection

@@ -134,7 +134,7 @@
    
 </section>
 @include('admin.partial.scripts')
-
+<!--
 <script>
     
 function goMozos(id)
@@ -286,5 +286,5 @@ titulo_seccion.innerHTML = "CLIENTES";
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDI_HGADUhhryYf0nHOo7BNtFM8DGBzVk&callback=myMap"></script>
   
-
+-->
  @endsection

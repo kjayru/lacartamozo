@@ -4,14 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use App\Category;
-use App\Menu;
-use App\Ingredient;
-use App\Product;
-use App\Salsa;
 
-class ProductosCartaController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,13 +15,7 @@ class ProductosCartaController extends Controller
      */
     public function index()
     {
-      
-        $categorias = Category::where('client_id',Auth::user()->id)->orderBy('id','desc')->get();
-       
-        $menus = Menu::where('category_id',$categorias[0]->id)->get();
-        $ingredientes = Ingredient::where('client_id',Auth::user()->id)->orderBy('id','desc')->get();
-     
-        return view('admin.paginas.productoscarta.index',['categorias'=>$categorias,'menus'=>$menus,'ingredientes'=>$ingredientes]);
+        //
     }
 
     /**
@@ -47,7 +36,18 @@ class ProductosCartaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $categoria = new Category();
+        $categoria->client_id = $request->client_id;
+        $categoria->name = $request->name;
+        $categoria->parent_id = $request->parent_id;
+
+        if ($request->hasFile('photo')) {
+            $photo = $request->file('photo')->store('categories');
+            $categoria->photo = $photo;
+        }
+        $categoria->save();
+
+        return response()->json(['rpta'=>'ok']);
     }
 
     /**
@@ -69,9 +69,9 @@ class ProductosCartaController extends Controller
      */
     public function edit($id)
     {
-        $producto = Product::find($id);
+        $category = Category::find($id);
 
-        return response()->json($producto);
+        return response()->json($category);
     }
 
     /**
@@ -83,7 +83,19 @@ class ProductosCartaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $categoria = Category::find($id);
+        $categoria->client_id = $request->client_id;
+        $categoria->name = $request->name;
+        $categoria->parent_id = $request->parent_id;
+
+        if ($request->hasFile('photo')) {
+            $photo = $request->file('photo')->store('categories');
+            $categoria->photo = $photo;
+        }
+        $categoria->save();
+
+        return response()->json(['rpta'=>'ok']);
     }
 
     /**

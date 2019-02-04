@@ -5,9 +5,14 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Mozo;
-
+use App\Mesa;
 class MozoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $mozos = Mozo::orderBy('id','desc')->paginate(15);
@@ -33,8 +38,27 @@ class MozoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    { 
+        $mozo = new Mozo();
+
+        $mozo->name = $request->name;
+        $mozo->address = $request->address;
+        $mozo->country = $request->country;
+        $mozo->city = $request->city;
+        $mozo->province = $request->province;
+        $mozo->cellphone = $request->cellphone;
+        $mozo->email = $request->email;
+        $mozo->sexo = $request->sexo;
+
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar')->store('mozos');
+            $mozo->avatar = $avatar;
+        }
+        $mozo->client_id = $request->client_id;
+        $mozo->save();
+
+        return response()->json(['rpta'=>'ok']);
+
     }
 
     /**
@@ -45,7 +69,10 @@ class MozoController extends Controller
      */
     public function show($id)
     {
-        //
+        $mozos = Mozo::where('client_id',$id)->orderBy('id','desc')->get();
+        $mesas = Mesa::Where('client_id',$id)->orderBy('id','desc')->get();
+        
+        return view('admin.paginas.mozos.index',['mozos'=>$mozos, 'mesas'=>$mesas,'client_id' => $id]);
     }
 
     /**
@@ -56,7 +83,8 @@ class MozoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $mozo = Mozo::find($id);
+        return response()->json([$mozo]);
     }
 
     /**
@@ -68,7 +96,24 @@ class MozoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $mozo = Mozo::find($id);
+        $mozo->name = $request->name;
+        $mozo->address = $request->address;
+        $mozo->country = $request->country;
+        $mozo->city = $request->city;
+        $mozo->province = $request->province;
+        $mozo->cellphone = $request->cellphone;
+        $mozo->email = $request->email;
+        $mozo->sexo = $request->sexo;
+
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar')->store('mozos');
+            $mozo->avatar = $avatar;
+        }
+        $mozo->client_id = $request->client_id;
+        $mozo->save();
+
+        return response()->json(['rpta'=>'ok']);
     }
 
     /**

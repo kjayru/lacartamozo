@@ -28,60 +28,8 @@
             <div class="tab-pane fade active in" id="productos" role="tabpanel" aria-labelledby="home-tab" style="padding: 0px;">
 
 
-                <div id="add_box" style="padding: 0;">
-                    <div class="box-header2" id="add_box_header2" style="padding: 0">
-                        <div style="float:left; padding: 0 0 0 25px;">
-                            <h3 class="box-title2">PRODUCTOS</h3>
-                        </div>
-                        <div style="float:right; margin-right: 15px; padding: 0px;">
-                            <button onclick="duplicar()" name="" value="ok" style="background-color: #cd853f; margin-top: 5px; width: 180px; height: 36px; font-size: 1.2em; border: 0px;">Duplicar</button>
-                            <button onclick="cambiarPrecios()" name="" value="ok" style="background-color: #cd853f; margin-top: 5px; width: 180px; height: 36px; font-size: 1.2em; border: 0px;">Cambiar Precios</button>
-                            <button onclick="addProducto()" name="" value="ok" style="background-color: #cd853f; margin-top: 5px; width: 180px; height: 36px; font-size: 1.2em; border: 0px;">Agregar Producto</button>
-                        </div>
-                    </div>
-                     
-                        <nav class="subcontent0 sidebar_sub_1" > 
-                       
-                            <ul class="list-group" data-widget="tree" id="prodCategorias"> 
-                            @foreach($categorias as $cat)
-                                <li>{{ @$cat->name }} </li>
-                            @endforeach
-                            </ul>
-                        </nav> 
-                        <!-- /.box-header -->
-                        <div  class="subcontent0 subcontent1">
-
-                            @if($menus=="")
-                                <p>No existe datos  generados</p>
-                            @else
-                            <table id="tb-cliente" class="table table-responsive table-hover">
-                              <thead style="background-color: #696969; color: #fff;">
-                                <tr>
-                                  <th>Id</th>
-                                  <th>Foto</th>
-                                  <th>Titulo</th>
-                                  <th>Precio 1</th> 
-                                  <th>Precio 2</th> 
-                                  <th></th> 
-                                </tr>
-                              </thead>
-                              <tbody>
-                                  @foreach($menus as $k => $menu)
-                                  <tr>
-                                      <td>{{ @$k +1 }}</td>
-                                    <td><img src="/menus/{{ @$menu->menuphotos[0]->photo }}" alt="" width="70"> </td>
-                                    <td> {{ $menu->titulo }}</td>
-                                    <td>{{ $menu->price1 }}</td>
-                                    <td>{{ $menu->price2 }}</td>
-                                    <td>{{ $menu->state }}</td>
-                                </tr>
-                                  
-                                  @endforeach 
-                              </tbody>
-                            </table>
-                            @endif
-                       
-                        </div> 
+                <div id="add_box" style="padding: 0;" class="tab-producto cajatab">
+                    @include('admin.paginas.productoscarta.sections.tab1')
                  
                 </div>
                 
@@ -89,77 +37,18 @@
             </div>
             <div class="tab-pane fade" id="ingredientes" role="tabpanel" aria-labelledby="profile-tab" style="padding: 0px;">
 
-                <div id="add_box" style="padding: 0;">
-                    <!-- /.box-header -->
-                    <div class="box-header2" id="add_box_header2" style="padding: 0">
-                        <div style="float:left; padding: 0 0 0 25px;">
-                            <h3 class="box-title2">INGREDIENTES</h3>
-                        </div>
-                        <div style="float:right; margin-right: 15px; padding: 0px;">
-                            <button onclick="addIngrediente()" name="" value="ok" style="background-color: #cd853f; margin-top: 5px; width: 180px; height: 36px; font-size: 1.2em; border: 0px;">Agregar Ingrediente</button> 
-                        </div>
-                    </div>
-                     
-                    <!-- /.box-body -->
-                    <div class="box-body2">
-                          <table id="tb-cliente" class="table table-responsive table-hover">
-                            <thead style="background-color: #696969; color: #fff;">
-                            <tr>
-                              <th>Id</th>
-                              <th>Foto</th>
-                              <th>Nombre</th>
-                              <th>Precio</th> 
-                              <th></th> 
-                            </tr>
-                            </thead>
-                            <tbody> 
-                                    @foreach(@$ingredientes as $k => $ing)
-                                    <tr>
-                                        <td>{{ @$k +1 }}</td>
-                                      <td></td>
-                                      <td> {{ $ing->name }}</td>
-                                      <td>{{ $ing->price }}</td>
-                                     
-                                      <td>{{ $ing->state }}</td>
-                                  </tr>
-                                    
-                                    @endforeach 
-                            </tbody>
-                          </table>
-                    </div>
+                <div id="add_box" style="padding: 0;" class="tab-ingrediente cajatab">
+                   
+                    @include('admin.paginas.productoscarta.sections.tab2')
                 </div> 
                 
             </div>
             <div class="tab-pane fade" id="catprod" role="tabpanel" aria-labelledby="contact-tab" style="padding: 0px;">
                 
                 
-                <div id="add_box" style="padding: 0;">
-                    <!-- /.box-header -->
-                    <div class="box-header2" id="add_box_header2" style="padding: 0">
-                        <div style="float:left; padding: 0 0 0 25px;">
-                            <h3 class="box-title2">CATEGORIAS Y SUBCATEGORIAS DE PRODUCTOS</h3>
-                        </div>
-                        <div style="float:right; margin-right: 15px; padding: 0px;">
-                            <button onclick="addCategoria()" name="" value="ok" style="background-color: #cd853f; margin-top: 5px; width: 180px; height: 36px; font-size: 1.2em; border: 0px;">Agregar Categoria</button> 
-                            <button onclick="addSubCategoria()" name="" value="ok" style="background-color: #cd853f; margin-top: 5px; width: 180px; height: 36px; font-size: 1.2em; border: 0px;">Agregar SubCategoria</button> 
-                        </div>
-                    </div>
-                     
-                    <!-- /.box-body --> 
-                    <div class="box-body2">
-                          <table id="tb-cliente" class="table table-responsive table-hover">
-                            <thead style="background-color: #696969; color: #fff;">
-                            <tr>
-                              <th>Id</th>
-                              <th>Foto</th>
-                              <th>Categoria</th>
-                              <th></th> 
-                            </tr>
-                            </thead>
-                            <tbody> 
-                            </tbody>
-                          </table>
-                    </div> 
+                <div id="add_box" style="padding: 0;" class="tab-categoria cajatab">
+                    
+                   @include('admin.paginas.productoscarta.sections.tab3')
                 </div> 
                 
                 
@@ -167,33 +56,10 @@
             <div class="tab-pane fade" id="salsas" role="tabpanel" aria-labelledby="contact-tab" style="padding: 0px;">
                 
                 
-                <div id="add_box" style="padding: 0;">
-                    <!-- /.box-header -->
-                    <div class="box-header2" id="add_box_header2" style="padding: 0">
-                        <div style="float:left; padding: 0 0 0 25px;">
-                            <h3 class="box-title2">SALSAS</h3>
-                        </div>
-                        <div style="float:right; margin-right: 15px; padding: 0px;">
-                            <button onclick="addSalsa()" name="" value="ok" style="background-color: #cd853f; margin-top: 5px; width: 180px; height: 36px; font-size: 1.2em; border: 0px;">Agregar Salsa</button> 
-                        </div>
-                    </div>
-                     
-                    <!-- /.box-body -->  
-                    <div class="box-body2">
-                          <table id="tb-cliente" class="table table-responsive table-hover">
-                            <thead style="background-color: #696969; color: #fff;">
-                            <tr>
-                              <th>Id</th>
-                              <th>Foto</th>
-                              <th>Nombre</th>
-                              <th>Precio</th> 
-                              <th></th> 
-                            </tr>
-                            </thead>
-                            <tbody> 
-                            </tbody>
-                          </table>
-                    </div> 
+                <div id="add_box" style="padding: 0;" class="tab-salsa cajatab">
+                   
+                    @include('admin.paginas.productoscarta.sections.tab4')
+                   
                 </div> 
                 
                 
@@ -202,41 +68,33 @@
         
     </div>
     <div id="two" class="col-md-4" style="position:relative;">
-         <div class="row">
-          <div class="col-md-12" >
-            <div class="box"> 
-                
-                <form class="form-horizontal" id="fr-franchise"> 
-                <div class="row" style="padding: 2px; margin: 0px;">
-                    <div class="col-md-12" style="padding: 0px;">
-                      <div class="box" style="background-color: #fff; padding: 0px;">
-
-                              <fieldset>
-
-                                <!-- Form Name -->
-                                <legend style="background-color: #6a5acd; margin: 0px; padding-left: 15px; color:#fff; height: 55px;"></legend>
+         <div class="box">
+   
+                <div class="bl-fr-categoria iform" style="display: none">
+                    @include('admin.paginas.productoscarta.partials.categorias.form')
+                </div>
+                <div class="bl-fr-ingrediente iform" style="display: none">
+                    @include('admin.paginas.productoscarta.partials.ingredientes.form')
+                </div>
+                <div class="bl-fr-producto iform" style="display: none">
+                    @include('admin.paginas.productoscarta.partials.productos.form')
+                </div>
+                <div class="bl-fr-salsa iform" style="display: none">
+                    @include('admin.paginas.productoscarta.partials.salsas.form')
+                </div>
  
-                                <!-- form-group -->
-                                <div class="form-group" id="content_add_record"> 
-                                </div>  
-                                <!-- /.form-group -->
-                              </fieldset>
-                        </div>
-                      </div>
-                  </div>
-                </form>
- 
-            </div>
-          </div>
-        </div> 
+           <!---->
+        </div>
+       
     </div>
 </div>
       
 </section>
 @include('admin.partial.scripts')
 
-
+<!--
 <script>    
+
 var two = document.getElementById("two").hidden = true;  
     
 function readURL(input, img_id) {
@@ -388,7 +246,7 @@ function addSalsa()
 
     
 </script>
-      
+ -->     
 <script> 
     $(document).ready(function(){         
         $('#dtBasicExample').DataTable({
@@ -400,4 +258,3 @@ function addSalsa()
     });
 </script>
 
- 

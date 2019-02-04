@@ -1,52 +1,4 @@
 
-/**mapa*/
-var marker;
-      
-function initMap() {
-    
-    var myLatLng = {lat: 40.4381307, lng: -3.8199653 };  
-
-var map = new google.maps.Map(document.getElementById('googleMap'), {
-    zoom: 12,
-
-    center: {lat: 40.4381307, lng: -3.8199653 }
-
-});
-var geocoder = new google.maps.Geocoder();
-
-
-$("#address").blur(function(){
-    geocodeAddress(geocoder, map);
-});
-var marker = new google.maps.Marker({
-    position: myLatLng,
-    map: map,
-    title: 'das'
-});
-}
-
-function geocodeAddress(geocoder, resultsMap) {
-var address = document.getElementById('address').value;
-geocoder.geocode({'address': address}, function(results, status) {
-    if (status === 'OK') {
-    resultsMap.setCenter(results[0].geometry.location);
-    var lat = results[0].geometry.location.lat();
-    var lng = results[0].geometry.location.lng();
-    
-    $("#latitude").val(lat);
-    $("#longitude").val(lng);
-
-    var marker = new google.maps.Marker({
-        map: resultsMap,
-        position: results[0].geometry.location
-    });
-    } else {
-    alert('Geocode was not successful for the following reason: ' + status);
-    }
-});
-}
-
-initMap();
 
 $(".btn-franciado-edit").on('click',function(e){
     e.preventDefault();
@@ -444,3 +396,532 @@ $("#btn-carta").on('click',function(e){
 
     window.location.href= url;
 });
+
+$(".btn-tb-mozo").on('click',function(e){
+    e.preventDefault();
+    $("#bl-mesa").fadeOut(350,function(){
+        $("#bl-mozo").fadeIn(350,'swing');
+    });
+    
+    
+});
+
+$(".btn-tb-mesa").on('click',function(e){
+    e.preventDefault();
+   
+    $("#bl-mozo").fadeOut(350,function(){
+        $("#bl-mesa").fadeIn(350,'swing');
+    });
+    
+    
+});
+
+
+
+$(".btn-nuevo-mesa").on('click',function(){
+    $(".capabox").hide();
+    $(".bl-fr-mozo").fadeOut(350,function(){
+        $(".bl-fr-mesa").fadeIn(350,'swing');
+    });
+});
+$(".btn-nuevo-mozo").on('click',function(){
+    $(".capabox").hide();
+    $(".bl-fr-mesa").fadeOut(350,function(){
+        $(".bl-fr-mozo").fadeIn(350,'swing');
+    });
+});
+/**mapa*/
+var marker;
+      
+function initMap() {
+    
+    var myLatLng = {lat: 40.4381307, lng: -3.8199653 };  
+
+var map = new google.maps.Map(document.getElementById('googleMap'), {
+    zoom: 12,
+
+    center: {lat: 40.4381307, lng: -3.8199653 }
+
+});
+var geocoder = new google.maps.Geocoder();
+
+
+$("#address").blur(function(){
+    geocodeAddress(geocoder, map);
+});
+var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    title: 'das'
+});
+}
+
+function geocodeAddress(geocoder, resultsMap) {
+var address = document.getElementById('address').value;
+geocoder.geocode({'address': address}, function(results, status) {
+    if (status === 'OK') {
+    resultsMap.setCenter(results[0].geometry.location);
+    var lat = results[0].geometry.location.lat();
+    var lng = results[0].geometry.location.lng();
+    
+    $("#latitude").val(lat);
+    $("#longitude").val(lng);
+
+    var marker = new google.maps.Marker({
+        map: resultsMap,
+        position: results[0].geometry.location
+    });
+    } else {
+    alert('Geocode was not successful for the following reason: ' + status);
+    }
+});
+}
+
+$("#fr-mozos").on('submit',function(e){
+    e.preventDefault();
+    var metodo = $('#fr-mozos input[name="_method"]').val();
+    var client_id = $('#fr-mozos input[name="client_id"]').val();
+    var id =  $('#mozo_id').val();
+    let url ='';
+        if(metodo=='POST'){
+            url ='/admin/mozos/store';
+        }else{
+            url = '/admin/mozos/' + id;
+        }
+
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: new FormData(this),
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            if(response.rpta=='ok'){
+                window.location.reload();
+                 
+            }
+        },
+        error: function (err) {
+            console.log(err)
+        }
+    })
+});
+
+let hash = window.location.hash;
+if(hash=="#mesa"){
+    $("#bl-mozo").fadeOut(350,function(){
+        $("#bl-mesa").fadeIn(350,'swing');
+    });
+}
+
+$(".btn-mozo-editar").on('click',function(){
+    $('#fr-mozos input[name="_method"]').val('PUT');
+    var id = $(this).data('id');
+    $('#fr-mozos input[name="mozo_id"]').val(id);
+  
+    $.ajax({
+        url:'/admin/mozos/'+id+'/edit',
+        type:'GET',
+        dataType:'json',
+        success:function(response){
+            $(".capabox").hide();
+            $('#fr-mozos input[name="name"]').val(response[0].name);
+            $('#fr-mozos input[name="address"]').val(response[0].address);
+            $('#fr-mozos input[name="country"]').val(response[0].country);
+            $('#fr-mozos input[name="city"]').val(response[0].city);
+            $('#fr-mozos input[name="province"]').val(response[0].province);
+            $('#fr-mozos input[name="cellphone"]').val(response[0].cellphone);
+            $('#fr-mozos input[name="email"]').val(response[0].email);
+            $('#mozoSexo').val(response[0].sexo);
+            $("#img-upload_avatar").attr("src","/"+response[0].avatar);
+
+          
+        }
+    });
+});
+
+
+
+$("#fr-mesas").on('submit',function(e){
+    e.preventDefault();
+    var metodo = $('#fr-mesas input[name="_method"]').val();
+    var client_id = $('#fr-mesas input[name="client_id"]').val();
+    var id =  $('#mesa_id').val();
+    let url ='';
+        if(metodo=='POST'){
+            url ='/admin/mesas/store';
+        }else{
+            url = '/admin/mesas/' + id;
+        }
+
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: new FormData(this),
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            if(response.rpta=='ok'){
+                window.location.reload();
+                 
+            }
+        },
+        error: function (err) {
+            console.log(err)
+        }
+    })
+});
+
+
+
+
+$(".btn-mesa-editar").on('click',function(){
+    $('#fr-mesas input[name="_method"]').val('PUT');
+    var id = $(this).data('id');
+    $('#fr-mesas input[name="mesa_id"]').val(id);
+  
+    $.ajax({
+        url:'/admin/mesas/'+id+'/edit',
+        type:'GET',
+        dataType:'json',
+        success:function(response){
+            $(".capabox").hide();
+            $('#fr-mesas input[name="nummesa"]').val(response.nummesa);
+            $('#fr-mesas input[name="descripcion"]').val(response.descripcion);
+            
+           
+            $(".bl-fr-mozo").fadeOut(350,function(){
+                $(".bl-fr-mesa").fadeIn(350,'swing');
+            });
+          
+        }
+    });
+});
+
+$(".btn-prod-nuevo").on('click',function(e){
+    e.preventDefault();
+    $(".iform").fadeOut(350,function(){
+        $(".bl-fr-producto").show();
+    });
+});
+
+$("#fr-producto").on('submit',function(e){
+    e.preventDefault();
+
+    var metodo = $('#fr-producto input[name="_method"]').val();
+    var client_id = $('#fr-producto input[name="client_id"]').val();
+    var id =  $('#product_id').val();
+    let url ='';
+        if(metodo=='POST'){
+            url ='/admin/lacartas/store';
+        }else{
+            url = '/admin/lacartas/' + id;
+        }
+
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: new FormData(this),
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            if(response.rpta=='ok'){
+                window.location.reload();
+                 
+            }
+        },
+        error: function (err) {
+            console.log(err)
+        }
+    })
+
+});
+
+$(".btn-prod-edit").on('click',function(e){
+    e.preventDefault();
+    let id = $(this).data('id');
+    $('#fr-producto input[name="_method"]').val('PUT');
+    $('#fr-producto input[name="product_id"]').val(id);
+    $.ajax({
+        url: '/admin/lacartas/'+id+'/edit',
+        type: 'GET',
+        success: function (response) {
+            $('#fr-producto #category_id ').val(response.category_id);
+            $('#fr-producto input[name="title"]').val(response.title);
+            $('#fr-producto input[name="price1"]').val(response.price1);
+            $('#fr-producto input[name="price2"]').val(response.price2);   
+            
+            $('#fr-producto #img-upload_photo2').attr('src','/'+response.photo);
+            $(".iform").fadeOut(350,function(){
+                $(".bl-fr-producto").show();
+            });
+        }
+    })
+
+});
+
+$(".btn-nuevo-ingrediente").click(function(e){
+    e.preventDefault();
+    $(".iform").fadeOut(350,function(){
+        $(".bl-fr-ingrediente").show();
+    });
+});
+
+$("#fr-ingrediente").on('submit',function(e){
+    e.preventDefault();
+    
+    var metodo = $('#fr-ingrediente input[name="_method"]').val();
+    var client_id = $('#fr-ingrediente input[name="client_id"]').val();
+    var id =  $('#ingredient_id').val();
+    let url ='';
+        if(metodo=='POST'){
+            url = '/admin/ingredients/store';
+        }else{
+            url = '/admin/ingredients/'+id;
+        }
+
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: new FormData(this),
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            if(response.rpta=='ok'){
+                window.location.reload();
+                 
+            }
+        },
+        error: function (err) {
+            console.log(err)
+        }
+    })
+
+});
+
+$(".btn-ingredient-edit").on('click',function(e){
+    e.preventDefault();
+
+    let id = $(this).data('id');
+    $('#fr-ingrediente input[name="_method"]').val('PUT');
+    console.log('id: '+id);
+    $('#fr-ingrediente #ingredient_id').val(id);
+    $.ajax({
+        url: '/admin/ingredients/'+id+'/edit',
+        type: 'GET',
+        success: function (response) {
+            
+            $('#fr-ingrediente input[name="name"]').val(response.name);
+            $('#fr-ingrediente input[name="price"]').val(response.price);
+            $('#fr-ingrediente input[name="calorias"]').val(response.calorias); 
+            $('#fr-ingrediente #description').val(response.description);   
+            
+            
+            $(".iform").fadeOut(350,function(){
+                $(".bl-fr-ingrediente").show();
+            });
+            $('#fr-ingrediente #img-upload_photo').attr('src','/'+response.photo); 
+        }
+    })
+});
+
+
+$(".btn-add-nuevo").on('click',function(e){
+    e.preventDefault();
+    $(".iform").fadeOut(350,function(){
+        $(".bl-fr-categoria").show();
+    });
+});
+
+$("#fr-categoria").on('submit',function(e){
+    e.preventDefault();
+
+    var metodo = $('#fr-categoria input[name="_method"]').val();
+    var client_id = $('#fr-categoria input[name="client_id"]').val();
+    var id =  $('#category_id').val();
+    let url ='';
+        if(metodo=='POST'){
+            url = '/admin/categories/store';
+        }else{
+            url = '/admin/categories/'+id;
+        }
+
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: new FormData(this),
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            if(response.rpta=='ok'){
+                window.location.reload();
+                 
+            }
+        },
+        error: function (err) {
+            console.log(err)
+        }
+    })
+
+});
+
+$(".btn-category-edit").on('click',function(e){
+    e.preventDefault();
+    let id = $(this).data('id');
+    $('#fr-categoria input[name="_method"]').val('PUT');
+    
+    $('#fr-categoria #category_id').val(id);
+    console.log("idcat: "+id);
+    $.ajax({
+        url: '/admin/categories/'+id+'/edit',
+        type: 'GET',
+        success: function (response) {
+            
+            $('#fr-categoria input[name="name"]').val(response.name);
+            
+            $('#fr-categoria #parent_id').val(response.parent_id);
+            
+            $(".iform").fadeOut(350,function(){
+                $(".bl-fr-categoria").show();
+            });
+            $('#fr-categoria #img-upload_photo').attr('src','/'+response.photo); 
+        }
+    })
+
+});
+
+$("#fr-salsa").on('submit',function(e){
+    e.preventDefault();
+
+    var metodo = $('#fr-salsa input[name="_method"]').val();
+    var client_id = $('#fr-salsa input[name="client_id"]').val();
+    var id =  $('#salsa_id').val();
+    let url ='';
+        if(metodo=='POST'){
+            url = '/admin/salsas/store';
+        }else{
+            url = '/admin/salsas/'+id;
+        }
+
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: new FormData(this),
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            if(response.rpta=='ok'){
+                window.location.reload();
+                 
+            }
+        },
+        error: function (err) {
+            console.log(err)
+        }
+    })
+
+});
+
+$(".btn-nuevo-salsa").on('click',function(e){
+    e.preventDefault();
+    $(".iform").fadeOut(350,function(){
+        $(".bl-fr-salsa").show();
+    });
+});
+
+$(".btn-salsa-edit").on('click',function(e){
+    e.preventDefault();
+    let id = $(this).data('id');
+    $('#fr-salsa input[name="_method"]').val('PUT');
+    
+    $('#fr-salsa #salsa_id').val(id);
+   
+    $.ajax({
+        url: '/admin/salsas/'+id+'/edit',
+        type: 'GET',
+        success: function (response) {
+            
+            $('#fr-salsa input[name="name"]').val(response.name);
+            $('#fr-salsa input[name="price"]').val(response.price);
+            $('#fr-salsa #description').val(response.description);
+            
+            $(".iform").fadeOut(350,function(){
+                $(".bl-fr-salsa").show();
+            });
+            $('#fr-salsa #img-upload_photo').attr('src','/'+response.photo); 
+        }
+    })
+
+});
+
+
+$(".btn-salsa-delete").on('click',function(e){
+    e.preventDefault();
+    var token = $('#fr-salsa input[name="_token"]').val();
+    let id = $(this).data('id');
+    let datasend = ({'_token':token,'_method':'DELETE','id':id});
+    $.ajax({
+        url: '/admin/salsas/'+id,
+        type: 'POST',
+        dataType:'json',
+        data: datasend,
+        success: function (response) {
+            
+           window.location.reload();
+        }
+    })
+});
+
+$(".btn-prod-duplicar").on('click',function(e){
+    e.preventDefault();
+    $.ajax({
+        url: '/admin/replicate',
+        type: 'GET',
+        dataType:'json',
+       
+        success: function (response) {
+            
+           window.location.reload();
+        }
+    })
+});
+
+$(".btn-prod-delete").on('click',function(e){
+    var token = $('#fr-producto input[name="_token"]').val();
+    let id = $(this).data('id');
+    let datasend = ({'_token':token,'_method':'DELETE','id':id});
+    $.ajax({
+        url: '/admin/lacartas/'+id,
+        type: 'POST',
+        dataType:'json',
+        data: datasend,
+        success: function (response) {
+            
+           window.location.reload();
+        }
+    })
+});
+
+$(".btn-ingredient-delete").on('click',function(e){
+    e.preventDefault();
+   
+    var token = $('#fr-producto input[name="_token"]').val();
+    let id = $(this).data('id');
+    let datasend = ({'_token':token,'_method':'DELETE','id':id});
+    $.ajax({
+        url: '/admin/ingredients/'+id,
+        type: 'POST',
+        dataType:'json',
+        data: datasend,
+        success: function (response) {
+            
+           window.location.reload();
+        }
+    })
+});
+
+try {
+    initMap(); 
+} catch (error) {
+   console.log("mapa no referenciado"); 
+}

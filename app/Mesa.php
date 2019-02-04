@@ -6,8 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Mesa extends Model
 {
-    public function restaurantdetail(){
-        return $this->belongsTo('App\RestaurantDetail');
+    public function client(){
+        return $this->belongsTo('App\Client');
+    }
+
+    public function codeqrs(){
+        return $this->hasMany('App\Codeqr');
     }
 }
             

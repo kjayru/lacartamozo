@@ -1,9 +1,11 @@
 <?php
+namespace App\Http\Controllers\Admin;
 
-namespace App\Http\Controllers;
-
-use App\IngredientClient;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
+use App\Ingredient;
+use App\IngredientPhoto;
 
 class IngredientClientController extends Controller
 {
@@ -35,7 +37,36 @@ class IngredientClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+   
+        $ingredient = new Ingredient();
+
+        $ingredient->name = $request->name;
+        $ingredient->price = $request->price;
+        $ingredient->calorias = $request->calorias;
+        $ingredient->description = $request->description;
+
+        $ingredient->client_id = $request->client_id;
+        $ingredient->save();
+
+        
+            $photos = $request->file('photo');
+            
+           
+            foreach ($photos as $photo) {
+              
+
+                $extension = $photo->getClientOriginalExtension();
+                $filename  = uniqid() . '.' . $extension;
+                $paths   = $photo->storeAs('ingredients', $filename);
+
+                $photo = new IngredientPhoto();
+                $photo->ingredient_id = $ingredient->id;
+                $photo->photo = $paths;
+                $photo->save();
+            }
+
+        return response()->json(['rpta'=>'ok']);
+        
     }
 
     /**
@@ -44,7 +75,7 @@ class IngredientClientController extends Controller
      * @param  \App\IngredientClient  $ingredientClient
      * @return \Illuminate\Http\Response
      */
-    public function show(IngredientClient $ingredientClient)
+    public function show($id)
     {
         //
     }
@@ -55,9 +86,11 @@ class IngredientClientController extends Controller
      * @param  \App\IngredientClient  $ingredientClient
      * @return \Illuminate\Http\Response
      */
-    public function edit(IngredientClient $ingredientClient)
+    public function edit($id)
     {
-        //
+        $ingredient = Ingredient::find($id);
+
+        return response()->json($ingredient);
     }
 
     /**
@@ -67,9 +100,33 @@ class IngredientClientController extends Controller
      * @param  \App\IngredientClient  $ingredientClient
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, IngredientClient $ingredientClient)
+    public function update(Request $request, $id)
     {
-        //
+        $ingredient = Ingredient::find($id);
+
+        $ingredient->name = $request->name;
+        $ingredient->price = $request->price;
+        $ingredient->calorias = $request->calorias;
+        $ingredient->description = $request->description;
+        $ingredient->client_id = $request->client_id;
+        $ingredient->save();
+        
+
+        if($request->file('photo')){
+            $photos = $request->file('photo');
+             
+            foreach ($photos as $photo) {
+                $extension = $photo->getClientOriginalExtension();
+                $filename  = uniqid() . '.' . $extension;
+                $paths   = $photo->storeAs('ingredients', $filename);
+
+                $photo = new IngredientPhoto();
+                $photo->ingredient_id = $ingredient->id;
+                $photo->photo = $paths;
+                $photo->save();
+            }
+        }
+        return response()->json(['rpta'=>'ok']);
     }
 
     /**
@@ -78,8 +135,10 @@ class IngredientClientController extends Controller
      * @param  \App\IngredientClient  $ingredientClient
      * @return \Illuminate\Http\Response
      */
-    public function destroy(IngredientClient $ingredientClient)
+    public function destroy($id)
     {
-        //
+        Ingredient::where('id',$id)->delete();
+
+        return response()->json(['rpta'=>'ok']);
     }
 }
