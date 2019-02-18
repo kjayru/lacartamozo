@@ -101,8 +101,7 @@ class AdminController extends Controller
 
         return response()->json(['franquicias'=>$franquicias,'packages'=>$packages,'clasificacion'=>$classifications]);
     }
-
-
+ 
     public function apiCliente($id)
     {
         $services = Service::all();

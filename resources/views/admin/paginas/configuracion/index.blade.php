@@ -128,7 +128,7 @@
 
 <script>
     function onPaquetes(){  window.location.href = "/admin/paquetes"; }
-    function onTiposComida(){  window.location.href = "/admin/tiposcomida"; }
+    function onTiposComida(){  window.location.href = "/admin/clasificaciones"; }
     function onMail(){  window.location.href = "/admin/mail_sms"; }
     function onTraducciones(){  window.location.href = "/admin/traducciones"; }
     function onVinos(){  window.location.href = "/admin/paquetes"; }
