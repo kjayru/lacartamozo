@@ -920,6 +920,59 @@ $(".btn-ingredient-delete").on('click',function(e){
     })
 });
 
+
+$(".btn-classification-edit").click(function(e){
+    e.preventDefault();
+    let id = $(this).data('id');
+    fetch(`/admin/clasificaciones/${id}/edit`)
+    .then(res => res.json())
+    .then(data =>{
+        console.log(data ); 
+        $("#fr-classification #id").val(data.id);
+        $("#fr-classification #name").val(data.name);
+        $("#fr-classification #description").val(data.decription); 
+        $("#fr-classification #cover").attr('src',data.cover);
+        
+    });
+
+});
+
+$('#fr-classification').on('submit', (function (e) {
+    e.preventDefault()
+    var id = $('#fr-classification #id').val(); 
+    let url ='';
+    if(metodo=='POST'){
+        url ='/admin/clasificaciones/store';
+    }else{
+        url = '/admin/clasificaciones/' + id;
+    }
+    console.log(new FormData(this));
+ 
+    $.ajax({
+        url: url,
+      type: 'POST',
+      data: new FormData(this),
+      contentType: false,
+      processData: false,
+      success: function (response) {
+          if(response.rpta=='ok'){
+            window.location.reload();
+          }
+      },
+      error: function (err) {
+        console.log(err);
+      }
+    })
+}))
+  
+$(".nuevo_classification").on('click',function(e){
+    e.preventDefault();
+    $("#fr-classification input[type=text]").val(''); 
+    $("#img-upload").attr('src','');
+    $('#fr-classification #metodo').val('POST');
+});
+
+
 try {
     initMap(); 
 } catch (error) {

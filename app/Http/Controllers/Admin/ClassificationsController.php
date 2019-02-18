@@ -63,8 +63,8 @@ class ClassificationsController extends Controller
      */
     public function edit($id)
     {
-        $mozo = Classification::find($id);
-        return response()->json([$mozo]);
+        $classification = Classification::find($id);
+        return response()->json($classification);
     }
 
     /**
@@ -80,9 +80,9 @@ class ClassificationsController extends Controller
         $classification->name = $request->name;
         $classification->decription = $request->decription; 
 
-        if ($request->hasFile('avatar')) {
-            $avatar = $request->file('avatar')->store('classifications');
-            $classification->avatar = $avatar;
+        if ($request->hasFile('cover')) {
+            $avatar = $request->file('cover')->store('classifications');
+            $classification->cover = $avatar;
         }
         $classification->id = $request->id;
         $classification->save();

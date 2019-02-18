@@ -14,7 +14,7 @@
                 <div class="navbar-header" style="margin: 0px; padding: 0px;">
                   <a class="navbar-brand" href="#" style="margin-left:8px; color: #fff;" >CLASIFICACIONES</a>
                 </div>  
-                <button class="btn btn-warning navbar-btn navbar-right nuevo_franquiciado"  style="margin-right: 12px;">Nueva Clasificacion</button>
+                <button class="btn btn-warning navbar-btn navbar-right nuevo_classification"  style="margin-right: 12px;">Nueva Clasificacion</button>
               </div>
 		</nav> 
 		
@@ -39,7 +39,10 @@
                                 <td >{{ $key + 1 }}</td>
                                 <td>{{ $clas->name }} </td>
                                 <td>{{ $clas->decription }}</td>    
-                                <td class="pad-10"> <img src="/storage/classifications/{{ $clas->avatar }}" class="img-responsive"> </td>
+                                <td class="pad-10"> <img src="/storage/{{ $clas->cover }}" class="img-responsive"> </td>
+                                <td>  
+                                    <a href="#" class="btn btn-xs btn-primary btn-classification-edit" data-id="{{$clas->id}}">Editar</a> 
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -55,7 +58,7 @@
             <div class="col-md-12" style="padding: 0px;">
                 <div class="box box-info" style="background-color: #fff; padding: 0px;">
                     <div class="box-header with-border">
-                        Formulario de datos
+                        Clasificacion
                     </div>
                      @include('admin.paginas.classifications.partial.form')
  
@@ -106,7 +109,7 @@ $(document).ready( function() {
         }
     }
 
-    $("#imgInp").change(function(){
+    $("#imgInpAvatar").change(function(){
         readURL(this); 
     }); 	
 });

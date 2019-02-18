@@ -416,5 +416,20 @@ $(document).ready(function(){
 
     });
 
+    $(".btn-classification-edit").click(function(e){
+        e.preventDefault();
+        let id = $(this).data('id');
+        fetch(`/admin/clasificaciones/${id}/edit`)
+        .then(res => res.json())
+        .then(data =>{
+           alert(data);
+            console.log(data.clientes.name);
+            $("#fr-classification #name").val(data.classifications.name);
+            $("#fr-classification #description").val(data.classifications.decription); 
+            $("#fr-classification #img-upload").attr('src',data.classifications.cover);
+            
+        });
+
+    });
 });
 

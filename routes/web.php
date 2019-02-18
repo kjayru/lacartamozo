@@ -290,8 +290,13 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/paisprovincialocalidad','Admin\PaisPLController@index');
     Route::get('/push_comercios','Admin\PushComerciosController@index');
     Route::get('/push_comensal','Admin\PushComensalController@index');
+    
     Route::get('/clasificaciones','Admin\ClassificationsController@index');
-
+    Route::get('/clasificaciones/{id}/edit','Admin\ClassificationsController@edit'); 
+    Route::post('/clasificaciones/{classification}','Admin\ClassificationsController@update')->name('classifications.update')
+    ->middleware('permission:classifications.edit'); 
+    Route::post('clasificaciones/store','Admin\ClassificationsController@store')->name('classifications.store')
+    ->middleware('permission:classifications.create'); 
 
 });
 Route::get('/home', 'HomeController@index')->name('home');
@@ -301,7 +306,6 @@ Route::get('/api/franquicias','AdminController@apiFranquicia')->name('api.franqu
 
 Route::get('/api/clients/{client}','AdminController@apiCliente')->name('api.clientes');
 
-Route::put('/api/classifications','Admin\ClassificationsController@store')->name('classifications.store');
 
 /*
 
