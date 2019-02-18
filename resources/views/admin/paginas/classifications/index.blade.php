@@ -38,7 +38,7 @@
                             <tr>
                                 <td >{{ $key + 1 }}</td>
                                 <td>{{ $clas->name }} </td>
-                                <td>{{ $clas->description }}</td>    
+                                <td>{{ $clas->decription }}</td>    
                                 <td class="pad-10"> <img src="/storage/classifications/{{ $clas->avatar }}" class="img-responsive"> </td>
                             </tr>
                             @endforeach

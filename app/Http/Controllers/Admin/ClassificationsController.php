@@ -44,7 +44,7 @@ class ClassificationsController extends Controller
         $classification = new Classification();
 
         $classification->name = $request->name;
-        $classification->description = $request->description; 
+        $classification->decription = $request->decription; 
         if ($request->hasFile('avatar')) {
             $avatar = $request->file('avatar')->store('classifications');
             $classification->cover = $avatar;
@@ -78,7 +78,7 @@ class ClassificationsController extends Controller
     {
         $classification = Classification::find($id);
         $classification->name = $request->name;
-        $classification->description = $request->description; 
+        $classification->decription = $request->decription; 
 
         if ($request->hasFile('avatar')) {
             $avatar = $request->file('avatar')->store('classifications');
