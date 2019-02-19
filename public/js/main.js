@@ -943,13 +943,17 @@ $('#fr-classification').on('submit', (function (e) {
     var id = $('#fr-classification #id').val(); 
     var metodo = $('#fr-classification #metodo').val();
     let url ='';
-    if(metodo=='POST'){
+    if(metodo=='POST'){ 
         url ='/admin/clasificaciones/store';
-    }else{
+    }else{ 
         url = '/admin/clasificaciones/' + id;
     }
     console.log(new FormData(this));
  alert(url);
+	 $.ajaxSetup({ 
+	     headers: {'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')} 
+	 });
+ 
     $.ajax({
         url: url,
       type: 'POST',

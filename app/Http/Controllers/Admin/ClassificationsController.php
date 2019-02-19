@@ -42,7 +42,7 @@ class ClassificationsController extends Controller
     public function store(Request $request)
     {  
         $classification = new Classification();
-        echo "classification";
+   
         $classification->name = $request->name;
         $classification->decription = $request->decription; 
         if ($request->hasFile('cover')) {
