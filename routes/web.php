@@ -304,7 +304,7 @@ Route::get('/api/franquicias','AdminController@apiFranquicia')->name('api.franqu
 
 Route::get('/api/clients/{client}','AdminController@apiCliente')->name('api.clientes');
 
-Route::get('/api/clasificaciones','ClassificationsController@index')->name('api.clasificaciones');
+Route::get('/api/clasificaciones','ClassificationsController2@index')->name('api.clasificaciones');
 
 /*
 
