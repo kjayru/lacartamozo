@@ -949,7 +949,7 @@ $('#fr-classification').on('submit', (function (e) {
         url = '/admin/clasificaciones/' + id;
     }
     console.log(new FormData(this));
- alert(url);
+ 
 	 $.ajaxSetup({ 
 	     headers: {'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')} 
 	 });
