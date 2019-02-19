@@ -929,6 +929,7 @@ $(".btn-classification-edit").click(function(e){
     .then(data =>{
         console.log(data ); 
         $("#fr-classification #id").val(data.id);
+        $('#fr-classification input[name="_method"]').val('PUT');
         $("#fr-classification #name").val(data.name);
         $("#fr-classification #description").val(data.decription); 
         $("#fr-classification #cover").attr('src',data.cover);
@@ -940,6 +941,7 @@ $(".btn-classification-edit").click(function(e){
 $('#fr-classification').on('submit', (function (e) {
     e.preventDefault()
     var id = $('#fr-classification #id').val(); 
+    var metodo = $('#fr-classification #metodo').val();
     let url ='';
     if(metodo=='POST'){
         url ='/admin/clasificaciones/store';
@@ -947,7 +949,7 @@ $('#fr-classification').on('submit', (function (e) {
         url = '/admin/clasificaciones/' + id;
     }
     console.log(new FormData(this));
- 
+ alert(url);
     $.ajax({
         url: url,
       type: 'POST',

@@ -40,13 +40,13 @@ class ClassificationsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    { 
+    {  
         $classification = new Classification();
-
+        echo "classification";
         $classification->name = $request->name;
         $classification->decription = $request->decription; 
-        if ($request->hasFile('avatar')) {
-            $avatar = $request->file('avatar')->store('classifications');
+        if ($request->hasFile('cover')) {
+            $avatar = $request->file('cover')->store('classifications');
             $classification->cover = $avatar;
         } 
         $classification->save();
