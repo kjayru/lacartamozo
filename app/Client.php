@@ -38,9 +38,30 @@ class Client extends Model
     public function services(){
         return $this->belongsToMany('App\Service');
     }
-    public function configurations()
+ 
+    public function clientConfigurations()
     {
-        return $this->belongsToMany('App\Configuration');
+        return $this->belongsToMany('App\ClientConfiguration');
+    }
+
+    public function comentarios()
+    {
+        return $this->hasMany('App\Comment');
+    }
+
+    public function horarios()
+    {
+        return $this->belongsToMany('App\ClientHorario');
+    }
+
+    public function politicas()
+    {
+        return $this->belongsToMany('App\ClientPolitica');
+    }
+
+    public function clientServices()
+    {
+        return $this->belongsToMany('App\ClientService');
     }
 }
 

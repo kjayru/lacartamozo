@@ -26,6 +26,7 @@ class CreateCouponsTable extends Migration
             $table->enum('descuent',['2x1','10%','15%','20%','25%','30%','35%','40%']);
             $table->integer('days');
             $table->integer('uses')->default(1);
+            $table->integer('points_required');
             $table->string('cover');
             $table->integer('state')->default(1);
 

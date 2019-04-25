@@ -15,6 +15,11 @@ class CreateClientHorariosTable extends Migration
     {
         Schema::create('client_horarios', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('client_id');
+            $table->foreign('client_id')->references('id')->on('clients'); 
+            $table->integer('init');
+            $table->integer('end');
+            $table->integer('day');
             $table->timestamps();
         });
     }

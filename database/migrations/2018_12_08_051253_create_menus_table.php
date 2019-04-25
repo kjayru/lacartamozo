@@ -16,6 +16,7 @@ class CreateMenusTable extends Migration
         Schema::create('menus', function (Blueprint $table) {
             $table->increments('id');
             $table->string('titulo');
+            $table->string('description',192);
             $table->decimal('price1',8,2);
             $table->decimal('price2',8,2)->nullable();
             $table->integer('igv');
@@ -27,6 +28,7 @@ class CreateMenusTable extends Migration
             
 
             $table->integer('state')->default(1);
+            $table->integer('likes')->default(0);
            
             $table->unsignedInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');

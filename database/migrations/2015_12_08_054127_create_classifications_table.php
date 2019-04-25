@@ -17,6 +17,7 @@ class CreateClassificationsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('decription');
+            $table->string('cover');
             $table->timestamps();
         });
     }

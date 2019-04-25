@@ -54,7 +54,7 @@
                       @foreach($clients as $key => $client)
                     <tr>
                       <th align="center">{{ $key + 1 }}</th>
-                      <td><img src="/storage/client/{{ $client->cover }}"  width="40" alt=""> </td>
+                      <td><img src="/storage/clients/{{ $client->cover }}"  width="40" alt=""> </td>
                       <td>{{ $client->name }}</td>
                       <td> {{ $client->address }}</td>
                       <td class="hidden-xs">{{ $client->city }}</td>

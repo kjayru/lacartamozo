@@ -15,7 +15,8 @@ class CreateClientsTable extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('franchise_id')->references('id')->on('franchisees');
+            $table->unsignedInteger('franchise_id');
+            $table->foreign('franchise_id')->references('id')->on('franchisees');
             $table->string('cover');
             $table->string('name');
             $table->string('address');
@@ -30,6 +31,14 @@ class CreateClientsTable extends Migration
             $table->decimal('latitude',11,8);
             $table->decimal('longitude',11,8);
             $table->integer('status');
+            $table->integer('numesas');
+            $table->string('foto1');
+            $table->string('foto2');
+            $table->string('foto3');
+            $table->string('foto4');
+            $table->unsignedInteger('package_id');
+            $table->foreign('package_id')->references('id')->on('packages');
+            $table->integer('likes')->default(0);
             $table->timestamps();
         });
     }

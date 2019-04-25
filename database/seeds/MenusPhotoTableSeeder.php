@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
+use App\Menu;
+use App\MenuPhoto;
 
 class MenusPhotoTableSeeder extends Seeder
 {
@@ -11,8 +14,14 @@ class MenusPhotoTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-        $Quantity = 60;
-        factory(App\MenuPhoto::class, $Quantity)->create();
+        $menus = Menu::all();
+        $faker = Faker::create(); 
+
+        foreach($menus as $menu){  
+            MenuPhoto::create([
+                'photo' => \Faker\Provider\Image::image('public/storage/menus',300,200, 'food', false),
+                'menu_id' =>  $menu->id,
+            ]);
+        } 
     }
 }

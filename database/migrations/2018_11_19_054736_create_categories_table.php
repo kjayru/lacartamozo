@@ -23,6 +23,9 @@ class CreateCategoriesTable extends Migration
 
             $table->unsignedInteger('client_id');
             $table->foreign('client_id')->references('id')->on('clients');
+            $table->integer('es_guarnicion')->default(0);
+            $table->integer('is_chef_suggerences')->default(0);
+            $table->integer('is_menu_day')->default(0);
             $table->timestamps();
         });
     }

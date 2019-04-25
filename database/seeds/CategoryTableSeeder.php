@@ -3,6 +3,8 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB; 
 use App\Category;
+use App\Client;
+use Faker\Factory as Faker;
 
 class CategoryTableSeeder extends Seeder
 {
@@ -13,34 +15,57 @@ class CategoryTableSeeder extends Seeder
      */
     public function run()
     {
-        Category::create([
-            'name' => 'Bebidas',
-            
-            'photo' => \Faker\Provider\Image::image('public/storage/categories',400,300, 'food', false),
-            'status' => '2',
-            'client_id'=>'1',
-        ]);
+        $clients = Client::all();
+        $faker = Faker::create(); 
 
-        Category::create([
-            'name' => 'Cafeterias',
-            'photo' => \Faker\Provider\Image::image('public/storage/categories',400,300, 'food', false),
-            'status' => '2',
-            'client_id'=>'1',
-        ]);
+        //para cada cliente creamos su categoria
+        foreach($clients as $client){ 
 
-        Category::create([
-            'name' => 'Platos',
-            'photo' => \Faker\Provider\Image::image('public/storage/categories',400,300, 'food', false),
-            'status' => '2',
-            'client_id'=>'1',
-        ]);
+            //categoria que en app tiene vista especial, guarnicion
+            Category::create([
+                'name' => 'Bebidas', 
+                'photo' => \Faker\Provider\Image::image('public/storage/categories',400,250, 'food', false),
+                'status' => '1',
+                'client_id'=>$client->id,
+                'es_guarnicion'  => 1,
+                'is_chef_suggerences'  => 0,
+                'is_menu_day'  => 0,
+            ]);
 
-        Category::create([
-            'name' => 'Postres',
-            'photo' =>\Faker\Provider\Image::image('public/storage/categories',400,300, 'food', false),
-            'status' => '2',
-            'client_id'=>'1',
-        ]);
+            //categoria que en app tiene vista especial, sugerencias del chef
+            Category::create([
+                'name' => 'Sugerencias del chef', 
+                'photo' => \Faker\Provider\Image::image('public/storage/categories',400,250, 'food', false),
+                'status' => '1',
+                'client_id'=>$client->id,
+                'es_guarnicion'  => 0,
+                'is_chef_suggerences'  => 1,
+                'is_menu_day'  => 0,
+            ]);
+
+            //categoria que en app tiene vista especial, menu del dia
+                Category::create([
+                    'name' => 'Menu del dia', 
+                    'photo' => \Faker\Provider\Image::image('public/storage/categories',400,250, 'food', false),
+                    'status' => '1',
+                    'client_id'=>$client->id,
+                    'es_guarnicion'  => 0,
+                    'is_chef_suggerences'  => 0,
+                    'is_menu_day'  => 1,
+                ]);
+
+            for($jj=0;$jj<2;$jj++){
+                Category::create([
+                    'name' => $faker->name, 
+                    'photo' => \Faker\Provider\Image::image('public/storage/categories',400,250, 'food', false),
+                    'status' => '1',
+                    'client_id'=>$client->id,
+                    'es_guarnicion'  => 0,
+                    'is_chef_suggerences'  => 0,
+                    'is_menu_day'  => 0,
+                ]);
+            }
+        } 
 
     }
 }

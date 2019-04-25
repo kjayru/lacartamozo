@@ -12,7 +12,7 @@ class ClientsTableSeeder extends Seeder
     public function run()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-        $Quantity = 60;
+        $Quantity = 50;
         factory(App\Client::class, $Quantity)->create();
     }
 }

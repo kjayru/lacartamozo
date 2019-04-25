@@ -4,14 +4,24 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
-{
-    public function menus(){
-        return $this->hasMany('App\Menu');
+class Category extends Model{
+
+    protected $fillable = [
+		'name','descripcion'
+	];
+    public function categoryDetails(){
+        return $this->hasMany('App\CategoryDetail');
     }
 
-    public function client(){
-        return $this->belongsTo('App\Client');
+    public function categoryorderdetails(){
+        return $this->hasMany('App\CategoryOrderDetail');
     }
-    
+
+    public function restaurantdetail(){
+        return $this->belongsTo('App\RestaurantDetail');
+    }
+
+    public function childs(){
+    	return $this->hasMany('App\Category','parent_id');
+    }
 }

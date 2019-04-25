@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Order;
+use App\Sale;
 class OrderController extends Controller
 {
     /**
@@ -14,7 +14,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $pedidos = Order::all();
+        $pedidos = Sale::all();
         return view('admin.paginas.pedidos.index',['pedidos'=>$pedidos]);
     }
 

@@ -57,7 +57,7 @@ Route::group(['prefix' => 'admin'], function () {
     ->middleware('permission:clients.edit');
 
     Route::get('clients/{client}','Admin\ClientController@show')->name('clients.show')
-    ->middleware('permission:clients.show');
+    /*->middleware('permission:clients.show')*/;
 
     Route::delete('clients/{client}','Admin\ClientController@destroy')->name('clients.destroy')
     ->middleware('permission:clients.destroy');
@@ -89,8 +89,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('franchisees/store','Admin\FranchiseController@store')->name('franchisees.store')
     ->middleware('permission:franchisees.create');
 
-    Route::get('franchisees','Admin\FranchiseController@index')->name('franchisees.index')
-    ->middleware('permission:franchisees.index');
+    Route::get('franchisees','Admin\FranchiseController@index')->name('franchisees.index') ;
 
     Route::get('franchisees/create','Admin\FranchiseController@create')->name('franchisees.create')
     ->middleware('permission:franchisees.create');

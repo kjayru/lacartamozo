@@ -8,6 +8,5 @@ $factory->define(App\CategoryDetail::class, function (Faker $faker) {
         'descripcion' =>  $faker->sentence($nbWords = 6, $variableNbWords = true),
         'precio'  => $faker->randomNumber(2),
         'foto' => $faker->imageUrl($width=640, $height=480, 'city'),
-        
     ];
 });
