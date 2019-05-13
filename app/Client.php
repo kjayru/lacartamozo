@@ -63,5 +63,15 @@ class Client extends Model
     {
         return $this->belongsToMany('App\ClientService');
     }
+
+    public function visitas()
+    {
+        return $this->hasOne('App\ClientVisita');
+    }
+
+    public function points()
+    {
+        return $this->hasOne('App\ClientPoint');
+    }
 }
 

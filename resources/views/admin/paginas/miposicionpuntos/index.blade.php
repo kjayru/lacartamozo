@@ -8,20 +8,19 @@
         <button type="button" class="btn btn-light" style="margin:8px; background-color: #fff; color: #000; cursor: none;">
             <h3 style="margin:10px;">MI POSICION - PUNTOS</h4>
         </button>
-        <button onclick="getRestaurantes()" type="button" class="btn btn-light" style="margin:8px; background-color: #ff4500; color: #fff;">
-            <h4 style="margin:10px;">RESTAURANTES</h4>
-        </button>
-        <button onclick="getCervecerias()" type="button" class="btn btn-light" style="margin:8px; background-color: #228b22; color: #fff;">
-            <h4 style="margin:10px;">CERVECERIAS</h4>
-        </button>
-        <button onclick="getParrillas()" type="button" class="btn btn-light" style="margin:8px; background-color: #ffa500; color: #fff;">
-            <h4 style="margin:10px;">PARRILLAS</h4>
-        </button>
-        <button onclick="getComidasRapidas()" type="button" class="btn btn-light" style="margin:8px; background-color: #da70d6; color: #fff;">
-            <h4 style="margin:10px;">COMIDA RAPIDA</h4>
-        </button>
+        <?php 
+            $colors = ['#ff4500','#228b22','#ffa500','#da70d6'];
+            $i_c = 0;
+            $i_selected = 0;
+        ?>
+        @foreach($clasificaciones as $key => $clasificacion) 
+            <button onclick="getForId_{{ $key }}()" type="button" class="btn btn-light" style="margin:8px; background-color: <?php echo $colors[$i_c];?>; color: #fff;">
+                <h4 style="margin:10px;">{{ $clasificacion->name }}</h4>
+            </button>
+            <?php $i_c = $i_c + 1;?>
+        @endforeach 
         <div type="button" class="btn btn-light" style="margin:8px; background-color: #db7093; color: #fff;">
-            <h4 id="celAct"  style="margin:10px;">6220 CELULAR ACTIVOS</h4>
+            <h4 id="celAct"  style="margin:10px;">0 CELULARES ACTIVOS</h4>
         </button>
     </div>
 <div id="wrappermini">
@@ -98,12 +97,17 @@
           "paging": true
         });
         $('.dataTables_length').addClass('bs-select'); 
-        
-        //TODO get lista de locales segun puntaje        
-        //devuelve cantidad de celulares activos en los ultimos 30 dias
-        $.get("testp.php").done( function (data){ 
-            var celularesActivos = data.amount;
-            $("#celAct").innerHTML = celularesActivos.toString() + " CELULARES ACTIVOS";
+           
+        //devuelve cantidad de celulares activos en los ultimos 30 dias 
+        //numero de celulares activos
+        $.ajax({ 
+            type:'GET',
+            url:"/admin/users/activos<?php echo $clasificacion->id;?>",
+            data:{},
+            success:function(data){
+                var celularesActivos = data.amount;
+                $("#celAct").innerHTML = celularesActivos.toString() + " CELULARES ACTIVOS";
+            } 
         });
         
         //TODO get status actual del restaurante 
@@ -147,7 +151,9 @@
             });
         }
         
-        getRestaurantes();
+        //datos del primer tipo de clasificacion
+        getForId_0(); 
+   
     });
     
     var getUrlParameter = function getUrlParameter(sParam) {
@@ -168,6 +174,41 @@
 </script>
 
 <script>
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        @foreach($clasificaciones as $key => $clasificacion)             
+            function getForId_<?php echo $key;?>()
+            {
+                //se asume que a la pagina se indica el id del cliente de franquiciado o id de local
+                //esto para resaltar la posicion del rest, en caso de cuenta admin, no resaltaria  
+                //var id = getUrlParameter('id'); 
+                
+                //TODO
+                //envia: id del local o cliente franquiciado, tipo = 0
+                //devuelve [{id, posicion, puntos, visitas, nombrecomercio}, {...}, ..]
+                // 0 indica todos los clientes de franquiciado o locales
+      
+                $.ajax({
+
+                    type:'GET',
+                    url:"/admin/clientes/portipo/<?php echo $clasificacion->id;?>",
+                    data:{},
+                    success:function(data){
+                        fillTable(data);
+                    }
+
+                });
+
+                //borrar solo demo
+                demoFillTable(30);
+            }
+        @endforeach 
+ 
 
     function getRestaurantes()
     {
@@ -239,8 +280,14 @@
     }
 
 
-    function fillTable(records)
+    function fillTable(datos)
     {
+        if(datos.rpta !== "ok"){
+            alert("Hubo un error al recibir la lista");
+            return;
+        }
+        var records = datos.clientes;
+
         var content_leftpanel = document.getElementById("content_leftpanel");
         content_leftpanel.innerHTML = "";
         content_leftpanel.style = 'background-color: #d3d3d3;';
@@ -280,57 +327,74 @@
         
         var tbody1 = document.createElement("tbody"); 
         var sz = records.length; 
-        var max_visitas = parseInt(records[0].visitas);
-        if( max_visitas === 0 ) max_visitas = 1;
-        for(i=0; i<sz; i++) //para cada fila
-        {
-            var record = records[i];
-            
+        if(sz > 0){
+             
+            var max_visitas = parseInt(records[0].visitas);
+            if( max_visitas === 0 ) max_visitas = 1;
+            for(i=0; i<sz; i++) //para cada fila
+            {
+                var record = records[i];
+                
+                var tr1 = document.createElement('tr');
+                tr1.height = '50px';
+                
+                var td0 = document.createElement('td');
+                td0.style = "border-bottom: 1px solid #fff;";
+                var div5 = document.createElement('div');
+                div5.className = "progress";
+                div5.style = "padding: 0px; margin: 3px;";
+                
+                var var6 = parseInt(record.visitas)/max_visitas*100;
+                var div6 = document.createElement('div');
+                div6.className = "progress-bar progress-bar-striped"; 
+                div6.role = "progressbar";
+                div6.setAttribute('aria-valuenow', record.visitas);
+                div6.setAttribute('aria-valuemin', 0);
+                div6.setAttribute('aria-valuemax', max_visitas); 
+                div6.style = "width: "+var6+"%; height: 50px; padding: 0px;";
+                
+                var span1 = document.createElement("span");
+                span1.className = "sr_only";
+                span1.innerHTML = record.visitas + " visitas";
+                
+                div6.appendChild(span1);
+                div5.appendChild(div6);
+                td0.appendChild(div5);
+                
+                //devuelve [{id, posicion, puntos, visitas, nombrecomercio}, {...}, ..]
+                var tempData = [];
+                tempData.push( record.posicion );
+                tempData.push( record.puntos );
+                tempData.push( record.nombrecomercio );
+                
+                tr1.appendChild(td0);
+                    
+                for (var j = 0; j < 3; j++) { //para cada columna
+                    var td1 = document.createElement('td');
+                    td1.align = "center";
+                    td1.style = "border-bottom: 1px solid #fff;";
+                    td1.innerHTML = tempData[j];
+                    tr1.appendChild(td1);
+                }
+                tbody1.appendChild(tr1);
+            } 
+
+        }else{            
             var tr1 = document.createElement('tr');
             tr1.height = '50px';
-            
-            var td0 = document.createElement('td');
-            td0.style = "border-bottom: 1px solid #fff;";
+
             var div5 = document.createElement('div');
-            div5.className = "progress";
-            div5.style = "padding: 0px; margin: 3px;";
-            
-            var var6 = parseInt(record.visitas)/max_visitas*100;
-            var div6 = document.createElement('div');
-            div6.className = "progress-bar progress-bar-striped"; 
-            div6.role = "progressbar";
-            div6.setAttribute('aria-valuenow', record.visitas);
-            div6.setAttribute('aria-valuemin', 0);
-            div6.setAttribute('aria-valuemax', max_visitas); 
-            div6.style = "width: "+var6+"%; height: 50px; padding: 0px;";
-            
-            var span1 = document.createElement("span");
-            span1.className = "sr_only";
-            span1.innerHTML = record.visitas + " visitas";
-            
-            div6.appendChild(span1);
-            div5.appendChild(div6);
-            td0.appendChild(div5);
-             
-            //devuelve [{id, posicion, puntos, visitas, nombrecomercio}, {...}, ..]
-            var tempData = [];
-            tempData.push( record.posicion );
-            tempData.push( record.puntos );
-            tempData.push( record.nombrecomercio );
-            
-            tr1.appendChild(td0);
+                div5.className = "progress";
+                div5.style = "padding: 0px; margin: 3px;";
+                div5.innerHTML = "Sin datos que mostrar";
                 
-            for (var j = 0; j < 3; j++) { //para cada columna
-                var td1 = document.createElement('td');
-                td1.align = "center";
-                td1.style = "border-bottom: 1px solid #fff;";
-                td1.innerHTML = tempData[j];
-                tr1.appendChild(td1);
-            }
+            var td0 = document.createElement('td');
+                td0.appendChild(div5);
+            tr1.appendChild(td0);
             tbody1.appendChild(tr1);
         }
+ 
         table1.appendChild(tbody1);
-        
         div1.appendChild(div2);
         div1.appendChild(table1);
         content_leftpanel.appendChild(div1); 

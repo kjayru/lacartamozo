@@ -47,6 +47,9 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('clients','Admin\ClientController@index')->name('clients.index')
     ->middleware('permission:clients.index');
 
+    Route::get('clientsByClass','Admin\ClientController@index')->name('clients.class.index')
+    ->middleware('permission:clients.index');
+
     Route::post('clients/store','Admin\ClientController@store')->name('clients.store')
     ->middleware('permission:clients.create');
 
@@ -295,6 +298,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::put('/clasificaciones/{classification}','Admin\ClassificationsController@update')->name('classifications.update')->middleware('permission:classifications.edit'); 
     Route::post('/clasificaciones/store','Admin\ClassificationsController@store')->name('classifications.store')->middleware('permission:classifications.create'); 
 
+    Route::get('/clientes/portipo/{classificacion}','Admin\ClientController@portipo');
+    Route::get('/users/activos','Admin\UserActivorController@activados');
 });
 Route::get('/home', 'HomeController@index')->name('home');
 

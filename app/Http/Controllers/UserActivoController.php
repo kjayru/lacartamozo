@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use app\UserActivo;
 
-class ClientPointController extends Controller
+class UserActivoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -12,7 +13,9 @@ class ClientPointController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {  
+    { 
+        $userActivo = UserActivo::all();
+        return view('admin.paginas.miposicionpuntos.index', ['userActivos' => $userActivo]);
     }
 
     /**
@@ -77,6 +80,12 @@ class ClientPointController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
+    {
+        //
+    }
+
+
+    public function activos($id)
     {
         //
     }

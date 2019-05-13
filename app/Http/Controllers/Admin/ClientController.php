@@ -13,6 +13,9 @@ use App\ClientConfiguration;
 use App\ClientService;
 use App\Service;
 use App\Configuration;
+use App\ClientVisita;
+use App\ClientPoint; 
+
 class ClientController extends Controller
 {
     public function __construct()
@@ -304,5 +307,43 @@ class ClientController extends Controller
         $client->save();
 
         return response()->json(['rpta'=>'ok']);
+    }
+
+    public function portipo($classificacion){
+ 
+        $clientes = Client::all();  
+        $clientes_out = [];
+        $k = 1;
+        foreach($clientes as $cliente){
+            $franchise = Franchise::where('id', $cliente->franchise_id)->first();
+            if($franchise == null )
+            {
+                break;
+            } 
+            
+            if($franchise->classification_id == $classificacion){
+                $temp = $cliente->visitas();
+                if(empty($temp) == 0){
+                    $temp = new ClientVisita();
+                    $temp->client_id = $cliente->id;
+                    $temp->visitas = 0;
+                    $temp->save();
+                }
+                $temp->posicion = $k;
+                $point = $cliente->points();
+                if(empty($point) == 0 ){
+                    $point = new ClientPoint();
+                    $point->client_id = $cliente->id;
+                    $point->amount = 0;
+                    $point->save();
+                }
+                $temp->puntos = $point->amount;
+                $temp->nombrecomercio = $cliente->name;
+                $clientes_out[] = $temp;
+                $k = $k + 1; 
+           }
+            
+        }
+        return response()->json(['rpta'=>'ok','clientes'=>$clientes_out]);
     }
 }

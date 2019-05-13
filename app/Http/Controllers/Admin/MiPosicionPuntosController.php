@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Classification;
+use App\Client;
 
 class MiPosicionPuntosController extends Controller
 {
@@ -13,8 +15,10 @@ class MiPosicionPuntosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('admin.paginas.miposicionpuntos.index');
+    { 
+        $classifications = Classification::all();
+        $clients = Client::all();
+        return view('admin.paginas.miposicionpuntos.index', ['clasificaciones' => $classifications, 'clients' => $clients]);
     }
 
     /**
