@@ -54,7 +54,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call(ClientPoliticaTableSeeder::class);
         $this->call(ClientServiceTableSeeder::class);
-        $this->call(CommentTableSeeder::class);*/
+        $this->call(CommentTableSeeder::class);
+        $this->call(StateBuyedTableSeeder::class);*/
         
     }
 }

@@ -6,9 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Client extends Model
 {
-
-    
-
+  
     public function franchise()
     {
         return $this->belongsTo('App\Franchise');

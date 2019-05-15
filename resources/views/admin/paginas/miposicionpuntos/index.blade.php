@@ -37,47 +37,47 @@
                 <div class="box" style=" background-color: #d3d3d3;"> 
                     <h4>Mi Abono</h4>
                     <div class="progress" style="min-width: 300px; margin: 0; padding:0; height: 40px;">
-                        <div id="p_usados" class="progress-bar progress-bar-warning" role="progressbar" style="width:70%; background-color: #fcfcfc; color: #000;">
-                          355
+                        <div id="p_usados" class="progress-bar progress-bar-warning" role="progressbar" style="width:70%; background-color: #fcfcfc; color: #000; padding-top: 11px;">
+                            {{ $micuenta->point_used }}
                         </div> 
-                        <div id="p_disp" class="progress-bar progress-bar-success" role="progressbar" style="width:30%;">
-                          124
+                        <div id="p_disp" class="progress-bar progress-bar-success" role="progressbar" style="width:30%; padding-top: 11px;">
+                            {{ $micuenta->point_enabled }}
                         </div>
                     </div>
                     <div align="right">
                         <a href="#">Comprar puntos</a>
                     </div> 
-                    <div style="width: 100%;">
+                    <div style="width: 100%; margin-top: 8px;">
                         <div style="background-color: #fff; border-radius: 5px; width: 20px; height: 20px; float: left; padding: 0;"></div>
                         <h4 style="margin:3px 0 0 12px; display: inline; ">Puntos utilizados</h4> 
-                        <h4 id="p_usados3" style="margin:3px 0 0 8px; display: inline; ">355</h4>  
+                        <h4 id="p_usados3" style="margin:3px 0 0 8px; display: inline; ">{{ $micuenta->point_used }}</h4>  
                     </div>
-                    <div>
+                    <div style="margin-top: 8px;">
                         <div style="background-color: #090; border-radius: 5px; width: 20px; height: 20px; float: left; padding: 0;"></div>
                         <h4 style="margin:3px 0 0 12px; display: inline; ">Puntos utilizados</h4>  
-                        <h4 id="p_disp3" style="margin:3px 0 0 8px; display: inline; ">124</h4>  
+                        <h4 id="p_disp3" style="margin:3px 0 0 8px; display: inline; ">{{ $micuenta->point_enabled }}</h4>  
                     </div>
-                    <div style="position: relative; width: 180px; height: 170px;">
+                    <div style="position: relative; width: 180px; height: 170px; margin-top: 8px;">
                         <img id="img_rest" style="position: absolute;" src="/images/samplerestaurant.jpg" width="200px" heihgt="200px" style="margin-left: 20px; margin-top:20px;"/>
                         <div id="p_usados_2" align="center" style="position: absolute; background-color: #2b679b; padding: 2px; margin-left: 140px; margin-top: 20px; margin-right: 20px; min-width: 150px; color: #fff;" >
-                            355 Puntos
+                        {{ $micuenta->amount }} Puntos
                         </div>
                         <div id="pos_rubro" align="center" style="position: absolute; background-color: #2b679b; padding: 2px; margin-left: 140px; margin-top: 55px; margin-right: 20px; min-width: 150px; color: #fff;" >
-                            12º en su rubro
+                        {{ $micuenta->pos_cat }} en su rubro
                         </div>
                         <div id="pos_gen" align="center" style="position: absolute; background-color: #2b679b; padding: 2px; margin-left: 140px; margin-top: 90px; margin-right: 20px; min-width: 150px; color: #fff;" >
-                            1259 en la general
+                        {{ $micuenta->pos_gen }} en la general
                         </div> 
                     </div>
-                    <h4>Asignar Puntos</h4> 
+                    <h4>Asignar Puntos - Simulador de posicion</h4> 
                     <div style="width: 210px; align-content: center; margin: 0 auto;">
                         <h3 id="test_pos" align="center" style=" margin: 0;  ">12º posicion</h3>
                         <input id="test_mas_puntos" type="number" step="1" min="1" max="10000" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" style="display: inline-block;">
                     </div>
                     <button class="btn btn-link">Quitar´puntos</button> 
-                    <div style="width: 210px; margin: 0 auto;">
-                        <button onclick="probarPuntos()" class="btn btn-success" style="margin: 7px;">PROBAR</button> 
-                        <button onclick="aplicarPuntos()" class="btn btn-success" style="margin: 7;">ACEPTAR</button> 
+                    <div style="width: 210px; margin: 0 auto; display:inline;">
+                        <button onclick="probarPuntos()" class="btn btn-success" style="margin: 7px;display:inline;">PROBAR</button> 
+                        <button onclick="aplicarPuntos()" class="btn btn-success" style="margin: 7;display:inline;">ACEPTAR</button> 
                     </div>
                 </div>
           </div>
@@ -100,15 +100,7 @@
            
         //devuelve cantidad de celulares activos en los ultimos 30 dias 
         //numero de celulares activos
-        $.ajax({ 
-            type:'GET',
-            url:"/admin/users/activos<?php echo $clasificacion->id;?>",
-            data:{},
-            success:function(data){
-                var celularesActivos = data.amount;
-                $("#celAct").innerHTML = celularesActivos.toString() + " CELULARES ACTIVOS";
-            } 
-        });
+        getNumeroCelularesACtivos();
         
         //TODO get status actual del restaurante 
         //envia id del cliente franquiciado o local
@@ -209,73 +201,18 @@
             }
         @endforeach 
  
-
-    function getRestaurantes()
-    {
-        //se asume que a la pagina se indica el id del cliente de franquiciado o id de local
-        //esto para resaltar la posicion del rest, en caso de cuenta admin, no resaltaria  
-        var id = getUrlParameter('id'); 
-        
-        //TODO
-        //envia: id del local o cliente franquiciado, tipo = 0
-        //devuelve [{id, posicion, puntos, visitas, nombrecomercio}, {...}, ..]
-        // 0 indica todos los clientes de franquiciado o locales
-        $.get("testp2.php",{id: id, tipo: 0} ).done( function (data){ 
-            fillTable(data);
-        });
-        
-        //borrar solo demo
-        demoFillTable(30);
-    }
-    
-    function getCervecerias()
-    { 
-        var id = getUrlParameter('id'); 
-        //TODO
-        //envia: id del local o cliente franquiciado, tipo = 1
-        //devuelve [{id, posicion, puntos, visitas, nombrecomercio}, {...}, ..]
-        // 1 indica todos los clientes de franquiciado o locales de,l rubro cervecerias
-        // 0,1,2,3 puede ser una tabla en la db con tipo de comercios
-        $.get("testp2.php",{id: id, tipo: 1} ).done( function (data){ 
-            fillTable(data);
-        });
-        demoFillTable(10);
-    }
-    
-    function getComidasRapidas()
-    { 
-        var id = getUrlParameter('id'); 
-        //TODO
-        //envia: id del local o cliente franquiciado, tipo = 2
-        //devuelve [{id, posicion, puntos, visitas, nombrecomercio}, {...}, ..]
-        // 2 indica todos los clientes de franquiciado o locales del rubro comidas rapidas
-        // 0,1,2,3 puede ser una tabla en la db con tipo de comercios
-        $.get("testp2.php",{id: id, tipo: 2} ).done( function (data){ 
-            fillTable(data);
-        });
-        demoFillTable(15);
-    }
-    
-    function getParrillas()
-    { 
-        var id = getUrlParameter('id'); 
-        //TODO
-        //envia: id del local o cliente franquiciado, tipo = 3
-        //devuelve [{id, posicion, puntos, visitas, nombrecomercio}, {...}, ..]
-        // 3 indica todos los clientes de franquiciado o locales del rubro parrillas
-        // 0,1,2,3 puede ser una tabla en la db con tipo de comercios
-        $.get("testp2.php",{id: id, tipo: 3} ).done( function (data){ 
-            fillTable(data);
-        });
-        demoFillTable(5);
-    }
+ 
     
     function getNumeroCelularesACtivos()
-    {
-        //TODO, obtener lista de usuario que hicieron algun cambio en los ultimos 30 dias
-        $.get("testp.php").done( function (data){ 
-            var celularesActivos = data.amount;
-            $("#celAct").innerHTML = celularesActivos.toString() + " CELULARES ACTIVOS";
+    { 
+        $.ajax({ 
+            type:'GET',
+            url:"/admin/users/activos",
+            data:{},
+            success:function(data){
+                var celularesActivos = data.amount;
+                $("#celAct").innerHTML = celularesActivos.toString() + " CELULARES ACTIVOS";
+            } 
         });
     }
 

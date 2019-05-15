@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateClientPointsTable extends Migration
+class CreateBuyedClientpointsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class CreateClientPointsTable extends Migration
      */
     public function up()
     {
-        Schema::create('client_points', function (Blueprint $table) {
+        Schema::create('buyed_clientpoints', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('client_id');
             $table->foreign('client_id')->references('id')->on('clients'); 
-            $table->integer('amount')->default(0);
-            $table->integer('point_used')->default(0);
-            $table->integer('point_enabled')->default(0);
+            $table->unsignedInteger('paymentmethod_id');
+            $table->foreign('paymentmethod_id')->references('id')->on('payment_methods');
+            $table->decimal('importe',8,2); 
+            $table->unsignedInteger('statebuyed_id');
+            $table->foreign('statebuyed_id')->references('id')->on('state_buyed');
             $table->timestamps();
         });
     }
@@ -31,6 +33,6 @@ class CreateClientPointsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('client_points');
+        Schema::dropIfExists('buyed_clientpoints');
     }
 }

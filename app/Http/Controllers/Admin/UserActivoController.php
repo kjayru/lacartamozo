@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use app\UserActivo;
+use App\Http\Controllers\Controller;
+use App\UserActivo;
 
 class UserActivoController extends Controller
 {
@@ -35,8 +36,20 @@ class UserActivoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    { 
+        $activo = UserActivo::where('user_id', $request->user_id)->first();
+        if(empty($activo))
+        {
+            $activo = new UserActivo();
+            $activo->user_id = $request->user_id;
+            $activo->state = 1;
+            $activo->save();
+        } 
+        else{
+            $activo->state = 1;
+            $activo->save();
+        }
+        return response()->json(['rpta'=>'ok']);
     }
 
     /**
@@ -85,8 +98,17 @@ class UserActivoController extends Controller
     }
 
 
-    public function activos($id)
-    {
-        //
+    public function activos()
+    {    
+        $current = strtotime("03:00:00");
+        $userActivo = UserActivo::all();
+        $amount = 0;
+        foreach($userActivo as $activo){     
+            $last = strtotime($activo->update_at);  
+            if($activo->state == 1 && $current - $last > 3600){ //se considera una hora como inactivo
+                $amount = $amount + 1;
+            }
+        } 
+        return json_encode(['rpta' => "ok", 'amount' => $amount]);
     }
 }

@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Classification;
 use App\Client;
+use App\ClientPoint;
+use App\Franchise;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 
 class MiPosicionPuntosController extends Controller
 {
@@ -18,7 +23,38 @@ class MiPosicionPuntosController extends Controller
     { 
         $classifications = Classification::all();
         $clients = Client::all();
-        return view('admin.paginas.miposicionpuntos.index', ['clasificaciones' => $classifications, 'clients' => $clients]);
+
+        $user_id = Auth::id();
+
+        //agergar mi abono  y puntos utilizados
+        $clientPoint = ClientPoint::where('client_id',$user_id)->first();
+        $clients = ClientPoint::all()->sortByDesc("amount");
+        $pos_gen = 0;
+        $pos_cat = 0; 
+        $ii_gen = 0;
+        $ii_cat = 0;
+
+        
+        $c2 = $clientPoint->client->franchise->classification_id;
+        foreach($clients as $client)
+        {
+            if($client->client_id == $clientPoint->client_id){
+                $pos_cat = $ii_cat;
+                $pos_gen = $ii_gen;
+            }
+
+            $c1 = $client->client->franchise->classification_id;
+            if( $c1 == $c2 ){
+                $ii_cat = $ii_cat + 1;
+            }            
+            $ii_gen = $ii_gen + 1;
+        }
+
+        $clientPoint->pos_gen = $pos_gen;
+        $clientPoint->pos_cat = $pos_cat;
+
+        return view('admin.paginas.miposicionpuntos.index', ['clasificaciones' => $classifications, 
+        'clients' => $clients, 'micuenta' => $clientPoint]);
     }
 
     /**
