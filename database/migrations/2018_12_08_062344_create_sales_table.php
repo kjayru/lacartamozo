@@ -40,6 +40,8 @@ class CreateSalesTable extends Migration
             $table->unsignedInteger('typesale_id');
             $table->foreign('typesale_id')->references('id')->on('type_sales');
 
+            $table->string('address');
+
             $table->timestamps();
         });
     }

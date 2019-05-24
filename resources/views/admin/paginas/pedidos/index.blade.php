@@ -1,29 +1,20 @@
 @extends('admin.layout.master')
-
+ 
 @section('content')
 
-<section class="content" style="padding-right: 0px; background-color: #f7f7f7;">
-     
-<div id="wrappermini">
-    <div id="one" >   
+<section class="content" style="padding-right: 0px; background-color: #f7f7f7; width:100%; padding: 0px;">
         
-        <ul class="nav nav-tabs" id="myTab" role="tablist" style="height: 43px;" >
-            <li class="nav-item active">
-              <a class="nav-link " id="home-tab" data-toggle="tab" href="#restaurantes" role="tab" aria-controls="restaurantes" aria-selected="true">Delivery</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="profile-tab" data-toggle="tab" href="#ventas" role="tab" aria-controls="ventas" aria-selected="false">Ventas</a>
-            </li> 
-        </ul>
-        
-        <div class="tab-content" id="myTabContent" style="padding: 0px;">
-            <div class="tab-pane fade active in" id="restaurantes" role="tabpanel" aria-labelledby="home-tab"  style="background-color: #fafafa;">
+<div id="wrappermini" style="margin:5px;"> 
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#home">Delivery</a></li>
+        <li><a data-toggle="tab" href="#menu1">Ventas</a></li> 
+    </ul>
 
-            <div class="box2" style="margin: 0; padding: 0; padding-bottom: 25px; background-color: #fff;">
-                <div class="box-header3">
-                    -- EN PREPARACION
-                </div>
-
+    <div class="tab-content" style="background-color: #f7f7f7;">
+        <div id="home" class="tab-pane fade in active">
+ 
+            <div class="row" style="margin: 0; padding: 0; padding-bottom: 25px; background-color: #f7f7f7; height: 200px;">
+                <div class="box-header3" style="background-color: #fed0a2; padding-top: 4px;"> <h4>EN PREPARACION<h4> </div> 
                 <div class="box-body2" style="background-color: #fff;">
                     <table id="dtTablePreparacion" class="table table-hover" style="color: #000;">
                         <thead  style="background-color: #fed0a2; color: #888888;">
@@ -37,15 +28,25 @@
                             </tr>
                         </thead>
                         <tbody> 
+                                    
+                            @foreach ($enpreparacion as $preparando)  
+                                <tr> 
+                                <td width="70px">{{$preparando->id}}</th>
+                                <td width="180px">{{$preparando->created_at}}</th>
+                                <td width="240px">{{$preparando->address}}</th> 
+                                <td>{{$preparando->usuario->telefono}}</th> 
+                                <td>{{$preparando->usuario->name}}</th>     
+                                <td>{{$preparando->importe}}</th> 
+                                </tr> 
+                            @endforeach
+                            
                         </tbody>
                     </table>
                 </div> 
-            </div> 
-                 
-            <div class="box2" style="margin: 0; padding: 0; padding-bottom: 25px; background-color: #fff;">
-                <div class="box-header3" style="color: #d1c551;">
-                    -- ENVIADOS
-                </div>
+            </div>
+
+            <div class="row" style="margin: 0; padding: 0; padding-bottom: 25px; background-color: #f7f7f7; height: 200px;">
+                <div class="box-header3" style="background-color: #ffeb92; padding-top: 4px;"><h4>ENVIADOS<h4></div>
                   
                 <div class="box-body2" style="background-color: #fff;">
                     <table id="dtTableEnviados" class="table table-hover" style="background-color: #d3d3d3; color: #000;">
@@ -60,16 +61,23 @@
                             </tr>
                         </thead>
                             <tbody> 
+                                @foreach ($enviados as $env)  
+                                    <tr> 
+                                    <td width="70px">{{$env->id}}</th>
+                                    <td width="180px">{{$env->created_at}}</th>
+                                    <td width="240px">{{$env->address}}</th> 
+                                    <td>{{$env->usuario->telefono}}</th> 
+                                    <td>{{$env->usuario->name}}</th>     
+                                    <td>{{$env->importe}}</th> 
+                                    </tr> 
+                                @endforeach 
                             </tbody>
                     </table>
-                </div>
-                
-              </div> 
-                 
-            <div class="box2" style="margin: 0; padding: 0; padding-bottom: 25px; background-color: #fff;">
-                <div class="box-header3" style="color: #c5e3bf;">
-                    -- ENTREGADOS
-                </div>
+                </div>  
+            </div>
+            
+            <div class="row" style="margin: 0; padding: 0; padding-bottom: 25px; background-color: #f7f7f7; height: 200px;">
+                <div class="box-header3" style="background-color: #d3f4bf; padding-top: 4px;"> <h4>ENTREGADOS<h4> </div>
                   
                 <div class="box-body2" style="background-color: #fff;">
                     <table id="dtTableEntregados" class="table table-hover" style="background-color: #d3d3d3; color: #000;">
@@ -84,16 +92,24 @@
                             </tr>
                         </thead>
                             <tbody> 
+                                @foreach ($entregados as $entr)  
+                                    <tr> 
+                                    <td width="70px">{{$entr->id}}</th>
+                                    <td width="180px">{{$entr->created_at}}</th>
+                                    <td width="240px">{{$entr->address}}</th> 
+                                    <td>{{$entr->usuario->telefono}}</th> 
+                                    <td>{{$entr->usuario->name}}</th>     
+                                    <td>{{$entr->importe}}</th> 
+                                    </tr> 
+                                @endforeach 
                             </tbody>
                     </table>
-                </div>
-                
-              </div> 
-                
-                
+                </div>  
             </div>
-            <div class="tab-pane fade" id="ventas" role="tabpanel" aria-labelledby="profile-tab" style="background-color: #fafafa; padding: 15px;">
-
+ 
+        </div>  
+        
+        <div id="menu1" class="tab-pane fade">
                 <div class="box2" style="margin: 0; padding: 0; padding-bottom: 25px; background-color: #fff;">
                   <ul class="list-inline" style="background-color: #e5e5e5; height: 50px; padding: 8px; margin-bottom: 0px; min-width: 200px;">
                       <li>
@@ -211,47 +227,17 @@
               </div> 
                 
             </div>  
-        </div>
-        
-        
-        
-    </div> 
-    <div id="two" >  
-         <div class="row">
-          <div class="col-md-12" >
-            <div class="box"> 
-                
-                <form class="form-horizontal" id="fr-franchise"> 
-                <div class="row" style="padding: 2px; margin: 0px;">
-                    <div class="col-md-12" style="padding: 0px;">
-                      <div class="box" style="background-color: #fff; padding: 0px;">
-
-                              <fieldset>
-
-                                <!-- Form Name -->
-                                <legend style="background-color: #6a5acd; margin: 0px; padding-left: 15px; color:#fff; height: 55px;"></legend>
- 
-                                <!-- form-group -->
-                                <div class="form-group" id="content_add_record"> 
-                                </div>  
-                                <!-- /.form-group -->
-                              </fieldset>
-                        </div>
-                      </div>
-                  </div>
-                </form>
- 
-            </div>
-          </div>
         </div> 
+
     </div>
+          
+     
 </div>
       
 </section>
 
  
- <script>     
-    var two = document.getElementById("two").hidden = true;  
+ <script>      
     
     $(document).ready(function(){         
         $('#dtTablePreparacion').DataTable({
