@@ -71,5 +71,10 @@ class Client extends Model
     {
         return $this->hasOne('App\ClientPoint');
     }
+
+    public function reservas()
+    {
+        return $this->hasMany('App\Booking');
+    }
 }
 

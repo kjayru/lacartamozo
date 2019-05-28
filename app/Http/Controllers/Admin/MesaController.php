@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 
 use App\Mesa;
 use App\Mozo;
+use App\BookingMesa;
+use App\BookingSector;
 
 class MesaController extends Controller
 {
@@ -105,5 +107,26 @@ class MesaController extends Controller
     public function destroy($id)
     {
         //
+    }
+    
+    /**
+     * Muestra las mesas disponibles a una hora y fecha dada
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function enabled($client_id,$dia, $h0, $hf)
+    {
+        $mesas = Mesa::where('client_id',$client_id)->get();
+        $out = [];
+        foreach( $mesas as $mesa ){
+            $item = $mesa;
+            //buscar en el dia
+
+
+            //
+        }
+
+        return response()->json($mesas);
     }
 }

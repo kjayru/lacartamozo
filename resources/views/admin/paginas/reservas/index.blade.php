@@ -27,34 +27,133 @@
         </div>
     </div>
     
-    <div id="two">  
-         <div class="row">
-          <div class="col-md-12" style="padding-top: 0px;";>
-            <div class="box"> 
-                
-                <form class="form-horizontal" id="fr-franchise" method="post" action="#"> 
-                <div class="row" style="padding: 2px; margin: 0px;">
-                    <div class="col-md-12" style="padding: 0px;">
-                      <div class="box" style="background-color: #fff; padding: 0px;">
-
-                              <fieldset>
-
-                                <!-- Form Name -->
-                                <legend style="background-color: #6a5acd; margin: 0px; padding-left: 15px; color:#fff; height: 55px;"></legend>
- 
-                                <!-- form-group -->
-                                <div class="form-group" id="content_add_record"> 
-                                </div>  
-                                <!-- /.form-group -->
-                              </fieldset>
+    <div id="two" >  
+         
+        <div class="row" style="padding: 2px; margin: 0px;">
+            <div class="col-md-12" style="padding: 0px;">
+                <div class="box box-info" style="background-color: #fff; padding: 0px;">
+                    <div class="box-header with-border">
+                        <h4>Nueva reserva</h4>
+                        <div class="form-inline">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Buscar cliente" aria-label="Search">
+                            <button class="btn btn-success my-2 my-sm-0" type="submit">Buscar</button>
                         </div>
-                      </div>
-                  </div>
-                </form>
+                    </div>
+                    <form class="form-horizontal" id="fr-franchise" method="post" action="#">   
+                        <div class="box-body" >  
+                        
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="names">Nombres y Apellidos</label>  
+                                <div class="col-md-8">
+                                <input id="names" name="name" style="background-color: #e5e5e5;" type="text" placeholder="Nombres y apellidos" class="form-control input-md">
+                                </div> 
+                            </div>
+
+                            <div class="form-group">    
+                                <label class="col-md-3 control-label" for="address">Cantidad de personas</label>  
+                                <div class="col-md-8">
+                                <input id="amount" name="amount" style="background-color: #e5e5e5;" type="number" value="1" min="1" max="100" class="form-control input-md">
+                                </div> 
+                            </div>
+
+                            <div class="form-group"> 
+                                    <label class="col-md-3 control-label" for="hora0">Hora de inicio</label>  
+                                    <div class="col-md-8">
+                                        <select class="form-control input-md" style="background-color: #e5e5e5;" name="hora0" id="hora0">
+                                            <option value="0">--seleccione--</option> 
+                                            <option value="8">8:00</option> 
+                                            <option value="9">9:00</option> 
+                                            <option value="10">10:00</option> 
+                                            <option value="11">11:00</option> 
+                                            <option value="12">12:00</option> 
+                                            <option value="13">13:00</option> 
+                                            <option value="14">14:00</option> 
+                                            <option value="15">15:00</option> 
+                                            <option value="16">16:00</option> 
+                                            <option value="17">17:00</option> 
+                                            <option value="18">18:00</option> 
+                                            <option value="19">19:00</option> 
+                                            <option value="20">20:00</option> 
+                                            <option value="21">21:00</option> 
+                                            <option value="22">22:00</option> 
+                                            <option value="23">23:00</option> 
+                                        </select>
+                                    </div> 
+                            </div>
+
+                            <div class="form-group"> 
+                                    <label class="col-md-3 control-label" for="horaf">Hora de termino</label>  
+                                    <div class="col-md-8">
+                                        <select class="form-control input-md" style="background-color: #e5e5e5;" name="horaf" id="horaf">
+                                            <option value="0">--seleccione--</option> 
+                                            <option value="8">8:00</option> 
+                                            <option value="9">9:00</option> 
+                                            <option value="10">10:00</option> 
+                                            <option value="11">11:00</option> 
+                                            <option value="12">12:00</option> 
+                                            <option value="13">13:00</option> 
+                                            <option value="14">14:00</option> 
+                                            <option value="15">15:00</option> 
+                                            <option value="16">16:00</option> 
+                                            <option value="17">17:00</option> 
+                                            <option value="18">18:00</option> 
+                                            <option value="19">19:00</option> 
+                                            <option value="20">20:00</option> 
+                                            <option value="21">21:00</option> 
+                                            <option value="22">22:00</option> 
+                                            <option value="23">23:00</option> 
+                                        </select>
+                                    </div> 
+                            </div>
+
+                            <div class="form-group">    
+                                <label class="col-md-3 control-label" for="address">Sector</label>  
+                                <div class="col-md-8">
+                                <input id="amount" name="amount" style="background-color: #e5e5e5;" type="number" value="1" min="1" max="100" class="form-control input-md">
+                                </div> 
+                            </div>
+
+                            <div class="form-group">    
+                                <label class="col-md-3 control-label" for="address">Celular</label>  
+                                <div class="col-md-8">
+                                <input id="cellphone" name="cellphone" style="background-color: #e5e5e5;" type="text" class="form-control input-md">
+                                </div> 
+                            </div>
+                                         
+                            <div class="form-group">    
+                                <label class="col-md-3 control-label" for="address">Estado de la reserva</label>  
+                                <div class="col-md-8">
+                                <input id="cellphone" name="estado" style="background-color: #e5e5e5;" type="text" value="Sin confirmar" class="form-control input-md" readonly>
+                                </div> 
+                            </div>
+
+                            <div class="form-group">    
+                                <label class="col-md-3 control-label" for="date">Fecha de la reserva</label>  
+                                <div class="col-md-8">
+                                <input id="datepicker" name="date" style="background-color: #e5e5e5;" type="text"  class="form-control input-md" readonly>
+                                </div>    
+                            </div>
+                                     
+                            <h5>Mesas disponibles</h5>
+                            <div class="form-group">    
+                                <input id="mesas" name="mesas[]" type="hidden" class="form-control input-md">
+                                <div class="col-md-8" id="lista_mesas">
+
+                                </div>    
+                            </div>
  
+                            <div class="box-footer"> 
+                                <button type="submit" class="btn btn-info pull-right">Reservar</button>
+                            </div>
+
+                        </div>  
+                    </form>
+                      
+                </div>
             </div>
-          </div>
-        </div> 
+            
+        </div>
+
     </div>
 </div>
       
@@ -66,34 +165,8 @@
     
     var two = document.getElementById("two").hidden = true;   
     var listaMesasQR = {};
-    $(document).ready(function(){            
-        //TODO, al ingresar a esta pagina se ingresa un id  dle cliente franquiciado o id del local        
-        getPedidosVariosDias(); //demo, borrar cuando este completo
-        //http://localhost/admin/reservas?id=5
-        //caso de admin o administrador de franquicias se ingresa aqui desde seccion de franquicias 
-        //envia id, fechaactual en utc horario
-        //recibe dato: fecha, idpedido, fullname, personas, hora ingreso, hora salida, celular, sector, estado, puntaje
-        //[ {fecha:yyyy-MM-dd HH:mm:ss, pedidos:[{idpedido, fullname, personas, ..},{idpedido, ...}, ...] }, {...} ]
-        //NOTA: solo enviar los pedidos de la fecha de hoy, mañana y pasado mañana
-        var currFecha = new Date();  
-        //alert(currFecha.toISOString());
-        var id = getUrlParameter('id'); 
-        $.post("test0", { id: id, currfecha: currFecha.toISOString() }).done(function( data ) { 
-            
-            //para cada fecha
-            for(i=0; i<data.length; i++)
-            {
-
-                var bpedidos = document.getElementById("body_pedidos");
-                bpedidos.innerHTML = "";
-
-                var pedidoEnFecha = data[i];
-                var fecha1 = pedidoEnFecha.fecha;   
-                getPedidoDia( bpedidos, fecha1, "dtBasicExample1"+i.toString()); 
-
-            }
-            
-        });
+    $(document).ready(function(){                 
+        getPedidosVariosDias(); //demo, borrar cuando este completo 
     });
      
 </script>
@@ -211,21 +284,32 @@
     function getPedidosVariosDias()
     {
         var bpedidos = document.getElementById("body_pedidos");
-        bpedidos.innerHTML = "";
+        bpedidos.innerHTML = ""; 
         
-        var testFecha1 = new Date(); 
-        var f1 = testFecha1.toISOString();
-        testFecha1.setDate(testFecha1.getDate() + 1);
-        var f2 = testFecha1.toISOString();
-        testFecha1.setDate(testFecha1.getDate() + 1);
-        var f3 = testFecha1.toISOString();
-        getPedidoDia( bpedidos, f1, "dtBasicExample1");
-        getPedidoDia( bpedidos, f2, "dtBasicExample2");
-        getPedidoDia( bpedidos, f3, "dtBasicExample3");
+        <?php $i=0;?>
+        @foreach ($reservas as $reserva)    
+            var sz = <?php echo count($reserva['data']);?>;
+            var data = new Array(sz);
+            @foreach ($reserva['data'] as $r1)  
+            data_row = new Array(9); 
+            data_row[0] = <?php echo "'".$r1->id."'"; ?>; 
+            data_row[1] = <?php echo "'".$r1->name."'"; ?>;    
+            data_row[2] = <?php echo "'".$r1->amount."'"; ?>;   
+            data_row[3] = <?php echo "'".$r1->star."'"; ?>;  
+            data_row[4] = <?php echo "'".$r1->end."'"; ?>; 
+            data_row[5] = <?php echo "'".$r1->cellphone."'"; ?>;  
+            data_row[6] = <?php echo "'".$r1->sector."'"; ?>;         
+            data_row[7] = <?php echo "'".$r1->estado."'"; ?>;   
+            data[0] = data_row;
+            @endforeach 
+            getPedidoDia( bpedidos, <?php echo "'".$reserva['day']."'";?>, 
+                            <?php echo "'"."dtBasicExample".$i,"'";?>, data);
+            <?php $i=$i+1;?>            
+        @endforeach  
     }
     
     //fecha en formato YYYY-MM-DDTHH:MM:SSZ
-    function getPedidoDia(parent, fecha, idtable)
+    function getPedidoDia(parent, fecha, idtable, data)
     {
         //mas de 10 dias de diferencia return
         var currFecha = new Date();
@@ -283,10 +367,11 @@
         cell0.style = "width: 50px;";
         cell0.className = "text-center";
         cell1.innerHTML = "Nombre y Apellido";
-        cell1.width = 220;
+        cell1.width = 120;
         cell1.className = "text-center";
         cell2.innerHTML = "Cant. de Personas";
         cell2.className = "text-center";
+        cell2.width = 35;
         cell3.innerHTML = "Horario de ingreso";
         cell3.className = "text-center";
         cell4.innerHTML = "Horario de salida";
@@ -296,10 +381,13 @@
         cell5.width = 90;
         cell6.innerHTML = "Sector";
         cell6.className = "text-center";
+        cell6.width = 35;
         cell7.innerHTML = "Estado";
         cell7.className = "text-center";
-        cell8.innerHTML = "Puntaje";
+        cell7.width = 35;
+        cell8.innerHTML = "Opciones";
         cell8.className = "text-center";
+        cell8.width = 35;
         
         rowHead.appendChild(cell0);
         rowHead.appendChild(cell1);
@@ -312,17 +400,30 @@
         rowHead.appendChild(cell8);
         
         var tbody1 = document.createElement("tbody");
-        
-        //TODDO completar con codigo
-        for(i=0; i<10; i++) //para cada fila
+         
+        for(i=0; i<data.length; i++) //para cada fila
         {
+             
             var tr1 = document.createElement('tr');
-            for (var j = 0; j < 9; j++) { //para cada columna
+            var data_row = data[i];
+            for (var j = 0; j < 8; j++) { //para cada columna
                 var td1 = document.createElement('td');
                 td1.align = "center";
-                td1.innerHTML = j.toString();
+                td1.innerHTML = data_row[j];
                 tr1.appendChild(td1);
             }
+            
+            var tdn = document.createElement('td');
+            if(data_row[7] !== 'cancelado'){
+                    var btn = document.createElement("BUTTON");
+                    btn.classList.add("btn");
+                    btn.classList.add("btn-primary");                    
+                    btn.innerHTML = "Cancelar";  
+                    tdn.align = "center";
+                    tdn.appendChild(btn);
+            }
+            tr1.appendChild(tdn);
+            
             tbody1.appendChild(tr1);
         }
         table1.appendChild(tbody1);
@@ -387,7 +488,36 @@
      } 
      
 </script>
- 
+  
+<script>
+    $( function() {
+        $( "#datepicker" ).datepicker();
+    } );
+
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $("#datepicker").on("change paste keyup", function() {
+        //Lista de mesas disponibles para la fecha y hora indicada
+        //$(this).val()
+        var id_client = '3';
+
+        $.ajax({
+           type:'GET',
+           url:"/admin/mesas/enabled/"+id_client+"/10-06-2019"+"/"+$("#hora0").val()+"/"+$("#horaf").val(),
+           data:{},
+           success:function(data){
+              //alert(data.success);
+           }
+        });
+
+    });
+</script>
+
 <script type="text/javascript">
     $(function() {
         $( "#datetimepicker" ).datepicker();

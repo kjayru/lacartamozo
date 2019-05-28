@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5180612ca3782e18ba251919ef65ee76",
+    "content-hash": "56f6c1c607615bd77d62e639a54c3e1f",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -54,35 +54,23 @@
         },
         {
             "name": "caffeinated/shinobi",
-            "version": "v3.3",
+            "version": "v4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/caffeinated/shinobi.git",
-                "reference": "9b5e60f1b59a57ffe6f8a938ff9f896dc3075a54"
+                "reference": "68039b180455f8156d29cc24b48fb853fe29f6d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/caffeinated/shinobi/zipball/9b5e60f1b59a57ffe6f8a938ff9f896dc3075a54",
-                "reference": "9b5e60f1b59a57ffe6f8a938ff9f896dc3075a54",
+                "url": "https://api.github.com/repos/caffeinated/shinobi/zipball/68039b180455f8156d29cc24b48fb853fe29f6d8",
+                "reference": "68039b180455f8156d29cc24b48fb853fe29f6d8",
                 "shasum": ""
             },
             "require": {
-                "illuminate/config": "5.3.*|5.4.*|5.5.*|5.6.*|5.7.*",
-                "illuminate/database": "5.3.*|5.4.*|5.5.*|5.6.*|5.7.*",
-                "illuminate/filesystem": "5.3.*|5.4.*|5.5.*|5.6.*|5.7.*",
-                "illuminate/support": "5.3.*|5.4.*|5.5.*|5.6.*|5.7.*",
-                "php": ">=5.6.4"
-            },
-            "require-dev": {
-                "orchestra/testbench": "~3.0",
-                "phpunit/phpunit": "^6.4",
-                "squizlabs/php_codesniffer": "3.*"
+                "illuminate/support": "5.7.*|5.8.*"
             },
             "type": "library",
             "extra": {
-                "branch-alias": {
-                    "dev-master": "4.0-dev"
-                },
                 "laravel": {
                     "providers": [
                         "Caffeinated\\Shinobi\\ShinobiServiceProvider"
@@ -107,7 +95,7 @@
                     "email": "shea.lewis89@gmail.com"
                 }
             ],
-            "description": "Laravel 5 Roles and Permissions",
+            "description": "Laravel Roles and Permissions",
             "keywords": [
                 "auth",
                 "caffeinated",
@@ -116,7 +104,7 @@
                 "roles",
                 "shinobi"
             ],
-            "time": "2018-09-11T17:30:07+00:00"
+            "time": "2019-04-22T15:42:36+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",

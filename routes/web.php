@@ -159,6 +159,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('mesas/{mozo}/edit','Admin\MesaController@edit')->name('mesas.edit')
     ->middleware('permission:mesas.edit');
 
+    Route::get('mesas/enabled/{client_id}/{dia}/{h0}/{hf}','Admin\MesaController@enabled')->name('mesas.create')
+    /*->middleware('permission:mesas.enabled')*/;
 
     //menu
     Route::get('lacartas','Admin\MenuClientController@index')->name('lacartas.index')
@@ -320,3 +322,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 */
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -18,11 +18,7 @@ class CreateBookingTable extends Migration
             $table->integer('amount');
             $table->date('day');
             $table->time('star');
-            $table->time('end');
-            $table->unsignedInteger('sector_id')->nullable();
-            $table->foreign('sector_id')->references('id')->on('sectors');
-            $table->unsignedInteger('mesa_id')->nullable();
-            $table->foreign('mesa_id')->references('id')->on('mesas');
+            $table->time('end'); 
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             //caso de una reserva en el rest desde el app, sin indicar mesa y sector

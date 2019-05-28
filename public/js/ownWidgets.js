@@ -6,6 +6,9 @@
 
 function addTextForm(form, name, title)
 {
+    var form_group = document.createElement("div");
+    form_group.className = "form-group";
+
     var label = document.createElement("label");
     label.className = "col-md-3 control-label";
     label.for = name;
@@ -15,17 +18,16 @@ function addTextForm(form, name, title)
     div1.className = "col-md-8";
 
     var input1 = document.createElement("input");
-    input1.id = name;
-    input1.style = "background-color: #e5e5e5;";
+    input1.id = name; 
     input1.type = "text";
     input1.placeholder = title;
     input1.name = name;
     input1.className = "form-control input-md";
 
-    div1.appendChild(input1);
-
-    form.appendChild(label);
-    form.appendChild(div1); 
+    div1.appendChild(input1); 
+    form_group.appendChild(label); 
+    form_group.appendChild(div1); 
+    form.appendChild(form_group); 
 }
 
 function addSelectForm(form, name, title, arrayname, arrayvalue)
