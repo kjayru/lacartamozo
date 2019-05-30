@@ -111,4 +111,5 @@ class UserActivoController extends Controller
         } 
         return json_encode(['rpta' => "ok", 'amount' => $amount]);
     }
+
 }

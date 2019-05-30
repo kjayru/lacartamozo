@@ -13,5 +13,9 @@ class Mesa extends Model
     public function codeqrs(){
         return $this->hasMany('App\Codeqr');
     }
+
+    public function booking(){
+        return $this->belongsTo('App\Booking');
+    }
 }
             

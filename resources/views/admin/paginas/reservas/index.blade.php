@@ -34,11 +34,17 @@
                 <div class="box box-info" style="background-color: #fff; padding: 0px;">
                     <div class="box-header with-border">
                         <h4>Nueva reserva</h4>
-                        <div class="form-inline">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Buscar cliente" aria-label="Search">
-                            <button class="btn btn-success my-2 my-sm-0" type="submit">Buscar</button>
-                        </div>
                     </div>
+
+                    <div class="box-body" >  
+                        <form autocomplete="off" action="">
+                            <div class="autocomplete" style="width: 80%;">
+                                <input id="myInput" type="text" name="myCountry" placeholder="Buscar cliente">
+                            </div> 
+                            <input type="submit" value="Aceptar">
+                        </form> 
+                    </div>
+
                     <form class="form-horizontal" id="fr-franchise" method="post" action="#">   
                         <div class="box-body" >  
                         
@@ -499,23 +505,25 @@
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
-    });
+    }); 
 
-    $("#datepicker").on("change paste keyup", function() {
-        //Lista de mesas disponibles para la fecha y hora indicada
-        //$(this).val()
-        var id_client = '3';
+    function addMesa(isAvailable, number, onclickfunc)
+    {
+        var parent = document.getElementById("lista_mesas");
 
-        $.ajax({
-           type:'GET',
-           url:"/admin/mesas/enabled/"+id_client+"/10-06-2019"+"/"+$("#hora0").val()+"/"+$("#horaf").val(),
-           data:{},
-           success:function(data){
-              //alert(data.success);
-           }
-        });
-
-    });
+        var btn = document.createElement("button");
+        btn.id = "btn_mesa";
+        btn.onclick = onclickfunc;
+        btn.type = "button";
+        if( isAvailable === true ){
+            btn.className = "btn btn-primary";
+        }else{
+            btn.className = "btn btn-default";
+        }        
+        btn.innerHTML = number;
+        btn.enabled = isAvailable;
+        parent.appendChild(btn); 
+    }
 </script>
 
 <script type="text/javascript">
@@ -525,6 +533,68 @@
 
     var titulo_seccion = document.getElementById("titulo_seccion");
     titulo_seccion.innerHTML = "RESERVAS";
+
+    //para autocomplete
+    var clientes = [];
+    var telefonos = [];
+    $.ajax({
+           type:'GET',
+           url:"/admin/users/forautocomplete",
+           data:{},
+           success:function(data){
+	            var json_obj = $.parseJSON(data); 
+                
+                if(json_obj.rpta === 'ok'){
+                    $.each( json_obj.data, function( key, value ) {
+                        clientes.push(value.name);
+                        telefonos.push(value.phone);
+                    });
+                    console.log(clientes);
+                    autocomplete(document.getElementById("myInput"), clientes);
+                }
+           }
+    }); 
+
+    $("form").submit(function(){ 
+        event.preventDefault(); 
+        $("#names").val( $("#myInput").val() ); 
+        var idx = 0;
+        var idx_f = 0;
+        clientes.forEach(function (value, index, array){
+            if( value === $("#myInput").val() ){ 
+                idx_f = idx;
+            }
+            else{
+                idx = idx + 1;
+            }
+        }); 
+        $("#cellphone").val( telefonos[idx_f].toString() ); 
+    }); 
+
+    $("#datepicker").on("change paste keyup", function() { 
+        var id_client = '3';
+
+        $.ajax({
+        type:'GET',
+        url:"/admin/mesas/enabled/"+id_client+"/10-06-2019"+"/"+$("#hora0").val()+"/"+$("#horaf").val(),
+        data:{},
+        success:function(json_obj){    
+                json_obj.mesas.forEach(function (mesa, index, array){                   
+                    var isAvailable = true;
+                    json_obj.libros.forEach(function (reserva, index, array){ 
+                        json_obj.libros.mesas.forEach(function (r_mesa, index, array){ 
+                            if( mesa.mesa_id == r_mesa.mesa_id ){
+                                isAvailable = false;
+                            }
+                        }); 
+                    }); 
+                    addMesa(isAvailable, mesa.id, function() { } );
+                });    
+        }
+        });
+
+    });
+
 </script>
 
 

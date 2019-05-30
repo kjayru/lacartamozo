@@ -14,6 +14,8 @@
   <link rel="stylesheet" href="/css/main.css?v={{uniqid()}}"> 
   <link rel="stylesheet" href="/dist/css/skins/skin-purple.css">
   
+  <!-- Autocomplete -->
+  <link rel="stylesheet" href="/css/autocomplete.css"> 
 
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -31,7 +33,8 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <script src="/js/ownWidgets.js"></script> 
   <script src="/js/image-picker.js"></script>   
-  <script src="/js/image-picker.min.js"></script>   
+  <script src="/js/image-picker.min.js"></script> 
+  <script src="/js/autocomplete.js"></script>   
 
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

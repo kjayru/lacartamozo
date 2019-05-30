@@ -9,6 +9,7 @@ use App\Mesa;
 use App\Mozo;
 use App\BookingMesa;
 use App\BookingSector;
+use App\Booking;
 
 class MesaController extends Controller
 {
@@ -115,18 +116,16 @@ class MesaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function enabled($client_id,$dia, $h0, $hf)
+    public function enabled($client_id, $dia, $h0, $hf)
     {
         $mesas = Mesa::where('client_id',$client_id)->get();
+        $bookings = Booking::where(['day'=>$dia,'star'=>$h0,'end'=>$hf])->get();   
         $out = [];
-        foreach( $mesas as $mesa ){
-            $item = $mesa;
-            //buscar en el dia
-
-
-            //
+        foreach( $bookings as $book ){
+            $item = $book;
+            $item['mesas'] = $book->mesa;
+            $out[] = $item;
         }
-
-        return response()->json($mesas);
+        return response()->json(['rpta'=>'ok','mesas'=>$mesas,'libros'=>$out]);
     }
 }

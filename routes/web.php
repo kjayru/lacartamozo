@@ -301,7 +301,9 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('/clasificaciones/store','Admin\ClassificationsController@store')->name('classifications.store')->middleware('permission:classifications.create'); 
 
     Route::get('/clientes/portipo/{classificacion}','Admin\ClientController@portipo');
+    
     Route::get('/users/activos','Admin\UserActivoController@activos');
+    Route::get('/users/forautocomplete','Admin\UserController@autocomplete');
 });
 Route::get('/home', 'HomeController@index')->name('home');
 

@@ -11,14 +11,6 @@ class Booking extends Model
         return $this->hasMany('App\BookingDetail');
     }
 
-    public function sector(){
-        return $this->belongsTo('App\Sector');
-    }
-
-    public function mesa(){
-        return $this->belongsTo('App\Mesa');
-    }
-
     public function user(){
         return $this->belongsTo('App\User'); 
     }
@@ -31,4 +23,12 @@ class Booking extends Model
         return $this->belongsTo('App\BookingState', 'bookingstate_id');
     }
 
+    public function mesa(){
+        return $this->hasMany('App\Mesa');
+    }
+
+    public function sector(){
+        return $this->hasMany('App\Sector');
+    }
+    
 }

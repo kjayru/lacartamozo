@@ -11,7 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        /*
+        
         $this->call(GeneroTableSeeder::class);
         $this->call(TipoDeviceTableSeeder::class);
         $this->call(ClassificationTableSeeder::class);
@@ -55,7 +55,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ClientPoliticaTableSeeder::class);
         $this->call(ClientServiceTableSeeder::class);
         $this->call(CommentTableSeeder::class);
-        $this->call(StateBuyedTableSeeder::class);*/
+        $this->call(StateBuyedTableSeeder::class);
         
     }
 }
