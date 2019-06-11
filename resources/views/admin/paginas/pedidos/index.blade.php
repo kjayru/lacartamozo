@@ -110,73 +110,78 @@
         </div>  
         
         <div id="menu1" class="tab-pane fade">
-                <div class="box2" style="margin: 0; padding: 0; padding-bottom: 25px; background-color: #fff;">
-                  <ul class="list-inline" style="background-color: #e5e5e5; height: 50px; padding: 8px; margin-bottom: 0px; min-width: 200px;">
+            </br>
+
+            <div class="panel panel-default" style="padding: 0px;">
+  
+                <div class="panel-heading"> 
+                <ul class="list-inline" style="background-color: #e5e5e5; height: 50px; padding: 8px; margin-bottom: 0px;">
                       <li>
                           <i class="fa fa-calendar" style="color: #000;"></i>
-                      </li>                      
+                      </li>      
                       <li>
-                          Hora inicio
-                      </li>
-                      <li>
-                          <select>
-                              <option>Turno</option>
+                          <select class="form-control">
+                              <option>---- Desde -----</option>
+                                @foreach ($sales_state as $salestate)  
+                                    <option value='{{$salestate->value}}'>{{$salestate->name}}</option>
+                                @endforeach 
                           </select>
                       </li>
                       <li>
-                          <select>
-                              <option>Diario</option>
+                          <select class="form-control">
+                              <option>---- Hasta -----</option>
+                                @foreach ($type_sales as $typesale)  
+                                    <option value='{{$typesale->value}}'>{{$typesale->name}}</option>
+                                @endforeach 
                           </select>
-                      </li>
-                      <li>
-                          <select>
-                              <option>26</option>
-                          </select>
-                      </li>
-                      <li>
-                          <select>
-                              <option>mar</option>
-                          </select>
-                      </li>
-                      <li>
-                          <select>
-                              <option>2018</option>
-                          </select>
-                      </li>
-                  </ul>
-                  
-                <div class="box2" style="margin: 0; padding: 0; padding-bottom: 25px; background-color: #fff;">
-                </div>
-                  <ul class="list-inline" style="background-color: #e5e5e5; height: 50px; padding: 8px; margin-bottom: 0px;">
+                      </li> 
+                    </ul>
+
+                    <ul class="list-inline" style="background-color: #e5e5e5; height: 50px; padding: 8px; margin-bottom: 0px;">
                       <li>
                           <i class="fa fa-filter" style="color: #000;"></i>
                       </li>      
                       <li>
-                          <select>
-                              <option>Estado de venta</option>
+                          <select class="form-control">
+                              <option>---- Estado de venta -----</option>
+                                @foreach ($sales_state as $salestate)  
+                                    <option value='{{$salestate->value}}'>{{$salestate->name}}</option>
+                                @endforeach 
                           </select>
                       </li>
                       <li>
-                          <select>
-                              <option>Tipos de venta</option>
+                          <select class="form-control">
+                              <option>---- Tipos de venta -----</option>
+                                @foreach ($type_sales as $typesale)  
+                                    <option value='{{$typesale->value}}'>{{$typesale->name}}</option>
+                                @endforeach 
                           </select>
                       </li>
                       <li>
-                          <select>
-                              <option>Camarero</option>
+                          <select class="form-control">
+                              <option>---- Mozo -----</option>
+                                @foreach ($mozos as $mozo)  
+                                    <option value='{{$mozo->value}}'>{{$mozo->name}}</option>
+                                @endforeach 
+                          </select>
+                      </li> 
+                      <li>
+                          <select class="form-control">
+                              <option>---- Medio de pago -----</option>
+                                @foreach ($payment_methods as $pago)  
+                                    <option value='{{$pago->value}}'>{{$pago->name}}</option>
+                                @endforeach 
                           </select>
                       </li>
                       <li>
-                          <select>
-                              <option>Cliente</option>
-                          </select>
-                      </li>
-                      <li>
-                          <select>
-                              <option>Medio de pago</option>
-                          </select>
-                      </li>
-                  </ul>
+                      <button class="btn btn-primary">Buscar</button>
+                      </li>                
+                    </ul>
+                </div>
+                  
+                <div class="box2" style="margin: 0; padding: 0; padding-bottom: 25px; background-color: #fff;">
+                </div>
+                  
                   
                   <div style="height: 100px; padding: 12px; background-color: #fff; ">
 

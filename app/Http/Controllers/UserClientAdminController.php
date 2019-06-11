@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\UserClientAdmin;
 
-class UserMenuLikeController extends Controller
+class UserClientAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,8 @@ class UserMenuLikeController extends Controller
      */
     public function index()
     {
-        //
+        $userClientAdmin = UserClientAdmin::orderBy('id')->get();
+        return ['data'=>$userClientAdmin];
     }
 
     /**
@@ -34,7 +36,11 @@ class UserMenuLikeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $coupon = new UserClientAdmin();
+        $coupon->user_id = $request->user_id;
+        $coupon->client_id = $request->client_id;
+        $coupon->save();
+        return response()->json(['rpta'=>'ok']);
     }
 
     /**
@@ -45,7 +51,8 @@ class UserMenuLikeController extends Controller
      */
     public function show($id)
     {
-        //
+        $userClientAdmin = UserClientAdmin::where('id',$id)->get();
+        return ['data'=>$userClientAdmin];
     }
 
     /**

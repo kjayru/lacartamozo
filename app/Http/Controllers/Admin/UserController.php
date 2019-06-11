@@ -22,6 +22,7 @@ class UserController extends Controller
             $item = [];
             $item['name'] = $user->name." ".$user->lastname;
             $item['phone'] = $user->telefono;
+            $item['id'] = $user->id;
             $out[] = $item;
         } 
         return json_encode(['rpta' => "ok", 'data' => $out]);

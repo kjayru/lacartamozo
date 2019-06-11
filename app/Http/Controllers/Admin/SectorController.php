@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Sector;
 
-class UserMenuLikeController extends Controller
+class SectorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -46,6 +48,9 @@ class UserMenuLikeController extends Controller
     public function show($id)
     {
         //
+        $sector = Sector::find($id);
+
+        return response()->json($sector);
     }
 
     /**
@@ -80,5 +85,13 @@ class UserMenuLikeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function fromClient($id)
+    {
+        //
+        $sector = Sector::where('client_id',$id)->get();
+
+        return response()->json(["rpta"=>"ok","data"=>$sector]);
     }
 }

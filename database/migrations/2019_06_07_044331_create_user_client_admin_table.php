@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserMenuLikesTable extends Migration
+class CreateUserClientAdminTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateUserMenuLikesTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_menu_likes', function (Blueprint $table) {
+        Schema::create('user_client_admin', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users'); 
-            $table->unsignedInteger('menu_id');
-            $table->foreign('menu_id')->references('id')->on('menus'); 
-            $table->integer('estado');
+            $table->unsignedInteger('client_id');
+            $table->foreign('client_id')->references('id')->on('clients'); 
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateUserMenuLikesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_menu_likes');
+        Schema::dropIfExists('user_client_admin');
     }
 }

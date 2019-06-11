@@ -28,13 +28,19 @@ class MiPosicionPuntosController extends Controller
 
         //agergar mi abono  y puntos utilizados
         $clientPoint = ClientPoint::where('client_id',$user_id)->first();
+        if( !$clientPoint ){
+            $clientPoint = new ClientPoint(); 
+            $clientPoint->client_id = $user_id;
+            $clientPoint->point_used = 0;
+            $clientPoint->point_enabled = 0;
+        }
         $clients = ClientPoint::all()->sortByDesc("amount");
         $pos_gen = 0;
         $pos_cat = 0; 
         $ii_gen = 0;
         $ii_cat = 0;
 
-        
+        $role = $clientPoint->client->roles;
         $c2 = $clientPoint->client->franchise->classification_id;
         foreach($clients as $client)
         {
@@ -54,7 +60,7 @@ class MiPosicionPuntosController extends Controller
         $clientPoint->pos_cat = $pos_cat;
 
         return view('admin.paginas.miposicionpuntos.index', ['clasificaciones' => $classifications, 
-        'clients' => $clients, 'micuenta' => $clientPoint]);
+        'clients' => $clients, 'micuenta' => $clientPoint, 'user_id' => $user_id, 'role'=>$role]);
     }
 
     /**

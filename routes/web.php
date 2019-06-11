@@ -159,7 +159,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('mesas/{mozo}/edit','Admin\MesaController@edit')->name('mesas.edit')
     ->middleware('permission:mesas.edit');
 
-    Route::get('mesas/enabled/{client_id}/{dia}/{h0}/{hf}','Admin\MesaController@enabled')->name('mesas.create')
+    Route::get('mesas/enabled/{sector_id}/{dia}/{h0}/{hf}','Admin\MesaController@enabled')->name('mesas.create')
     /*->middleware('permission:mesas.enabled')*/;
 
     //menu
@@ -304,9 +304,13 @@ Route::group(['prefix' => 'admin'], function () {
     
     Route::get('/users/activos','Admin\UserActivoController@activos');
     Route::get('/users/forautocomplete','Admin\UserController@autocomplete');
+
+    Route::post('/reserva','Admin\BookingController@store')->name('booking.store');
+    Route::post('/reserva/cancelar','Admin\BookingController@cancel')->name('booking.cancelar');
+
+    Route::get('/sector/{client}','Admin\SectorController@fromClient')->name('sector.client');
 });
 Route::get('/home', 'HomeController@index')->name('home');
-
 
 Route::get('/api/franquicias','AdminController@apiFranquicia')->name('api.franquicias');
 

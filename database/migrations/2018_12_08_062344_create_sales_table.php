@@ -29,7 +29,7 @@ class CreateSalesTable extends Migration
             $table->unsignedInteger('mesa_id')->nullable();
             $table->foreign('mesa_id')->references('id')->on('mesas');
 
-            $table->unsignedInteger('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
 
             $table->decimal('importe',8,2);

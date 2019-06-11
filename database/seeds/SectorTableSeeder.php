@@ -14,12 +14,13 @@ class SectorTableSeeder extends Seeder
      */
     public function run()
     {   
-        $clients = Clients::all();
+        $clients = Client::all();
         $faker = Faker::create();  
 
         foreach($clients as $client){  
             Sector::create([
                 'name' => $faker->name, 
+                'client_id' => $client->id, 
             ]);
         } 
     }

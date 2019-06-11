@@ -17,7 +17,7 @@ class CreateNewsListClientsTable extends Migration
             $table->increments('id');
 
             
-            $table->unsignedInteger('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
 
             $table->unsignedInteger('news_type_client_id');

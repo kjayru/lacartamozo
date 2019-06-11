@@ -9,7 +9,7 @@ class Client extends Model
   
     public function franchise()
     {
-        return $this->belongsTo('App\Franchise');
+        return $this->belongsTo('App\Franchise','franchise_id');
     }
 
     public function mozos()

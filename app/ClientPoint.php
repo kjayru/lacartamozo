@@ -9,6 +9,6 @@ class ClientPoint extends Model
     protected $table = 'client_points';
 
     public function client(){
-        return $this->belongsTo('App\Client');
+        return $this->belongsTo('App\Client','client_id');
     }
 }

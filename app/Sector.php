@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sector extends Model
 {   
-    public function booking(){
-        return $this->belongsTo('App\Booking');
+
+    public function bookingSector(){
+        return $this->hasMany('App\BookingSector');
     }
 }

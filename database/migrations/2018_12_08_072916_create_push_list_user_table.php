@@ -18,7 +18,7 @@ class CreatePushListUserTable extends Migration
             $table->unsignedInteger('push_list_id');
             $table->foreign('push_list_id')->references('id')->on('push_lists');
 
-            $table->unsignedInteger('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });

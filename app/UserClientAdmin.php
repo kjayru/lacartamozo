@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UserClientPoint extends Model
+class UserClientAdmin extends Model
 {
-    protected $table = 'userclient_points'; 
+    protected $table = 'user_client_admin';
 
     public function user()
     {
@@ -17,4 +17,5 @@ class UserClientPoint extends Model
     {
         return $this->belongsTo('App\Client');
     }
+
 }

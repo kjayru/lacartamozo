@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Sector;
+use App\Mesa; 
+use Faker\Factory as Faker;
+
 
 class MesaTableSeeder extends Seeder
 {
@@ -11,8 +15,19 @@ class MesaTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-        $Quantity = 200;
-        factory(App\Mesa::class, $Quantity)->create();
+        $sectors = Sector::all();
+        $faker = Faker::create();  
+
+        foreach($sectors as $sector){   
+            $Quantity = 40;
+            for($ii = 1; $ii<=$Quantity; $ii++){
+                Mesa::create([
+                    'client_id' => $sector->client_id, 
+                    'codeqr' => '/dist/img/qr_sample.png',
+                    'nummesas' =>  $ii,
+                    'sector_id' => $sector->id, 
+                ]);
+            } 
+        } 
     }
 }

@@ -2,10 +2,19 @@
 
 @section('content')
 
-<!--TODO RESERVAS ES OPR REST-->
-
+<!--TODO RESERVAS ES OPR REST--> 
 <section class="content" style="padding-right: 0px; background-color: #f7f7f7;">
      
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+ 
 <div id="wrappermini">
     <div id="one">  
     
@@ -48,15 +57,31 @@
                     <form class="form-horizontal" id="fr-franchise" method="post" action="#">   
                         <div class="box-body" >  
                         
+                            <?php
+                                if($rol == 1 || $rol == 2){ //admin o franquiciador 
+                                    echo '<div class="form-group">';
+                                    echo '<label class="col-md-3 control-label" for="client_id">Restaurante</label>  ';
+                                    echo '<div class="col-md-8">';                                        
+                                    echo '<select class="form-control input-md" style="background-color: #e5e5e5;" name="client_id" id="select_client">';
+                                    echo '<option value="0">--Restaurante--</option> ';
+                                    foreach($clients as $client){
+                                        echo '<option value="'.$client->id.'">'.$client->name.'</option> ';
+                                    }
+                                    echo '</select>';
+                                    echo '</div> ';
+                                    echo '</div>';
+                                }
+                            ?>
+
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="names">Nombres y Apellidos</label>  
+                                <label class="col-md-3 control-label" for="name">Nombres y Apellidos</label>  
                                 <div class="col-md-8">
                                 <input id="names" name="name" style="background-color: #e5e5e5;" type="text" placeholder="Nombres y apellidos" class="form-control input-md">
                                 </div> 
                             </div>
 
                             <div class="form-group">    
-                                <label class="col-md-3 control-label" for="address">Cantidad de personas</label>  
+                                <label class="col-md-3 control-label" for="amount">Cantidad de personas</label>  
                                 <div class="col-md-8">
                                 <input id="amount" name="amount" style="background-color: #e5e5e5;" type="number" value="1" min="1" max="100" class="form-control input-md">
                                 </div> 
@@ -67,22 +92,22 @@
                                     <div class="col-md-8">
                                         <select class="form-control input-md" style="background-color: #e5e5e5;" name="hora0" id="hora0">
                                             <option value="0">--seleccione--</option> 
-                                            <option value="8">8:00</option> 
-                                            <option value="9">9:00</option> 
-                                            <option value="10">10:00</option> 
-                                            <option value="11">11:00</option> 
-                                            <option value="12">12:00</option> 
-                                            <option value="13">13:00</option> 
-                                            <option value="14">14:00</option> 
-                                            <option value="15">15:00</option> 
-                                            <option value="16">16:00</option> 
-                                            <option value="17">17:00</option> 
-                                            <option value="18">18:00</option> 
-                                            <option value="19">19:00</option> 
-                                            <option value="20">20:00</option> 
-                                            <option value="21">21:00</option> 
-                                            <option value="22">22:00</option> 
-                                            <option value="23">23:00</option> 
+                                            <option value="8:00:00">8:00</option> 
+                                            <option value="9:00:00">9:00</option> 
+                                            <option value="10:00:00">10:00</option> 
+                                            <option value="11:00:00">11:00</option> 
+                                            <option value="12:00:00">12:00</option> 
+                                            <option value="13:00:00">13:00</option> 
+                                            <option value="14:00:00">14:00</option> 
+                                            <option value="15:00:00">15:00</option> 
+                                            <option value="16:00:00">16:00</option> 
+                                            <option value="17:00:00">17:00</option> 
+                                            <option value="18:00:00">18:00</option> 
+                                            <option value="19:00:00">19:00</option> 
+                                            <option value="20:00:00">20:00</option> 
+                                            <option value="21:00:00">21:00</option> 
+                                            <option value="22:00:00">22:00</option> 
+                                            <option value="23:00:00">23:00</option> 
                                         </select>
                                     </div> 
                             </div>
@@ -92,44 +117,49 @@
                                     <div class="col-md-8">
                                         <select class="form-control input-md" style="background-color: #e5e5e5;" name="horaf" id="horaf">
                                             <option value="0">--seleccione--</option> 
-                                            <option value="8">8:00</option> 
-                                            <option value="9">9:00</option> 
-                                            <option value="10">10:00</option> 
-                                            <option value="11">11:00</option> 
-                                            <option value="12">12:00</option> 
-                                            <option value="13">13:00</option> 
-                                            <option value="14">14:00</option> 
-                                            <option value="15">15:00</option> 
-                                            <option value="16">16:00</option> 
-                                            <option value="17">17:00</option> 
-                                            <option value="18">18:00</option> 
-                                            <option value="19">19:00</option> 
-                                            <option value="20">20:00</option> 
-                                            <option value="21">21:00</option> 
-                                            <option value="22">22:00</option> 
-                                            <option value="23">23:00</option> 
+                                            <option value="8:00:00">8:00</option> 
+                                            <option value="9:00:00">9:00</option> 
+                                            <option value="10:00:00">10:00</option> 
+                                            <option value="11:00:00">11:00</option> 
+                                            <option value="12:00:00">12:00</option> 
+                                            <option value="13:00:00">13:00</option> 
+                                            <option value="14:00:00">14:00</option> 
+                                            <option value="15:00:00">15:00</option> 
+                                            <option value="16:00:00">16:00</option> 
+                                            <option value="17:00:00">17:00</option> 
+                                            <option value="18:00:00">18:00</option> 
+                                            <option value="19:00:00">19:00</option> 
+                                            <option value="20:00:00">20:00</option> 
+                                            <option value="21:00:00">21:00</option> 
+                                            <option value="22:00:00">22:00</option> 
+                                            <option value="23:00:00">23:00</option> 
                                         </select>
                                     </div> 
                             </div>
 
                             <div class="form-group">    
-                                <label class="col-md-3 control-label" for="address">Sector</label>  
+                                <label class="col-md-3 control-label" for="sector">Sector</label>  
                                 <div class="col-md-8">
-                                <input id="amount" name="amount" style="background-color: #e5e5e5;" type="number" value="1" min="1" max="100" class="form-control input-md">
+                                <select id="sector" class="form-control" style="background-color: #e5e5e5;"  name="sector">
+                                    <option>---- Sector -----</option>
+                                        @foreach ($sectors as $sector)  
+                                            <option value='{{$sector->id}}'>{{$sector->name}}</option>
+                                        @endforeach 
+                                </select>
                                 </div> 
                             </div>
 
                             <div class="form-group">    
-                                <label class="col-md-3 control-label" for="address">Celular</label>  
+                                <label class="col-md-3 control-label" for="cellphone">Celular</label>  
                                 <div class="col-md-8">
                                 <input id="cellphone" name="cellphone" style="background-color: #e5e5e5;" type="text" class="form-control input-md">
                                 </div> 
                             </div>
                                          
                             <div class="form-group">    
-                                <label class="col-md-3 control-label" for="address">Estado de la reserva</label>  
+                                <label class="col-md-3 control-label" for="estado">Estado de la reserva</label>  
                                 <div class="col-md-8">
-                                <input id="cellphone" name="estado" style="background-color: #e5e5e5;" type="text" value="Sin confirmar" class="form-control input-md" readonly>
+                                <input id="estado" name="estado" style="background-color: #e5e5e5;" type="text" value="Sin confirmar" class="form-control input-md" readonly>
                                 </div> 
                             </div>
 
@@ -149,7 +179,7 @@
                             </div>
  
                             <div class="box-footer"> 
-                                <button type="submit" class="btn btn-info pull-right">Reservar</button>
+                                <button class="btn btn-primary pull-right" onclick="crearReserva()">Reservar</button>
                             </div>
 
                         </div>  
@@ -254,9 +284,6 @@
                     if( mesaDisponible === true ){ 
                         crearMesaDisponible(record, mesaHora.nummesa); 
                     }
-                    else{ 
-                        createBtnMesaDisable(record, mesaHora.nummesa, function(){});
-                    }
                 }
             } );
             
@@ -269,6 +296,7 @@
     { 
         createBtnMesa(record, numMesa, function(){ 
 
+            alert(numMesa);
             if( this.id === "btn_mesa_disable" ){
                 return;
             }
@@ -316,13 +344,14 @@
     
     //fecha en formato YYYY-MM-DDTHH:MM:SSZ
     function getPedidoDia(parent, fecha, idtable, data)
-    {
+    { 
         //mas de 10 dias de diferencia return
-        var currFecha = new Date();
-        var showPedidosFecha = new Date( fecha );
+        var currFecha = new Date(); 
+        var arrfecha = fecha.split("-");
+        var showPedidosFecha = new Date(arrfecha[0], parseInt(arrfecha[1])-1, arrfecha[2], 0, 0, 0); 
         var days = daysBeetween(showPedidosFecha, currFecha);
         if( days > 10 ) return;
-        
+         
         var div0 = document.createElement("div");
         div0.style = "overflow-y: auto;";
         
@@ -412,6 +441,7 @@
              
             var tr1 = document.createElement('tr');
             var data_row = data[i];
+            if( data_row == null ) continue;
             for (var j = 0; j < 8; j++) { //para cada columna
                 var td1 = document.createElement('td');
                 td1.align = "center";
@@ -420,11 +450,28 @@
             }
             
             var tdn = document.createElement('td');
+            tdn.setAttribute('id',data_row[0]);
             if(data_row[7] !== 'cancelado'){
                     var btn = document.createElement("BUTTON");
                     btn.classList.add("btn");
-                    btn.classList.add("btn-primary");                    
-                    btn.innerHTML = "Cancelar";  
+                    btn.classList.add("btn-secundary");                    
+                    btn.innerHTML = "Cancelar"; 
+                    btn.onclick = function(){
+                                        
+                        var _token = $("input[name='_token']").val();
+                        $.ajax({
+                        type:'POST',
+                        url:"/admin/reserva/cancelar",
+                        data:{  _token:_token, id: tdn.getAttribute('id') },
+                        success:function(data){
+                                if(data.rpta === 'ok'){    
+                                    if(alert(data.msg)){}
+                                    else    window.location.reload(); 
+                                }
+                            }
+                        }); 
+                         
+                    } 
                     tdn.align = "center";
                     tdn.appendChild(btn);
             }
@@ -448,31 +495,14 @@
 
     function daysBeetween( date2, currDate ) {   //date2 > currDate, se asume
         
-        var new_year = date2.getFullYear();
-        var curr_year = currDate.getFullYear();
-        var new_month = date2.getMonth();
-        var curr_month = currDate.getMonth();
-        var new_day = date2.getDate();
-        var curr_day = currDate.getDate();
-        
-        if( new_year === curr_year )
-        {
-            if( new_month === curr_month ){
-                return new_day - curr_day;
-            }
-            else
-            {
-                var diff_month = new_month - curr_month;
-                var num_day_of_month = getNumDaysOfMonth( curr_year, curr_month );
-                var left_days_to_month = num_day_of_month - curr_day; 
-                var diff_days = left_days_to_month + (diff_month-1)*31 + new_day;
-                return diff_days;
-            }
-        }
-        else{
-            return 365*(new_year - curr_year);
-        }
-        
+        currDate.setHours(0);
+        currDate.setMinutes(0);
+        currDate.setSeconds(0);
+        currDate.setMilliseconds(0);
+        var dif_miliseg = (date2.getTime() - currDate.getTime())/1000;
+        var dias = Math.round(dif_miliseg/(24*3600)); 
+        return dias;
+         
      };
      
      function getNumDaysOfMonth(month, year)
@@ -507,17 +537,35 @@
         }
     }); 
 
-    function addMesa(isAvailable, number, onclickfunc)
+    var mesasSeleccionadas = [];
+
+    function addMesa(isAvailable, number, id)
     {
         var parent = document.getElementById("lista_mesas");
 
         var btn = document.createElement("button");
-        btn.id = "btn_mesa";
-        btn.onclick = onclickfunc;
+        btn.onclick = function() { 
+            if(btn.id === "btn_mesa_disable" ){
+                btn.id = "btn_mesa";
+                //quitar de seleccionados
+                for( var i = 0; i < mesasSeleccionadas.length; i++){ 
+                    if ( mesasSeleccionadas[i] === id) {
+                        mesasSeleccionadas.splice(i, 1); 
+                    }
+                } 
+            }
+            else{
+                btn.id = "btn_mesa_disable";
+                mesasSeleccionadas.push(id); 
+            }
+
+        };
         btn.type = "button";
         if( isAvailable === true ){
+            btn.id = "btn_mesa";
             btn.className = "btn btn-primary";
         }else{
+            btn.id = "btn_mesa_disable";
             btn.className = "btn btn-default";
         }        
         btn.innerHTML = number;
@@ -537,6 +585,7 @@
     //para autocomplete
     var clientes = [];
     var telefonos = [];
+    var iis = [];
     $.ajax({
            type:'GET',
            url:"/admin/users/forautocomplete",
@@ -548,6 +597,7 @@
                     $.each( json_obj.data, function( key, value ) {
                         clientes.push(value.name);
                         telefonos.push(value.phone);
+                        iis.push(value.id);
                     });
                     console.log(clientes);
                     autocomplete(document.getElementById("myInput"), clientes);
@@ -555,6 +605,7 @@
            }
     }); 
 
+    var u_id = 0;
     $("form").submit(function(){ 
         event.preventDefault(); 
         $("#names").val( $("#myInput").val() ); 
@@ -569,16 +620,38 @@
             }
         }); 
         $("#cellphone").val( telefonos[idx_f].toString() ); 
+        u_id = iis[idx_f];
     }); 
 
-    $("#datepicker").on("change paste keyup", function() { 
-        var id_client = '3';
+    $("#datepicker").on("change paste keyup", function() {  
+        var sector_id = $("#sector").val();  
+        var dia = $(this).val();  
+        dia = dia.replace('/','-');
+        dia = dia.replace('/','-');
+        var hora0 = $("#hora0").val();  
+        var horaf = $("#horaf").val();
+
+        if(sector_id==0) {
+            alert('Seleccione un sector, hora de inicio y hora final para ver las mesas disponibles');
+            return;
+        } 
+        if(hora0==0) {
+            alert('Seleccione un sector, hora de inicio y hora final para ver las mesas disponibles');
+            return;
+        } 
+        if(horaf==0) {
+            alert('Seleccione un sector, hora de inicio y hora final para ver las mesas disponibles');
+            return;
+        }  
+
+        var my_url = "/admin/mesas/enabled/"+sector_id+"/"+dia+"/"+hora0+"/"+horaf; 
 
         $.ajax({
         type:'GET',
-        url:"/admin/mesas/enabled/"+id_client+"/10-06-2019"+"/"+$("#hora0").val()+"/"+$("#horaf").val(),
+        url:my_url,
         data:{},
         success:function(json_obj){    
+                mesasSeleccionadas = [];
                 json_obj.mesas.forEach(function (mesa, index, array){                   
                     var isAvailable = true;
                     json_obj.libros.forEach(function (reserva, index, array){ 
@@ -588,12 +661,112 @@
                             }
                         }); 
                     }); 
-                    addMesa(isAvailable, mesa.id, function() { } );
+                    addMesa(isAvailable, mesa.nummesas, mesa.id );
                 });    
         }
         });
 
     });
+
+    function crearReserva(){
+        
+        //verificar entradas
+        var name = $("#name").val();  
+        var amount = $("#amount").val();  
+        var sector_id = $("#sector").val();  
+
+        var arr_dia = $("#datepicker").val().split("/"); 
+        var dia = arr_dia[2] + "-" + arr_dia[0] + "-" + arr_dia[1];
+        var hora0 = $("#hora0").val();  
+        var horaf = $("#horaf").val();
+        var cellphone = $("#cellphone").val();  
+        var client_id = $('#select_client').val();
+
+        if(name=='') {
+            alert('Indique el nombre de la persona que hace la reserva');
+            return;
+        } 
+        if(amount=='') {
+            alert('Indique la cantidad de personas');
+            return;
+        } 
+        if(sector_id==0) {
+            alert('Indique un sector');
+            return;
+        } 
+        if(dia=='') {
+            alert('Seleccione un dia');
+            return;
+        } 
+        if(hora0==0) {
+            alert('Seleccione una hora inicial');
+            return;
+        } 
+        if(horaf==0) {
+            alert('Seleccione una hora final');
+            return;
+        }  
+        if(cellphone=='') {
+            alert('Indique un numero telefonico de la persona que hace la reserva');
+            return;
+        } 
+        if(mesasSeleccionadas.length == 0) {
+            alert('Seleccione las mesas a reservar');
+            return;
+        } 
+        if(client_id==0) {
+            alert('Seleccione un cliente');
+            return;
+        } 
+        if(u_id==0) {
+            alert('Seleccione un nombre de usuario');
+            return;
+        } 
+
+        //enviar ajax  
+        var _token = $("input[name='_token']").val();
+        $.ajax({
+           type:'POST',
+           url:"/admin/reserva",
+           data:{  _token:_token, name: name, amount: amount, sector_id: sector_id, 
+           hora0: hora0, horaf: horaf, cellphone: cellphone, 
+           date: dia, mesas: mesasSeleccionadas, user_id: u_id, client_id: client_id },
+           success:function(data){
+                if(data.rpta === 'ok'){  
+                    if(alert(data.msg)){}
+                    else    window.location.reload(); 
+                }
+            }
+        }); 
+    }
+
+    $('#select_client').change(function() { 
+        fillSectorOptions($(this).val());
+    });
+
+    function fillSectorOptions(id){
+        $.ajax({
+           type:'GET',
+           url:"/admin/sector/"+id,
+           data:{},
+           success:function(data){ 
+                if(data.rpta === 'ok'){ 
+                    $("#sector")
+                    .find('option')
+                    .remove()
+                    .end();
+                    
+                    $("#sector")
+                        .append('<option value="0">---- Sector -----</option>');
+
+                    $.each( data.data, function( index, value ) { 
+                        $("#sector")
+                        .append('<option value="'+value.id+'">'+value.name+'</option>')
+                    }); 
+                }
+            }
+        }); 
+    }
 
 </script>
 

@@ -27,8 +27,7 @@ class Booking extends Model
         return $this->hasMany('App\Mesa');
     }
 
-    public function sector(){
-        return $this->hasMany('App\Sector');
+    public function bookingSector(){
+        return $this->hasMany('App\BookingSector');
     }
-    
 }

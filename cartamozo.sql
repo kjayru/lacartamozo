@@ -1319,9 +1319,10 @@ CREATE TABLE `roles` (
 BEGIN;
 INSERT INTO `roles` VALUES (1, 'Administrador', 'admin', 'Administrador general', '2018-12-13 05:55:41', '2018-12-13 05:55:41', 'all-access');
 INSERT INTO `roles` VALUES (2, 'Franquicia', 'anunciante', 'Administrador de franquicias', '2018-12-13 05:55:41', '2018-12-13 05:55:41', NULL);
-INSERT INTO `roles` VALUES (3, 'Mozo', 'mozo', 'mozo ', '2018-12-13 05:55:41', '2018-12-13 05:55:41', NULL);
-INSERT INTO `roles` VALUES (4, 'Caja', 'caja', 'caja ventas ', '2018-12-13 05:55:41', '2018-12-13 05:55:41', NULL);
-INSERT INTO `roles` VALUES (5, 'usuario', 'usuario', 'usuario app o restaurant', '2018-12-13 05:55:41', '2018-12-13 05:55:41', NULL);
+INSERT INTO `roles` VALUES (3, 'Client', 'local', 'Administrador del local', '2018-12-13 05:55:41', '2018-12-13 05:55:41', NULL);
+INSERT INTO `roles` VALUES (4, 'Mozo', 'mozo', 'mozo ', '2018-12-13 05:55:41', '2018-12-13 05:55:41', NULL);
+INSERT INTO `roles` VALUES (5, 'Caja', 'caja', 'caja ventas ', '2018-12-13 05:55:41', '2018-12-13 05:55:41', NULL);
+INSERT INTO `roles` VALUES (6, 'usuario', 'usuario', 'usuario app o restaurant', '2018-12-13 05:55:41', '2018-12-13 05:55:41', NULL);
 COMMIT;
 
 -- ----------------------------

@@ -116,9 +116,9 @@ class MesaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function enabled($client_id, $dia, $h0, $hf)
+    public function enabled($sector_id, $dia, $h0, $hf)
     {
-        $mesas = Mesa::where('client_id',$client_id)->get();
+        $mesas = Mesa::where('sector_id',$sector_id)->get();
         $bookings = Booking::where(['day'=>$dia,'star'=>$h0,'end'=>$hf])->get();   
         $out = [];
         foreach( $bookings as $book ){

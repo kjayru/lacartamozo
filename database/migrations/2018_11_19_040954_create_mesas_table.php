@@ -21,6 +21,8 @@ class CreateMesasTable extends Migration
             $table->string('codeqr');
             $table->integer('nummesas');
             $table->integer('estado')->default(1);
+            $table->unsignedInteger('sector_id');
+            $table->foreign('sector_id')->references('id')->on('sectors');
             $table->timestamps();
         });
     }

@@ -17,7 +17,7 @@ class CreateUserclientPointsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('client_id');
             $table->foreign('client_id')->references('id')->on('clients'); 
-            $table->unsignedInteger('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users'); 
             $table->integer('points');
             $table->string('description',80);

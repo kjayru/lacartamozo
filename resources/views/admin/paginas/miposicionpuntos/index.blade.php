@@ -1,7 +1,7 @@
 @extends('admin.layout.master')
 
 @section('content')
-
+<?php echo 'role='.$role;?>
 <section class="content" style="padding-right: 0px; padding-top: 0px; background-color: #f7f7f7;">
 
     <div width="100%"  class="  inline-block" style="background-color: #fff;"> 

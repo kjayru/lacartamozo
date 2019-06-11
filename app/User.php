@@ -4,6 +4,7 @@ namespace App;
 
 use Laravel\Passport\HasApiTokens;
 use App\Transformers\UserTransformer;
+use App\UserClientAdmin;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -90,4 +91,10 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Sale');
     }
+
+    public function userClientAdmin()
+    {
+        return $this->hasMany('App\Client');
+    }
+    
 }

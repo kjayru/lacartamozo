@@ -37,6 +37,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(MenuIngredientTableSeeder::class);
         $this->call(MenusPhotoTableSeeder::class);
+        $this->call(SectorTableSeeder::class);
         $this->call(MesaTableSeeder::class);
         $this->call(MozosTableSeeder::class);
 

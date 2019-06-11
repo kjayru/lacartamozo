@@ -4,8 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Sale;
+use App\RoleUser;
 use App\User;
+use App\UserClientAdmin;
+use App\SaleState;
+use App\TypeSale;
+use App\Mozo;
+use App\PaymentMethod;
+
 class OrderController extends Controller
 {
     /**
@@ -15,7 +23,39 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $enpreparacion = Sale::where(['salestate_id'=>2, 'typesale_id'=>1])->get();
+        //segun el tipo de rol
+        $user_id = Auth::id();
+        $user = User::where('id', $user_id)->first();
+        $role = RoleUser::where('user_id', $user_id)->first();
+
+        $client = "";
+        if($role->role_id == 5){
+            $client = UserClientAdmin::where('user_id',$user_id)->first();
+        }
+
+        if($role->role_id == 5 && $client != ""){
+            $enpreparacion = Sale::where(['salestate_id'=>2, 'typesale_id'=>1, 'client_id'=>$client->client_id])->get();
+            $enviados = Sale::where(['salestate_id'=>5, 'typesale_id'=>1, 'client_id'=>$client->client_id])->get();
+            $entregados = Sale::where(['salestate_id'=>6, 'typesale_id'=>1, 'client_id'=>$client->client_id])->get();
+            $enpreparacion_ventas = Sale::where(['salestate_id'=>2, 'typesale_id'=>2, 'client_id'=>$client->client_id])->get();
+            $enviados_ventas = Sale::where(['salestate_id'=>5, 'typesale_id'=>2, 'client_id'=>$client->client_id])->get();
+            $entregados_ventas = Sale::where(['salestate_id'=>6, 'typesale_id'=>2, 'client_id'=>$client->client_id])->get();
+        }else if($role->role_id == 1){ //administrador
+            $enpreparacion = Sale::where(['salestate_id'=>2, 'typesale_id'=>1])->get();
+            $enviados = Sale::where(['salestate_id'=>5, 'typesale_id'=>1])->get();
+            $entregados = Sale::where(['salestate_id'=>6, 'typesale_id'=>1])->get();
+            $enpreparacion_ventas = Sale::where(['salestate_id'=>2, 'typesale_id'=>2])->get();
+            $enviados_ventas = Sale::where(['salestate_id'=>5, 'typesale_id'=>2])->get();
+            $entregados_ventas = Sale::where(['salestate_id'=>6, 'typesale_id'=>2])->get();
+        }else{
+            $enpreparacion = [];
+            $enviados = [];
+            $entregados = [];
+            $enpreparacion_ventas = [];
+            $enviados_ventas = [];
+            $entregados_ventas = [];
+        }
+        
         $out_enpreparacion = [];
         foreach($enpreparacion as $prep){
             $item = $prep; 
@@ -24,7 +64,6 @@ class OrderController extends Controller
             $out_enpreparacion[] = $item;
         }
 
-        $enviados = Sale::where(['salestate_id'=>5, 'typesale_id'=>1])->get();
         $out_enviados = [];
         foreach($enviados as $env){
             $item = $env;
@@ -33,7 +72,6 @@ class OrderController extends Controller
             $out_enviados[] = $item;
         }
         
-        $entregados = Sale::where(['salestate_id'=>6, 'typesale_id'=>1])->get();
         $out_entregados = [];
         foreach($entregados as $ent){
             $item = $ent;
@@ -41,10 +79,7 @@ class OrderController extends Controller
             $item['usuario'] = $user;
             $out_entregados[] = $item;
         }
-
-
-
-        $enpreparacion_ventas = Sale::where(['salestate_id'=>2, 'typesale_id'=>2])->get();
+ 
         $out_enpreparacion_ventas = [];
         foreach($enpreparacion_ventas as $prep){
             $item = $prep; 
@@ -53,7 +88,6 @@ class OrderController extends Controller
             $out_enpreparacion_ventas[] = $item;
         }
 
-        $enviados_ventas = Sale::where(['salestate_id'=>5, 'typesale_id'=>2])->get();
         $out_enviados_ventas = [];
         foreach($enviados_ventas as $env){
             $item = $env;
@@ -62,7 +96,6 @@ class OrderController extends Controller
             $out_enviados_ventas[] = $item;
         }
         
-        $entregados_ventas = Sale::where(['salestate_id'=>6, 'typesale_id'=>2])->get();
         $out_entregados_ventas = [];
         foreach($entregados_ventas as $ent){
             $item = $ent;
@@ -71,12 +104,21 @@ class OrderController extends Controller
             $out_entregados_ventas[] = $item;
         }
 
+        $sales_state = SaleState::all();
+        $type_sales = TypeSale::all();
+        $mozos = Mozo::where('client_id',$client->client_id)->get();
+        $payment_methods = PaymentMethod::all();
+
         return view('admin.paginas.pedidos.index',['enpreparacion'=>$out_enpreparacion,
                                             'enviados'=>$out_enviados,
                                             'entregados'=>$out_entregados,
                                             'enpreparacion_ventas'=>$out_enpreparacion_ventas,
                                             'enviados_ventas'=>$out_enviados_ventas,
-                                            'entregados_ventas'=>$out_entregados_ventas] );
+                                            'entregados_ventas'=>$out_entregados_ventas,
+                                            'sales_state'=>$sales_state,
+                                            'type_sales'=>$type_sales,
+                                            'mozos'=>$mozos,
+                                            'payment_methods'=>$payment_methods] );
     }
 
     /**
