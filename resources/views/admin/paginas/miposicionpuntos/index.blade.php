@@ -94,7 +94,7 @@
                         <div id="p_usados" class="progress-bar progress-bar-warning" role="progressbar" 
                             <?php 
                                 $name_style0 = "";
-                                if($curr_client != []){
+                                if($curr_client != [] && $curr_client->point->amount!=0){
                                     $percent_used = $curr_client->point->point_used/$curr_client->point->amount*100; 
                                     $name_style0 = "width:".$percent_used."%; padding-top: 11px;";
                                 }else{
@@ -114,7 +114,7 @@
                         <div id="p_disp" class="progress-bar progress-bar-success" role="progressbar" 
                             <?php 
                                 $name_style = "";
-                                if($curr_client != []){
+                                if($curr_client != [] && $curr_client->point->amount!=0){
                                     $percent_enabled = $curr_client->point->point_enabled/$curr_client->point->amount*100; 
                                     $name_style = "width:".$percent_enabled."%; padding-top: 11px;";
                                 }else{
