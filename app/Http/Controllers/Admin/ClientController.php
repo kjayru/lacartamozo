@@ -315,34 +315,57 @@ class ClientController extends Controller
         $clientes_out = [];
         $k = 1;
         foreach($clientes as $cliente){
-            $franchise = Franchise::where('id', $cliente->franchise_id)->first();
+            $franchise = $cliente->franchise;
             if($franchise == null )
             {
                 break;
             } 
             
             if($franchise->classification_id == $classificacion){
-                $temp = $cliente->visitas();
-                if(empty($temp) == 0){
+                $temp = $cliente->visitas;
+                if(empty($temp)){
                     $temp = new ClientVisita();
                     $temp->client_id = $cliente->id;
                     $temp->visitas = 0;
                     $temp->save();
                 }
                 $temp->posicion = $k;
-                $point = $cliente->points();
-                if(empty($point) == 0 ){
+                $point = $cliente->points;
+                if(empty($point)){
                     $point = new ClientPoint();
                     $point->client_id = $cliente->id;
+                    $point->point_used = 0;
+                    $point->point_enabled = 0;
                     $point->amount = 0;
                     $point->save();
                 }
-                $temp->puntos = $point->amount;
+                $temp->puntos = $point->point_used;
                 $temp->nombrecomercio = $cliente->name;
+                 
+                $temp['point'] = $point;
                 $clientes_out[] = $temp;
                 $k = $k + 1; 
            }
             
+        }
+
+        $imax = count($clientes_out);
+        for($i =0; $i < $imax; $i++)
+        {
+            $client1 = $clientes_out[$i];
+            $m1 = $client1->point->point_used;
+            for($j = $i+1; $j < $imax; $j++)
+            {
+                $client2 = $clientes_out[$j];
+                $m2 = $client2->point->point_used;
+                if($m1<$m2){ 
+                    $temp = clone $clientes_out[$i];
+                    $temp2 = clone $clientes_out[$j];
+                    $clientes_out[$j] = $temp; 
+                    $clientes_out[$i] = $temp2; 
+                    $m1 = $m2;
+                }
+            }
         }
         return response()->json(['rpta'=>'ok','clientes'=>$clientes_out]);
     }

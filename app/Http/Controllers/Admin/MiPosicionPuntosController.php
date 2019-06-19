@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Classification;
 use App\Client;
 use App\ClientPoint;
+use App\RoleUser;
+use App\UserClientAdmin;
 use App\Franchise;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -22,45 +24,75 @@ class MiPosicionPuntosController extends Controller
     public function index()
     { 
         $classifications = Classification::all();
-        $clients = Client::all();
+        $clients = [];
+        $currClient = [];  
 
+        //tipo del rol de la cuenta y cliente donde trabaja
         $user_id = Auth::id();
+        $role_user = RoleUser::where('user_id',$user_id)->first();
 
-        //agergar mi abono  y puntos utilizados
-        $clientPoint = ClientPoint::where('client_id',$user_id)->first();
-        if( !$clientPoint ){
-            $clientPoint = new ClientPoint(); 
-            $clientPoint->client_id = $user_id;
-            $clientPoint->point_used = 0;
-            $clientPoint->point_enabled = 0;
+        switch($role_user->role_id){
+            case 1://administrador
+                     
+                $clients = Client::all(); 
+                $pos_gen = 0;
+                $pos_cat = 0; 
+                $ii_gen = 0;
+                $ii_cat = 0;
+                
+            break;
+            case 2://franquicia
+            break;
+            case 3://mozo
+            break;
+            case 4://caja
+            break;
+            case 5://usuario o client
+                
+                //datos del cliente logueado
+                $userClientAdmin = UserClientAdmin::where('user_id',$user_id)->first(); 
+                $currClient = $userClientAdmin->client; 
+                $currClient['classification_id'] = $currClient->franchise->classification_id;
+
+                $currClientPoint = $currClient->points;
+                if( empty($currClientPoint) ){
+                    $currClientPoint = new ClientPoint(); 
+                    $currClientPoint->client_id = $currClient->id;
+                    $currClientPoint->point_used = 0;
+                    $currClientPoint->point_enabled = 0;
+                    $currClientPoint->amount = 0;
+                    $currClientPoint->save();
+                }
+                $currClient['point'] = $currClientPoint;
+
+                //datos de los otros cliente
+                $pos_gen = 0;
+                $pos_cat = 0; 
+                $ii_gen = 0;
+                $ii_cat = 0;
+                
+                $clients = Client::all(); 
+                foreach($clients as $client)
+                { 
+                    $client['classification_id'] = $client->franchise->classification_id;
+                    $clientPoint = $client->points;
+                    if( empty($clientPoint) ){
+                        $clientPoint = new ClientPoint(); 
+                        $clientPoint->client_id = $client->id;
+                        $clientPoint->point_used = 0;
+                        $clientPoint->point_enabled = 0;
+                        $clientPoint->amount = 0;
+                        $clientPoint->save();
+                    }
+                    $client['point'] = $clientPoint;
+                } 
+                
+            break;
         }
-        $clients = ClientPoint::all()->sortByDesc("amount");
-        $pos_gen = 0;
-        $pos_cat = 0; 
-        $ii_gen = 0;
-        $ii_cat = 0;
-
-        $role = $clientPoint->client->roles;
-        $c2 = $clientPoint->client->franchise->classification_id;
-        foreach($clients as $client)
-        {
-            if($client->client_id == $clientPoint->client_id){
-                $pos_cat = $ii_cat;
-                $pos_gen = $ii_gen;
-            }
-
-            $c1 = $client->client->franchise->classification_id;
-            if( $c1 == $c2 ){
-                $ii_cat = $ii_cat + 1;
-            }            
-            $ii_gen = $ii_gen + 1;
-        }
-
-        $clientPoint->pos_gen = $pos_gen;
-        $clientPoint->pos_cat = $pos_cat;
-
+        
         return view('admin.paginas.miposicionpuntos.index', ['clasificaciones' => $classifications, 
-        'clients' => $clients, 'micuenta' => $clientPoint, 'user_id' => $user_id, 'role'=>$role]);
+        'clients' => $clients, 'user_id' => $user_id, 'role'=>$role_user->role_id,
+        'curr_client'=>$currClient]);
     }
 
     /**

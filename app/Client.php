@@ -64,17 +64,18 @@ class Client extends Model
 
     public function visitas()
     {
-        return $this->hasOne('App\ClientVisita');
+        return $this->hasOne('App\ClientVisita','client_id');
     }
 
     public function points()
     {
-        return $this->hasOne('App\ClientPoint');
+        return $this->hasOne('App\ClientPoint','client_id');
     }
 
     public function reservas()
     {
         return $this->hasMany('App\Booking');
     }
+ 
 }
 

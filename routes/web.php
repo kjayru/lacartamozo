@@ -309,6 +309,9 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('/reserva/cancelar','Admin\BookingController@cancel')->name('booking.cancelar');
 
     Route::get('/sector/{client}','Admin\SectorController@fromClient')->name('sector.client');
+
+    Route::post('/client_point','Admin\ClientPointController@store')->name('client_point.store');
+    Route::post('/use_enabled_point','Admin\ClientPointController@update')->name('client_point.update');
 });
 Route::get('/home', 'HomeController@index')->name('home');
 

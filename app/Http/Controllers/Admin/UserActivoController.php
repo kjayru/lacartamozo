@@ -100,9 +100,9 @@ class UserActivoController extends Controller
 
     public function activos()
     {    
-        $current = strtotime("03:00:00");
+        $current = time();
         $userActivo = UserActivo::all();
-        $amount = 0;
+        $amount = 1;
         foreach($userActivo as $activo){     
             $last = strtotime($activo->update_at);  
             if($activo->state == 1 && $current - $last > 3600){ //se considera una hora como inactivo
