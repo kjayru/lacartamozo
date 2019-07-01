@@ -718,3 +718,7 @@ td.sorting_1 {
     border-bottom-left-radius: 3px;
     padding: 10px !important;
 }
+
+#table_ventas tr:hover{
+    background-color:lightgoldenrodyellow;
+}

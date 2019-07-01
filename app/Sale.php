@@ -27,7 +27,7 @@ class Sale extends Model
     }
 
     public function estadoVenta(){
-        return $this->belongsTo('App\SaleState');
+        return $this->belongsTo('App\SaleState','salestate_id');
     }
 
     public function tipoventa(){

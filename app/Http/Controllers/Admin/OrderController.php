@@ -13,6 +13,7 @@ use App\SaleState;
 use App\TypeSale;
 use App\Mozo;
 use App\PaymentMethod;
+use App\Client;
 
 class OrderController extends Controller
 {
@@ -39,7 +40,10 @@ class OrderController extends Controller
             $entregados = Sale::where(['salestate_id'=>6, 'typesale_id'=>1, 'client_id'=>$client->client_id])->get();
             $enpreparacion_ventas = Sale::where(['salestate_id'=>2, 'typesale_id'=>2, 'client_id'=>$client->client_id])->get();
             $enviados_ventas = Sale::where(['salestate_id'=>5, 'typesale_id'=>2, 'client_id'=>$client->client_id])->get();
-            $entregados_ventas = Sale::where(['salestate_id'=>6, 'typesale_id'=>2, 'client_id'=>$client->client_id])->get();
+            $entregados_ventas = Sale::where(['salestate_id'=>6, 'typesale_id'=>2, 'client_id'=>$client->client_id])->get();            
+            $mozos = Mozo::where('client_id',$client->client_id)->get();
+            $franquisiados = Client::all();
+            $franquisiados = [];
         }else if($role->role_id == 1){ //administrador
             $enpreparacion = Sale::where(['salestate_id'=>2, 'typesale_id'=>1])->get();
             $enviados = Sale::where(['salestate_id'=>5, 'typesale_id'=>1])->get();
@@ -47,6 +51,8 @@ class OrderController extends Controller
             $enpreparacion_ventas = Sale::where(['salestate_id'=>2, 'typesale_id'=>2])->get();
             $enviados_ventas = Sale::where(['salestate_id'=>5, 'typesale_id'=>2])->get();
             $entregados_ventas = Sale::where(['salestate_id'=>6, 'typesale_id'=>2])->get();
+            $mozos = [];
+            $franquisiados = Client::all();
         }else{
             $enpreparacion = [];
             $enviados = [];
@@ -54,6 +60,8 @@ class OrderController extends Controller
             $enpreparacion_ventas = [];
             $enviados_ventas = [];
             $entregados_ventas = [];
+            $mozos = [];
+            $franquisiados = [];
         }
         
         $out_enpreparacion = [];
@@ -106,7 +114,6 @@ class OrderController extends Controller
 
         $sales_state = SaleState::all();
         $type_sales = TypeSale::all();
-        $mozos = Mozo::where('client_id',$client->client_id)->get();
         $payment_methods = PaymentMethod::all();
 
         return view('admin.paginas.pedidos.index',['enpreparacion'=>$out_enpreparacion,
@@ -118,6 +125,8 @@ class OrderController extends Controller
                                             'sales_state'=>$sales_state,
                                             'type_sales'=>$type_sales,
                                             'mozos'=>$mozos,
+                                            'rol'=>$role->role_id, 
+                                            'clients'=>$franquisiados,
                                             'payment_methods'=>$payment_methods] );
     }
 
@@ -186,4 +195,56 @@ class OrderController extends Controller
     {
         //
     }
+
+    /**
+     * Busca las ventas en un restaurante indicado
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function buscar(Request $request, $init, $final, $idestado, $idtipo, $idmozo, $idmediopago)
+    {
+        $dinit = \DateTime::createFromFormat("Y-d-m", $init);
+        $tinit = $dinit->getTimestamp();
+        $dend = \DateTime::createFromFormat("Y-d-m", $final);
+        $tend = $dend->getTimestamp();
+
+        $ventas = Sale::where([  'salestate_id'=>$idestado,
+                                 'typesale_id'=>$idtipo,
+                                 'mozo_id'=>$idmozo,
+                                 'paymentmethod_id'=>$idmediopago])
+                        ->where('created_at','>=', $tinit)
+                        //->where('created_at','<=', $tend)
+                        ->get();
+                        
+        //$out_ventas = [];
+        //se comenta out_ventas porque item se actualiza 
+        foreach($ventas as $venta){
+            $item = $venta; 
+            $item['estado'] = $venta->estadoVenta;
+            $item['mesa'] = $venta->mesa;
+            $item['camarero'] = $venta->mozo;
+            $item['cliente'] = $venta->client;
+            //$out_ventas[] = $item;
+        }
+
+        return json_encode(['rpta'=>'ok','sales'=>$ventas,'init'=>$init,'end'=>$final]);
+    }
+
+
+    /**
+     * Muestra el detalle de una especifica venta
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function detalle(Request $request, $id)
+    {
+        $detalle_venta = Sale::where(['id'=>$id])->first();
+
+        return json_encode(['rpta'=>'ok','detaill_sale'=>$detalle_venta]);
+    }
+
 }

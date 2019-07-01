@@ -312,6 +312,9 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::post('/client_point','Admin\ClientPointController@store')->name('client_point.store');
     Route::post('/use_enabled_point','Admin\ClientPointController@update')->name('client_point.update');
+
+    Route::get('/sales/buscar/{init}/{final}/{idestado}/{idtipo}/{idmozo}/{idmediopago}','Admin\OrderController@buscar')->name('sales.buscar');
+    Route::get('/sales/detalle/{idsale}','Admin\OrderController@detalle')->name('sales.detalle');
 });
 Route::get('/home', 'HomeController@index')->name('home');
 
